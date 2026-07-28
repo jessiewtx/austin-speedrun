@@ -40,11 +40,22 @@ form.addEventListener('submit', async function(e){
   const grade = document.getElementById('in-grade').value;
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const zipOk   = /^\d{5}$/.test(zip);
+  const zip5    = /^\d{5}$/.test(zip);
+  const zipData = window.ZIP_DATA || null;
+  // must be one of the 5-county Austin metro ZIPs; if the dataset failed to
+  // load, fall back to the 5-digit check so the form is never falsely blocked
+  const inMetro = zip5 && (!zipData || Object.prototype.hasOwnProperty.call(zipData, zip));
+  const zipErr  = document.querySelector('#f-zip .err');
   let ok = true;
   if(!name){setErr('f-name',true);ok=false} else setErr('f-name',false);
   if(!emailOk){setErr('f-email',true);ok=false} else setErr('f-email',false);
-  if(!zipOk){setErr('f-zip',true);ok=false} else setErr('f-zip',false);
+  if(!zip5){
+    if(zipErr) zipErr.textContent = 'Enter a 5-digit ZIP.';
+    setErr('f-zip',true); ok=false;
+  } else if(!inMetro){
+    if(zipErr) zipErr.textContent = "That ZIP isn't in the 5-county Austin metro (Travis, Williamson, Hays, Bastrop, Caldwell).";
+    setErr('f-zip',true); ok=false;
+  } else setErr('f-zip',false);
   if(!grade){setErr('f-grade',true);ok=false} else setErr('f-grade',false);
   if(!ok) return;
 
