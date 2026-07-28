@@ -1,16 +1,16 @@
 # Austin Speedrun
 
-Marketing site for the **Austin Speedrun** — a gt.school city-wide academic contest for every middle schooler in the 5-county Austin metro. Two $100,000 crowns (best young mathematician + best young reader), a $50,000 Effort Grand, and $1,000 champions in every zip.
+Marketing site for the **Austin Speedrun**, a gt.school city-wide academic contest for every middle schooler in the 5-county Austin metro. Two $100,000 crowns (best young mathematician + best young reader), a $50,000 Effort Grand, and $1,000 champions in every zip.
 
-Static site — plain HTML/CSS/JS, no build step.
+Static site: plain HTML/CSS/JS, no build step.
 
 ## Pages
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Split landing page — "I'm a student" vs "I'm a parent". Panels grow on hover. |
-| `students.html` | Student experience — hero countdown, leaderboard, prize lanes, ZIP lookup, 300 Club, Winter Grind. |
-| `parents.html` | Parent explainer — how it works, credibility, prizes & payout, safety/COPPA, timeline, FAQ, waitlist form. |
+| `index.html` | Split landing page: "I'm a student" vs "I'm a parent". Panels grow on hover. |
+| `students.html` | Student experience: hero countdown, leaderboard, prize lanes, ZIP lookup, 300 Club, Winter Grind. |
+| `parents.html` | Parent explainer: how it works, credibility, prizes & payout, safety/COPPA, timeline, FAQ, waitlist form. |
 
 ## Assets
 
@@ -45,4 +45,4 @@ the files with sensible cache headers, and prints the public website URL.
 ## Notes
 
 - The leaderboard and ZIP-lookup data are **sample/preview** data for the demo.
-- The waitlist form is front-end only (no backend) — submissions are held in memory for the demo.
+- The waitlist form is front-end only (no backend); submissions are held in memory for the demo.

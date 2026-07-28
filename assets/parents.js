@@ -31,10 +31,10 @@ form.addEventListener('submit', function(e){
   const first = name.split(' ')[0];
   document.getElementById('formCard').innerHTML = `
     <div class="form-success">
-      <div class="check">✓</div>
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
       <h3>You're on the list, ${first}!</h3>
       <p>We'll email you the moment registration opens on <b>August 3</b> for ${zip}. Watch for details on your child's proctored baseline and how to unlock more prizes for your zip.</p>
-      <div class="ss-detail">SAVED (demo) — ${zip} · ${grade} · we'll reach you at ${email}</div>
+      <div class="ss-detail">SAVED (demo): ${zip} · ${grade} · we'll reach you at ${email}</div>
     </div>`;
   document.getElementById('formCard').scrollIntoView({behavior:'smooth',block:'center'});
 });

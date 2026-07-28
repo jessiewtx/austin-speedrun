@@ -1,4 +1,4 @@
-// Shared inline SVG logo — a forward-motion / speedrun lightning chevron mark.
+// Shared inline SVG logo: a forward-motion / speedrun lightning chevron mark.
 // Uses currentColor so it works on both dark and light themes.
 window.ASR_LOGO = function(size){
   size = size || 30;

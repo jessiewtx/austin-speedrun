@@ -31,43 +31,43 @@ document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK(24);
 const LB = {
   math: {label:'MAP Math + AlphaTest math/science', rows:[
     ['Priya R.','Grade 8 · 78660 Pflugerville','2,984'],
-    ['Wei-Lin C.','Grade 8 · 78613 Cedar Park','2,921'],
-    ['Marcus T.','Grade 7 · 78641 Leander','2,877'],
-    ['Deshawn B.','Grade 8 · 78130 New Braunfels','2,804'],
+    ['Alex H.','Grade 8 · 78703 Austin','2,921'],
+    ['Sofia M.','Grade 6 · 78704 Austin','2,877'],
+    ['Logan M.','Grade 8 · 78613 Cedar Park','2,804'],
     ['Ava K.','Grade 7 · 78681 Round Rock','2,760'],
-    ['Liam O.','Grade 8 · 78664 Round Rock','2,712'],
-    ['Sofia M.','Grade 6 · 78704 Austin','2,690'],
+    ['Isaac J.','Grade 8 · 78130 New Braunfels','2,712'],
+    ['Liam O.','Grade 8 · 78664 Round Rock','2,690'],
     ['Nadia H.','Grade 6 · 78745 Austin','2,641'],
   ]},
   read: {label:'MAP Reading + Language + AlphaTest ELA', rows:[
     ['Sofia M.','Grade 6 · 78704 Austin','2,958'],
-    ['Nadia H.','Grade 6 · 78745 Austin','2,902'],
-    ['Ava K.','Grade 7 · 78681 Round Rock','2,861'],
+    ['Alex H.','Grade 8 · 78703 Austin','2,902'],
+    ['Nadia H.','Grade 6 · 78745 Austin','2,861'],
     ['Priya R.','Grade 8 · 78660 Pflugerville','2,833'],
-    ['Liam O.','Grade 8 · 78664 Round Rock','2,788'],
-    ['Marcus T.','Grade 7 · 78641 Leander','2,744'],
-    ['Deshawn B.','Grade 8 · 78130 New Braunfels','2,701'],
-    ['Wei-Lin C.','Grade 8 · 78613 Cedar Park','2,655'],
+    ['Logan M.','Grade 8 · 78613 Cedar Park','2,788'],
+    ['Ava K.','Grade 7 · 78681 Round Rock','2,744'],
+    ['Isaac J.','Grade 8 · 78130 New Braunfels','2,701'],
+    ['Liam O.','Grade 8 · 78664 Round Rock','2,655'],
   ]},
   speed: {label:'Timeback XP earned', rows:[
-    ['Emily V.','Grade 6 · 78640 Kyle','184,200 XP'],
-    ['Jordan P.','Grade 7 · 78744 Austin','179,600 XP'],
-    ['Hana T.','Grade 6 · 78748 Austin','171,050 XP'],
-    ['Grace L.','Grade 7 · 78617 Del Valle','168,400 XP'],
-    ['Tariq A.','Grade 8 · 78660 Pflugerville','162,900 XP'],
-    ['Mateo S.','Grade 6 · 78621 Elgin','158,300 XP'],
-    ['Zoe W.','Grade 8 · 78753 Austin','151,700 XP'],
-    ['Ibrahim K.','Grade 7 · 78665 Round Rock','147,050 XP'],
+    ['Logan M.','Grade 8 · 78613 Cedar Park','184,200 XP'],
+    ['Alex H.','Grade 8 · 78703 Austin','179,600 XP'],
+    ['Priya R.','Grade 8 · 78660 Pflugerville','171,050 XP'],
+    ['Nadia H.','Grade 6 · 78745 Austin','168,400 XP'],
+    ['Sofia M.','Grade 6 · 78704 Austin','162,900 XP'],
+    ['Isaac J.','Grade 8 · 78130 New Braunfels','158,300 XP'],
+    ['Ava K.','Grade 7 · 78681 Round Rock','151,700 XP'],
+    ['Liam O.','Grade 8 · 78664 Round Rock','147,050 XP'],
   ]},
   climb: {label:'VGLs per week enrolled', rows:[
-    ['Jordan P.','Grade 7 · 78744 Austin','1.8 / wk'],
-    ['Emily V.','Grade 6 · 78640 Kyle','1.6 / wk'],
-    ['Tariq A.','Grade 8 · 78660 Pflugerville','1.5 / wk'],
-    ['Grace L.','Grade 7 · 78617 Del Valle','1.4 / wk'],
-    ['Mateo S.','Grade 6 · 78621 Elgin','1.3 / wk'],
-    ['Zoe W.','Grade 8 · 78753 Austin','1.2 / wk'],
-    ['Ibrahim K.','Grade 7 · 78665 Round Rock','1.1 / wk'],
-    ['Hana T.','Grade 6 · 78748 Austin','1.0 / wk'],
+    ['Priya R.','Grade 8 · 78660 Pflugerville','1.8 / wk'],
+    ['Alex H.','Grade 8 · 78703 Austin','1.6 / wk'],
+    ['Sofia M.','Grade 6 · 78704 Austin','1.5 / wk'],
+    ['Logan M.','Grade 8 · 78613 Cedar Park','1.4 / wk'],
+    ['Nadia H.','Grade 6 · 78745 Austin','1.3 / wk'],
+    ['Ava K.','Grade 7 · 78681 Round Rock','1.2 / wk'],
+    ['Liam O.','Grade 8 · 78664 Round Rock','1.1 / wk'],
+    ['Isaac J.','Grade 8 · 78130 New Braunfels','1.0 / wk'],
   ]},
 };
 function renderLB(key){
@@ -93,7 +93,7 @@ function lookupZip(zip){
   const rec = ZD[zip];
   if(!rec){
     el.hidden=false;
-    el.innerHTML = `<div class="zr-top"><div class="zr-zip">${/^\d{5}$/.test(zip)?zip:'—'}</div></div>
+    el.innerHTML = `<div class="zr-top"><div class="zr-zip">${/^\d{5}$/.test(zip)?zip:'-'}</div></div>
       <p style="color:var(--dim)">That zip isn't in the 5-county Austin metro (99 residential zips: Travis, Williamson, Hays, Bastrop, Caldwell). Try one of the samples above.</p>`;
     return;
   }
@@ -114,12 +114,12 @@ function lookupZip(zip){
       <div><span>Guaranteed champions</span><b style="color:var(--accent)">3 × $1,000</b></div>
       <div><span>Pool growth</span><b>+$5 / signup</b></div>
     </div>
-    <div class="zr-guar">Day one, <b>${zip}</b> crowns its <b>mathematician</b>, its <b>reader</b>, and its <b>MVP</b> — <b>3 guaranteed $1,000 champions</b> (top Math/Science score, top Reading/Language score, top XP) — plus one $1,000 winner for every 25 verified kids who join.</div>
-    <div class="ladder-h">Your zip unlock ladder — recruit ${rec.county} to switch these on</div>
+    <div class="zr-guar">Day one, <b>${zip}</b> crowns its <b>mathematician</b>, its <b>reader</b>, and its <b>MVP</b>: <b>3 guaranteed $1,000 champions</b> (top Math/Science score, top Reading/Language score, top XP), plus one $1,000 winner for every 25 verified kids who join.</div>
+    <div class="ladder-h">Your zip unlock ladder: recruit ${rec.county} to switch these on</div>
     ${unlockRow(t1, 'Silver medals unlock', '+$1,000 Math/Science runner-up and +$1,000 Reading/Language runner-up for '+zip)}
     ${unlockRow(t2, 'Grade champions', '+$1,000 each for grades 6, 7 and 8')}
     ${unlockRow(t3, 'Schools switch on', 'Every campus in '+zip+' activates its own prize ladder + a $2,500 bonus injection')}
-    <p class="zr-cta">Thresholds are <b>${t1}/${t2}/${t3}</b> verified kids for this zip (50/100/150, or 25%/40%/50% of your ${kids.toLocaleString()} — whichever is smaller). Get your parent to sign you up and start recruiting the block.</p>
+    <p class="zr-cta">Thresholds are <b>${t1}/${t2}/${t3}</b> verified kids for this zip (50/100/150, or 25%/40%/50% of your ${kids.toLocaleString()}, whichever is smaller). Get your parent to sign you up and start recruiting the block.</p>
   `;
   el2.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -138,6 +138,6 @@ document.getElementById('shareBtn').addEventListener('click',()=>{
   const link = 'https://austin.gt.school/?ref=speedrun';
   const msg = document.getElementById('shareMsg');
   navigator.clipboard && navigator.clipboard.writeText(link).then(()=>{
-    msg.textContent='Copied! Share it — verified signups credit you.';
+    msg.textContent='Copied! Share it. Verified signups credit you.';
   }).catch(()=>{ msg.textContent='Your link: '+link; });
 });
