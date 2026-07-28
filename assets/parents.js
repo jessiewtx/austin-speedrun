@@ -42,9 +42,8 @@ form.addEventListener('submit', async function(e){
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const zip5    = /^\d{5}$/.test(zip);
   const zipData = window.ZIP_DATA || null;
-  // must be one of the 5-county Austin metro ZIPs; if the dataset failed to
-  // load, fall back to the 5-digit check so the form is never falsely blocked
-  const inMetro = zip5 && (!zipData || Object.prototype.hasOwnProperty.call(zipData, zip));
+  // strict: must be a 5-digit ZIP AND one of the 92 five-county metro ZIPs
+  const inMetro = zip5 && !!zipData && Object.prototype.hasOwnProperty.call(zipData, zip);
   const zipErr  = document.querySelector('#f-zip .err');
   let ok = true;
   if(!name){setErr('f-name',true);ok=false} else setErr('f-name',false);
