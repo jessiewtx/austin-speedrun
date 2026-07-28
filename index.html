@@ -15,8 +15,8 @@
   --sans:'General Sans','Inter',sans-serif;
   --display:'Clash Display','General Sans',sans-serif;
   --serif:'Source Serif 4','Zodiak',Georgia,serif;
-  --kid-bg:#07060d; --kid-accent:#c6ff2e; --kid-cyan:#22e3ff; --kid-mag:#ff2e8b;
-  --par-bg:#faf8f4; --par-ink:#1a1c22; --par-accent:#1c5c4a; --par-gold:#b8863b;
+  --kid-bg:#0b0c12; --kid-accent:#567CDF; --kid-pink:#ff74ba; --kid-yellow:#ffd21e; --kid-green:#5CD452;
+  --par-bg:#faf6ee; --par-ink:#221f19; --par-accent:#3f60de; --par-gold:#a97c1c;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -26,7 +26,7 @@ a{color:inherit;text-decoration:none}
 /* top bar */
 .top{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:20px;pointer-events:none}
 .asr-logo{display:inline-flex;align-items:center;gap:10px;pointer-events:auto;color:#fff}
-.asr-mark{color:var(--kid-accent);filter:drop-shadow(0 0 8px rgba(198,255,46,.5))}
+.asr-mark{color:var(--kid-accent);filter:drop-shadow(0 0 8px rgba(86,124,223,.55))}
 .asr-word{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.02em;line-height:1}
 .asr-word-accent{color:var(--kid-accent);margin-left:2px}
 
@@ -38,26 +38,29 @@ a{color:inherit;text-decoration:none}
 @media(min-width:820px){.panel:hover{flex:1.35}}
 
 /* kid panel */
-.kid{background:radial-gradient(120% 90% at 20% 10%,#151033 0%,#07060d 60%)}
-.kid::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(198,255,46,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,255,46,.06) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(80% 80% at 30% 20%,#000,transparent);z-index:1}
+.kid{background:radial-gradient(85% 75% at 82% 8%,rgba(86,124,223,.22),transparent 60%),radial-gradient(72% 78% at 4% 94%,rgba(255,116,186,.14),transparent 60%),#0b0c12}
+.kid::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(80% 80% at 30% 20%,#000,transparent);z-index:1}
 .kid .eyebrow{color:var(--kid-accent)}
 .kid h2{font-family:var(--display);font-weight:700;font-size:clamp(38px,7vw,60px);line-height:.94;letter-spacing:-.01em}
+.kid h2 .hl{color:var(--kid-yellow)}
+.kid .dot{background:var(--kid-pink)}
 .kid .sub{color:#b9b6cc;margin:18px 0 30px;font-size:17px;line-height:1.5}
-.kid .go{background:var(--kid-accent);color:#07060d;box-shadow:0 0 0 rgba(198,255,46,.5);animation:pulse 2.4s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,255,46,.45)}50%{box-shadow:0 0 34px 2px rgba(198,255,46,.25)}}
+.kid .go{background:var(--kid-accent);color:#fff;box-shadow:0 0 0 rgba(86,124,223,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(86,124,223,.5)}50%{box-shadow:0 0 36px 2px rgba(86,124,223,.3)}}
 .orb{position:absolute;border-radius:50%;filter:blur(60px);z-index:0}
-.orb.a{width:280px;height:280px;background:rgba(34,227,255,.22);top:-40px;right:-60px}
-.orb.b{width:220px;height:220px;background:rgba(255,46,139,.18);bottom:20px;left:-40px}
+.orb.a{width:280px;height:280px;background:rgba(86,124,223,.28);top:-40px;right:-60px}
+.orb.b{width:220px;height:220px;background:rgba(255,116,186,.20);bottom:20px;left:-40px}
 
 /* parent panel */
-.par{background:linear-gradient(160deg,#fdfcf9,#f2ede3)}
+.par{background:linear-gradient(160deg,#fffdf8,#f4ecda)}
 .par .panel-inner{color:var(--par-ink)}
-.par .eyebrow{color:var(--par-accent)}
-.par h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.02;letter-spacing:-.01em;color:#141618}
+.par .eyebrow{color:var(--par-gold)}
+.par h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.03;letter-spacing:-.01em;color:var(--par-ink)}
+.par h2 .hl{color:var(--par-accent);font-style:italic}
 .par .sub{color:#4b4f57;margin:18px 0 30px;font-size:17px;line-height:1.55}
 .par .go{background:var(--par-accent);color:#fff}
-.par .deco{position:absolute;right:-30px;top:-30px;width:200px;height:200px;border:1px solid rgba(28,92,74,.18);border-radius:50%;z-index:0}
-.par .deco2{position:absolute;left:-50px;bottom:-40px;width:160px;height:160px;border:1px solid rgba(184,134,59,.25);border-radius:50%;z-index:0}
+.par .deco{position:absolute;right:-30px;top:-30px;width:200px;height:200px;border:1px solid rgba(169,124,28,.24);border-radius:50%;z-index:0}
+.par .deco2{position:absolute;left:-50px;bottom:-40px;width:160px;height:160px;border:1px solid rgba(63,96,222,.18);border-radius:50%;z-index:0}
 
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-bottom:16px;display:inline-flex;align-items:center;gap:8px}
 .dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
@@ -65,12 +68,16 @@ a{color:inherit;text-decoration:none}
 .go:hover{transform:translateY(-2px);gap:16px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .chip{font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:6px 11px;border-radius:6px;border:1px solid;text-transform:uppercase;font-weight:500}
-.kid .chip{border-color:rgba(255,255,255,.14);color:#cfccdd}
+.kid .chip{border:none;color:#0a0a12;font-weight:800;padding:8px 12px;border-radius:8px}
+.kid .chip.c-blue{background:var(--kid-accent);transform:rotate(-2deg);box-shadow:0 6px 16px rgba(86,124,223,.34)}
+.kid .chip.c-pink{background:var(--kid-pink);transform:rotate(1.5deg);box-shadow:0 6px 16px rgba(255,116,186,.3)}
+.kid .chip.c-green{background:var(--kid-green);transform:rotate(-1.5deg);box-shadow:0 6px 16px rgba(92,212,82,.28)}
+.kid .chip.c-yellow{background:var(--kid-yellow);transform:rotate(2deg);box-shadow:0 6px 16px rgba(255,210,30,.28)}
 .par .chip{border-color:rgba(20,22,24,.14);color:#5a5e66}
 
 /* center brand marker */
 .brandtag{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:60;text-align:center;pointer-events:none}
-.brandtag .asr-logo{background:#07060d;border:1px solid rgba(255,255,255,.14);padding:10px 20px;border-radius:100px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.brandtag .asr-logo{background:#0b0c12;border:1px solid rgba(255,255,255,.14);padding:10px 20px;border-radius:100px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
 .brandtag .asr-word{color:#fff}
 .divider-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:40;font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:#8f8ca3;background:#05040a;border:1px solid rgba(255,255,255,.15);padding:9px 15px;border-radius:100px;pointer-events:none;text-transform:uppercase}
 @media(max-width:819px){.divider-label{display:none}}
@@ -87,10 +94,10 @@ a{color:inherit;text-decoration:none}
     <div class="orb a"></div><div class="orb b"></div>
     <div class="panel-inner">
       <span class="eyebrow"><span class="dot"></span>I'm a student</span>
-      <h2>Speedrun&nbsp;school. Win real money.</h2>
+      <h2>Speedrun&nbsp;school. <span class="hl">Win real money.</span></h2>
       <p class="sub">Race every middle schooler in Austin. Master grade levels fast, climb the leaderboard, and go for one of the <strong style="color:#fff">two $100,000 crowns</strong>: Austin's best young mathematician and best young reader.</p>
       <a class="go" href="students.html">Enter the arena <span aria-hidden="true">→</span></a>
-      <div class="chips"><span class="chip">Free all season</span><span class="chip">Two $100K crowns</span><span class="chip">$1,000 winners citywide</span></div>
+      <div class="chips"><span class="chip c-blue">$100K Math</span><span class="chip c-pink">$100K Reading</span><span class="chip c-green">$50K Effort</span><span class="chip c-yellow">$1K Zip</span></div>
     </div>
   </section>
 
@@ -98,7 +105,7 @@ a{color:inherit;text-decoration:none}
     <div class="deco"></div><div class="deco2"></div>
     <div class="panel-inner">
       <span class="eyebrow"><span class="dot"></span>I'm a parent</span>
-      <h2>We're searching for the GT kids hiding in every Austin zip code.</h2>
+      <h2>We're searching for the <span class="hl">gifted kids</span> hiding in every Austin zip code.</h2>
       <p class="sub">A free, proctored academic contest for every middle schooler in the 5-county metro. Real learning, measured on the MAP test you already trust.</p>
       <a class="go" href="parents.html">Learn how it works <span aria-hidden="true">→</span></a>
       <div class="chips"><span class="chip">Free to enter</span><span class="chip">NWEA MAP proctored</span><span class="chip">COPPA-safe</span></div>
