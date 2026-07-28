@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin Speedrun — Enter the Arena</title>
+<meta name="description" content="Speedrun school. Win real money. Two $100,000 crowns — best young mathematician and best young reader. Free all season. Season starts Aug 24, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kids.css">
+</head>
+<body>
+<header class="nav">
+  <span id="logo"></span>
+  <nav class="navlinks">
+    <a href="#game">The Game</a>
+    <a href="#zip">Your Zip</a>
+    <a href="#club">300 Club</a>
+    <a href="#grind">Winter Grind</a>
+  </nav>
+  <a href="parents.html" class="nav-cta">Get a parent to sign me up →</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="scanline"></div>
+  <div class="hero-inner">
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+    <span class="tag"><span class="live-dot"></span>SEASON 01 · AUSTIN METRO</span>
+    <h1>SPEEDRUN SCHOOL.<br><span class="glow">WIN REAL MONEY.</span></h1>
+    <p class="lede">Every middle schooler in Austin gets a free account, races to master as much curriculum as possible, and the city crowns its champions. <b>Two $100,000 crowns</b>: Austin's best young mathematician and best young reader — plus the <b>$50,000 Effort Grand</b> for the most Timeback XP earned all season.</p>
+
+    <div class="countdown" role="timer" aria-label="Countdown to season start">
+      <div class="cd-label">Season starts in</div>
+      <div class="cd-clock" id="clock">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-tag">days</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-tag">hrs</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-tag">min</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-tag">sec</span></div>
+      </div>
+      <div class="cd-foot">Aug 24, 2026 · Registration opens Aug 3</div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn primary" href="parents.html">Get your parent to sign you up</a>
+      <a class="btn ghost" href="#zip">Find your team →</a>
+    </div>
+    <div class="stat-strip">
+      <div><b>$100K</b><span>Math/Science crown</span></div>
+      <div><b>$100K</b><span>Reading/Language crown</span></div>
+      <div><b>$50K</b><span>Effort Grand</span></div>
+      <div><b>99</b><span>zip teams</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAME -->
+<section class="sec" id="game">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">// THE GAME</span><h2>Master grade levels. Fast.</h2></div>
+    <p class="sec-lede">Timeback's content is unlimited and mastery-based — so a 6th grader can eat 7th, 8th, even 9th grade math in one season. Your progress currency is the <b>Verified Grade Level (VGL)</b>: full mastery of one subject at one grade, confirmed by a proctored exam.</p>
+    <div class="cards4">
+      <div class="gcard"><div class="gnum">30<span>hrs</span></div><h3>Speedrun pace</h3><p>Target ~30 hours to clear a full subject at a grade level on Timeback.</p></div>
+      <div class="gcard"><div class="gnum">∞</div><h3>Unlimited content</h3><p>No cap on how far you climb. Keep leveling until the season ends.</p></div>
+      <div class="gcard"><div class="gnum">$0</div><h3>Free all season</h3><p>Every registrant gets full unlimited Timeback access — the whole 19 weeks.</p></div>
+      <div class="gcard"><div class="gnum">VGL</div><h3>Verified levels</h3><p>Season boards run on VGLs + mastery XP. Prizes pay on proctored tests only.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="sec dark" id="board">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">// LIVE STANDINGS</span><h2>The leaderboard</h2></div>
+    <div class="preview-banner">⚠ SAMPLE / PREVIEW DATA — names and scores are illustrative, not real standings.</div>
+    <div class="board-tabs" id="boardTabs">
+      <button class="btab active" data-b="math">Math/Science</button>
+      <button class="btab" data-b="read">Reading/Language</button>
+      <button class="btab" data-b="speed">Effort (XP)</button>
+      <button class="btab" data-b="climb">Fastest Climber</button>
+    </div>
+    <div class="lb" id="lb"></div>
+    <p class="lb-note">Leaderboards update daily during the season — by grade, school, zip, and metro. Every board has its own prizes.</p>
+  </div>
+</section>
+
+<!-- PRIZE LANES -->
+<section class="sec" id="lanes">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">// FOUR LANES</span><h2>Four ways to be #1</h2></div>
+    <p class="sec-lede">Every pool pays <b>one $1,000 prize per 25 kids</b> — and prize slots rotate through four lanes. So the top scorer, the hardest worker, the math nerd, and the reader all get a shot.</p>
+    <div class="lanes">
+      <div class="lane l1"><span class="lane-i">01</span><h3>Highest Score</h3><p>Absolute mastery on proctored MAP + AlphaTest. This finds the already-brilliant across both subjects.</p></div>
+      <div class="lane l2"><span class="lane-i">02</span><h3>Effort (XP)</h3><p>Most Timeback XP earned. XP only counts for mastered work at your own level — so it pays for hours, not ability. Any kid can top it.</p></div>
+      <div class="lane l3"><span class="lane-i">03</span><h3>Math / Science</h3><p>MAP Math + science sections. Best young mathematician in your zip. The <b>$100,000 crown</b> lives here.</p></div>
+      <div class="lane l4"><span class="lane-i">04</span><h3>Reading / Language</h3><p>MAP Reading + Language Usage. Best young reader in the city. The other <b>$100,000 crown</b> lives here.</p></div>
+    </div>
+    <div class="pitch">
+      <span class="pitch-eq">1 prize / 25 kids</span>
+      <p>“Get <b>25 more kids</b> signed up and your pool gets <b>another $1,000 winner</b>.” Recruiting never hurts you — more players means more winners, not worse odds.</p>
+    </div>
+    <div class="pitch" style="margin-top:16px">
+      <span class="pitch-eq">$50K</span>
+      <p><b>The Effort Grand.</b> The most <b>Timeback XP</b> earned all season, metro-wide, telemetry-audited — and XP only accrues for mastered work at <i>your own adaptive frontier</i>, never for time sitting there. So it pays for productive hours, not ability: a prodigy has <b>zero per-hour advantage</b>, and literally any kid can win it by out-working the city.</p>
+    </div>
+    <div class="pitch" style="margin-top:16px">
+      <span class="pitch-eq">$200K</span>
+      <p><b>The Double Crown.</b> Top both boards — Math/Science and Reading/Language — and you take both checks: the <b>$200,000 Double Crown</b>. Deliberately possible, legend-tier, and better mythology than any single title.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ZIP LOOKUP -->
+<section class="sec dark" id="zip">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">// YOUR ZIP IS YOUR TEAM</span><h2>Every zip crowns its mathematician, its reader, and its MVP.</h2></div>
+    <p class="sec-lede"><b>3 guaranteed $1,000 champions</b> in each of the 99 Austin-metro zips on day one — top Math/Science score, top Reading/Language score, and top XP (the MVP). Recruit your neighborhood to unlock more.</p>
+    <div class="zip-tool">
+      <div class="zip-input">
+        <input id="zipIn" type="text" inputmode="numeric" maxlength="5" placeholder="Enter your ZIP (e.g. 78660)" aria-label="Enter your zip code">
+        <button id="zipGo">Look up</button>
+      </div>
+      <div class="zip-hints">Try: <button class="zh" data-z="78660">78660</button><button class="zh" data-z="78704">78704</button><button class="zh" data-z="78641">78641</button><button class="zh" data-z="78644">78644</button></div>
+      <div id="zipResult" class="zip-result" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- 300 CLUB -->
+<section class="sec" id="club">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">// ELITE TIER</span><h2>The 300 Club</h2></div>
+    <p class="sec-lede">Out-score <b>99% of high school seniors</b> on any proctored MAP subject and you break out of the kids' game entirely — you unlock the <b>SAT level</b>.</p>
+    <div class="gates">
+      <div class="gate"><span>MATH</span><b>281</b></div>
+      <div class="gate"><span>READING</span><b>261</b></div>
+      <div class="gate"><span>LANGUAGE</span><b>259</b></div>
+      <div class="gate"><span>SCIENCE</span><b>247</b></div>
+    </div>
+    <div class="legend">A literal <b>300 in Math</b> = “broke the scale.” Above the 99th percentile of <i>any</i> grade. Expected: 0–1 kids in all of Austin. Legend tier.</div>
+    <h3 class="ladder-title">The SAT Ladder</h3>
+    <div class="ladder">
+      <div class="rung"><span class="score">1300+</span><span class="award">$1,000</span></div>
+      <div class="rung"><span class="score">1400+</span><span class="award">$5,000</span></div>
+      <div class="rung"><span class="score">1500+</span><span class="award">$10,000</span></div>
+      <div class="rung top"><span class="score">1575+</span><span class="award">$25,000 <em>+ the 1575 moment on stage</em></span></div>
+    </div>
+    <p class="lb-note">300 Club members are auto-qualified for finals, get an official SAT sitting paid for by gt.school, and walk out with a scholarship offer in hand.</p>
+  </div>
+</section>
+
+<!-- WINTER GRIND -->
+<section class="sec grind" id="grind">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">// DEC 19 – JAN 3</span><h2>The Winter Grind</h2></div>
+    <p class="sec-lede">Two uncontested weeks of vacation. The comeback window. The standings on Dec 18 are <i>not</i> the standings on Jan 3 — and every kid knows it.</p>
+    <div class="grind-grid">
+      <div class=" gitem"><h3>❄ Weekend Warrior Saturdays</h3><p>Live grind rooms + a weekend-hours leaderboard. Catch-up is a feature with a name.</p></div>
+      <div class="gitem"><h3>🔥 12 Days of Mastery</h3><p>Daily streak awards and a bounty ladder through both break weeks.</p></div>
+      <div class="gitem"><h3>⚡ Join anytime</h3><p>Heard about it in November? A brilliant kid loses nothing — Highest Score is a point-in-time test.</p></div>
+    </div>
+    <div class="grind-math">“Kids ahead of you averaged 6 hrs/week. Do <b>12 on weekends</b> and you pass them by finals.”</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="finalcta">
+  <div class="wrap">
+    <h2>Ready to run it?</h2>
+    <p>Parents sign the papers (it's the law — you're under 18). Send them here and you're in the arena.</p>
+    <a class="btn primary big" href="parents.html">Get your parent to sign you up →</a>
+    <div class="share">
+      <button id="shareBtn" class="btn ghost">Copy your share link</button>
+      <span id="shareMsg" class="share-msg"></span>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap footrow">
+    <span id="logoFoot"></span>
+    <p>Austin Speedrun by <b>gt.school</b> — the first instrument in finding the 100,000 smartest kids in America. Free skill contest. Every middle schooler in the 5-county metro is eligible.</p>
+    <a href="parents.html" class="foot-link">Parent info →</a>
+  </div>
+</footer>
+
+<script src="assets/zipdata.js"></script>
+<script src="assets/logo.js"></script>
+<script src="assets/kids.js"></script>
+</body>
+</html>
