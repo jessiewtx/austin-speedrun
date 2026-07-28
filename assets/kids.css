@@ -16,7 +16,7 @@ b{font-weight:700}
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 26px;background:rgba(11,12,18,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .asr-logo{display:inline-flex;align-items:center;gap:9px;color:#fff}
-.asr-mark{color:var(--turq)}
+.asr-mark{color:var(--yellow)}
 .asr-word{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.01em}
 .asr-word-accent{color:var(--turq);margin-left:2px}
 .navlinks{display:none;gap:26px;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}

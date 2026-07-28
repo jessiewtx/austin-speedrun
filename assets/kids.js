@@ -6,7 +6,7 @@ document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK(24);
 (function(){
   const items = [
     'SEASON STARTS <b>AUG 24, 2026</b>','MATH/SCIENCE CROWN <b>$100,000</b>','READING/LANGUAGE CROWN <b>$100,000</b>','DOUBLE CROWN <b>$200,000</b>',
-    'EFFORT GRAND <b>$50,000</b>','MOST TIMEBACK XP WINS','<b>FREE</b> ALL SEASON','99 ZIP TEAMS','<b>$1,000</b> WINNERS CITYWIDE','19-WEEK SEASON','WINTER GRIND <b>DEC 19–JAN 3</b>',
+    'EFFORT GRAND <b>$50,000</b>','MOST TIMEBACK XP WINS','<b>FREE</b> ALL SEASON','91 ZIP TEAMS','<b>$1,000</b> WINNERS CITYWIDE','19-WEEK SEASON','WINTER GRIND <b>DEC 19–JAN 3</b>',
     'BREAK THE SCALE: <b>MATH 300</b>','1 PRIZE PER <b>25 KIDS</b>'
   ];
   const html = items.map(i=>'<span>'+i+'</span>').join('');
@@ -94,7 +94,7 @@ function lookupZip(zip){
   if(!rec){
     el.hidden=false;
     el.innerHTML = `<div class="zr-top"><div class="zr-zip">${/^\d{5}$/.test(zip)?zip:'-'}</div></div>
-      <p style="color:var(--dim)">That zip isn't in the 5-county Austin metro (99 residential zips: Travis, Williamson, Hays, Bastrop, Caldwell). Try one of the samples above.</p>`;
+      <p style="color:var(--dim)">That zip isn't in the 5-county Austin metro (91 residential zips: Travis, Williamson, Hays, Bastrop, Caldwell). Try one of the samples above.</p>`;
     return;
   }
   const kids = rec.kids;

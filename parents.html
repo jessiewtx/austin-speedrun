@@ -27,6 +27,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-deco"></div>
+  <span class="hero-mark" aria-hidden="true">$100K</span>
   <div class="wrap">
     <span class="eyebrow"><span class="dot"></span>A gt.school talent search · Austin Metro</span>
     <h1>We're searching for the <span class="hl">gifted kids</span> hiding in every Austin zip code.</h1>
@@ -67,22 +68,28 @@
     <p class="intro">The contest crowns its champions on three separate pillars. Score is expressed as <b>two subject crowns</b>, the best young mathematician and the best young reader, with the <b>Effort Grand</b> for the kid who simply works the hardest all season. <b>Nobody in America crowns a $100k middle-school reader; we do.</b></p>
     <div class="twoway">
       <div class="way a">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 7l4 4 5-7 5 7 4-4v11H3z"/></svg></span>
         <span class="label">Crown · Primary</span>
         <h3>Math/Science Crown</h3>
-        <p>The highest proctored <b>Math/Science</b> segment score in the metro: MAP Math plus AlphaTest math and science sections. Austin's best young mathematician. The <b>$100,000</b> crown.</p>
+        <p>The highest proctored <b>Math/Science</b> segment score in the metro: MAP Math plus AlphaTest math and science sections. Austin's best young mathematician.</p>
         <div class="who">Who can win: the top math/science scorer, regardless of when they joined.</div>
+        <div class="amt">$100,000</div>
       </div>
       <div class="way c">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 7l4 4 5-7 5 7 4-4v11H3z"/></svg></span>
         <span class="label">Crown · Primary</span>
         <h3>Reading/Language Crown</h3>
-        <p>The highest proctored <b>Reading/Language</b> segment score in the metro: MAP Reading + Language Usage plus AlphaTest ELA sections. Austin's best young reader. The other <b>$100,000</b> crown.</p>
+        <p>The highest proctored <b>Reading/Language</b> segment score in the metro: MAP Reading + Language Usage plus AlphaTest ELA sections. Austin's best young reader.</p>
         <div class="who">Who can win: the top reading/language scorer, regardless of when they joined.</div>
+        <div class="amt">$100,000</div>
       </div>
       <div class="way b">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
         <span class="label">Third pillar</span>
         <h3>Effort Grand</h3>
-        <p>The most <b>Timeback XP</b> earned across the season, metro-wide, telemetry-audited. XP accrues only for <b>mastered work at each kid's own adaptive frontier</b>, never for seat time, so it pays for productive hours, not ability. A prodigy has <b>zero per-hour advantage</b>: literally any kid can win it. The <b>$50,000</b> Effort Grand.</p>
+        <p>The most <b>Timeback XP</b> earned across the season, metro-wide, telemetry-audited. XP accrues only for <b>mastered work at each kid's own adaptive frontier</b>, never for seat time, so it pays for productive hours, not ability. Literally any kid can win it.</p>
         <div class="who">Who can win: literally any kid who does the work, day after day.</div>
+        <div class="amt">$50,000</div>
       </div>
     </div>
     <p class="intro" style="margin-top:28px"><b>The $200,000 Double Crown.</b> The two crowns stack: if one child tops both the Math/Science and Reading/Language boards, they take both checks. Deliberately possible, legend-tier, and better mythology than any combined title. There is no overall composite prize by design.</p>
@@ -111,7 +118,7 @@
   <div class="wrap">
     <span class="kicker">Prizes &amp; payout</span>
     <h2>$1,000 winners across every zip. Two $100,000 crowns.</h2>
-    <p class="intro">Every one of the 99 metro zips crowns champions, and prize <b>count</b> grows as more neighbors join, so the odds don't collapse as participation rises. At the top sit two subject crowns: the best young mathematician and the best young reader in Austin.</p>
+    <p class="intro">Every one of the 91 metro zips crowns champions, and prize <b>count</b> grows as more neighbors join, so the odds don't collapse as participation rises. At the top sit two subject crowns: the best young mathematician and the best young reader in Austin.</p>
     <div class="prize-top">
       <div class="ptile"><div class="amt gold">$100K</div><h3>Math/Science Crown</h3><p>Highest proctored Math/Science segment score, metro-wide. Austin's best young mathematician.</p></div>
       <div class="ptile"><div class="amt gold">$100K</div><h3>Reading/Language Crown</h3><p>Highest proctored Reading/Language segment score, metro-wide. Austin's best young reader.</p></div>
@@ -198,6 +205,7 @@
     <p class="intro">Registration opens August 3. Add your family now and we'll email you the moment sign-ups go live for your zip.</p>
     <div class="form-card" id="formCard">
       <form id="waitForm" novalidate>
+        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="field" id="f-name">
           <label for="in-name">Parent / guardian name</label>
           <input id="in-name" type="text" autocomplete="name" placeholder="Your full name">
@@ -226,6 +234,7 @@
             <span class="err">Select a grade.</span>
           </div>
         </div>
+        <p class="form-error" id="form-error">Hmm, that didn't send. Please check your connection and try again.</p>
         <button type="submit" class="form-submit">Add my family to the waitlist</button>
         <p class="form-fine">Free to join. We'll only email you about the Austin Speedrun. Parent-first &amp; COPPA-compliant.</p>
       </form>
