@@ -49,12 +49,12 @@ aws s3 website "s3://$BUCKET/" --index-document index.html --error-document inde
 # 4. Upload. Long cache for assets, short for HTML.
 echo "==> Uploading assets"
 aws s3 sync "$SRC_DIR/assets" "s3://$BUCKET/assets" \
-  --delete --cache-control "public,max-age=31536000,immutable"
+  --delete --cache-control "no-cache"
 
 echo "==> Uploading HTML"
 aws s3 sync "$SRC_DIR" "s3://$BUCKET" \
   --exclude "*" --include "*.html" \
-  --cache-control "public,max-age=300" --content-type "text/html; charset=utf-8"
+  --cache-control "no-cache" --content-type "text/html; charset=utf-8"
 
 # 5. Done.
 if [ "$REGION" = "us-east-1" ]; then
