@@ -9,3 +9,8 @@
 *.log
 .env
 .env.*
+
+# Local / throwaway (not part of the site)
+_previews/
+video/
+node_modules/

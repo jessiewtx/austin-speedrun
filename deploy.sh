@@ -53,7 +53,7 @@ aws s3 sync "$SRC_DIR/assets" "s3://$BUCKET/assets" \
 
 echo "==> Uploading HTML"
 aws s3 sync "$SRC_DIR" "s3://$BUCKET" \
-  --exclude "*" --include "*.html" \
+  --exclude "*" --include "*.html" --exclude "*/*" \
   --cache-control "no-cache" --content-type "text/html; charset=utf-8"
 
 # 5. Done.
