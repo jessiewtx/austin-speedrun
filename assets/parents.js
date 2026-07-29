@@ -2,22 +2,12 @@ document.getElementById('logo').innerHTML = window.ASR_WORDMARK(28);
 document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK(24);
 
 /* ============================================================
-   WAITLIST DESTINATION  —  paste your endpoint URL on ONE line below.
-
-   RECOMMENDED: a Google Sheet (free, unlimited, and the sheet is
-   yours to share / hand off to any account = your dashboard).
-     1) Make a sheet at  sheets.new
-     2) Extensions ▸ Apps Script, paste the script provided, Save
-     3) Deploy ▸ New deployment ▸ Web app
-          · Execute as: Me      · Who has access: Anyone
-        Authorize when prompted, then copy the Web app URL (/exec).
-     4) Paste that URL below.
-   Each signup appends a row: Timestamp, Name, Email, ZIP, Grade.
-
-   Prefer a hosted dashboard instead? Paste a Formspree form URL
-   ("https://formspree.io/f/XXXXXXXX") — the code auto-detects it.
+   WAITLIST DESTINATION — Formspree (https://formspree.io).
+   Submissions (Name, Email, ZIP, Grade) land in the Formspree form's
+   inbox + dashboard. To move it to another account later, create a
+   new Formspree form and swap the URL below.
    ============================================================ */
-const WAITLIST_ENDPOINT   = "https://script.google.com/a/macros/alphaaiengineering.com/s/AKfycbwOIMSXAssjYSZHRSag2lmCXKRQdi7dAxLgVuLOfPGaug7VnTm_gpwx_jpLPOUp_kDu/exec";
+const WAITLIST_ENDPOINT   = "https://formspree.io/f/xvzelnlk";
 const WAITLIST_CONFIGURED = /^https?:\/\//.test(WAITLIST_ENDPOINT);
 
 // zip digit-only filter
@@ -66,9 +56,7 @@ form.addEventListener('submit', async function(e){
 
   const payload = {
     name, email, zip, grade,
-    _subject: `New Austin Speedrun waitlist: ${name} (ZIP ${zip}, ${grade})`,
-    _template: 'table',
-    _captcha: 'false'
+    _subject: `New Austin Speedrun waitlist: ${name} (ZIP ${zip}, ${grade})`
   };
 
   // local backup so a submission is never lost, even if the network fails
@@ -80,26 +68,13 @@ form.addEventListener('submit', async function(e){
 
   let saved = false;
   if (WAITLIST_CONFIGURED) {
-    const isSheet = WAITLIST_ENDPOINT.includes('script.google.com');
     try {
-      if (isSheet) {
-        // Google Apps Script: text/plain + no-cors sidesteps the CORS preflight
-        // it can't answer. The response is opaque, so a resolved fetch = written;
-        // a real network failure rejects and is caught below.
-        await fetch(WAITLIST_ENDPOINT, {
-          method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        });
-        saved = true;
-      } else {
-        const res = await fetch(WAITLIST_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        saved = res.ok;
-      }
+      const res = await fetch(WAITLIST_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      saved = res.ok;
     } catch(_) { saved = false; }
   }
 
