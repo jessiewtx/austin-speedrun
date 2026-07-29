@@ -111,15 +111,15 @@ function lookupZip(zip){
     </div>
     <div class="zr-kids">
       <div><span>Est. middle schoolers</span><b>${kids.toLocaleString()}</b></div>
-      <div><span>Guaranteed champions</span><b style="color:var(--accent)">3 × $1,000</b></div>
-      <div><span>Pool growth</span><b>+$5 / signup</b></div>
+      <div><span>Guaranteed prizes</span><b style="color:var(--accent)">3 × $1,000</b></div>
+      <div><span>Prizes grow</span><b>+$1,000 / 25 kids</b></div>
     </div>
-    <div class="zr-guar">Day one, <b>${zip}</b> crowns its <b>mathematician</b>, its <b>reader</b>, and its <b>MVP</b>: <b>3 guaranteed $1,000 champions</b> (top Math/Science score, top Reading/Language score, top XP), plus one $1,000 winner for every 25 verified kids who join.</div>
+    <div class="zr-guar">Your zip is guaranteed <b>3 prizes all season</b>: <b>$1,000</b> each to ${zip}'s best <b>mathematician</b>, best <b>reader</b>, and hardest worker (<b>top XP</b>). Winners are decided at the <b>end of the season (January)</b> from proctored scores. And the more kids from ${zip} who sign up, the more prizes get added: a new <b>$1,000 prize for every 25 kids</b>, then runner-up medals, grade champions, and school prizes at bigger milestones.</div>
     <div class="ladder-h">Your zip unlock ladder: recruit ${rec.county} to switch these on</div>
     ${unlockRow(t1, 'Silver medals unlock', '+$1,000 Math/Science runner-up and +$1,000 Reading/Language runner-up for '+zip)}
     ${unlockRow(t2, 'Grade champions', '+$1,000 each for grades 6, 7 and 8')}
     ${unlockRow(t3, 'Schools switch on', 'Every campus in '+zip+' activates its own prize ladder + a $2,500 bonus injection')}
-    <p class="zr-cta">Thresholds are <b>${t1}/${t2}/${t3}</b> verified kids for this zip (50/100/150, or 25%/40%/50% of your ${kids.toLocaleString()}, whichever is smaller). Get your parent to sign you up and start recruiting the block.</p>
+    <p class="zr-cta">Hit <b>${t1}/${t2}/${t3}</b> verified kids in ${zip} to switch these on. Get your parent to sign you up and start recruiting the block.</p>
   `;
   el2.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
