@@ -115,11 +115,11 @@ function lookupZip(zip){
       <div><span>Prizes grow</span><b>+$1,000 / 25 kids</b></div>
     </div>
     <div class="zr-guar">Your zip is guaranteed <b>3 prizes all season</b>: <b>$1,000</b> each to ${zip}'s best <b>mathematician</b>, best <b>reader</b>, and hardest worker (<b>top XP</b>). Winners are decided at the <b>end of the season (January)</b> from proctored scores. And the more kids from ${zip} who sign up, the more prizes get added: a new <b>$1,000 prize for every 25 kids</b>, then runner-up medals, grade champions, and school prizes at bigger milestones.</div>
-    <div class="ladder-h">Your zip unlock ladder: recruit ${rec.county} to switch these on</div>
-    ${unlockRow(t1, 'Silver medals unlock', '+$1,000 Math/Science runner-up and +$1,000 Reading/Language runner-up for '+zip)}
-    ${unlockRow(t2, 'Grade champions', '+$1,000 each for grades 6, 7 and 8')}
-    ${unlockRow(t3, 'Schools switch on', 'Every campus in '+zip+' activates its own prize ladder + a $2,500 bonus injection')}
-    <p class="zr-cta">Hit <b>${t1}/${t2}/${t3}</b> verified kids in ${zip} to switch these on. Get your parent to sign you up and start recruiting the block.</p>
+    <div class="ladder-h">The more kids from ${zip} who sign up, the more prizes turn on</div>
+    ${unlockRow(t1, '+2 more $1,000 prizes', '$1,000 for 2nd place in Math/Science and $1,000 for 2nd place in Reading/Language in '+zip+'.')}
+    ${unlockRow(t2, '+$3,000 in grade prizes', '$1,000 each for the top 6th, 7th, and 8th grader in '+zip+'.')}
+    ${unlockRow(t3, '+$2,500 &amp; school prizes', 'Every school in '+zip+' gets its own prize race, plus a $2,500 bonus added to the pot.')}
+    <p class="zr-cta">Once <b>${t1}/${t2}/${t3}</b> kids from ${zip} sign up, these prizes unlock. Get your parent to sign you up, then get your friends to join.</p>
   `;
   el2.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
