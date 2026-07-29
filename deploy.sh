@@ -51,6 +51,10 @@ echo "==> Uploading assets"
 aws s3 sync "$SRC_DIR/assets" "s3://$BUCKET/assets" \
   --delete --cache-control "no-cache"
 
+echo "==> Uploading social (favicons, profile/banner)"
+aws s3 sync "$SRC_DIR/social" "s3://$BUCKET/social" \
+  --delete --cache-control "no-cache"
+
 echo "==> Uploading HTML"
 aws s3 sync "$SRC_DIR" "s3://$BUCKET" \
   --exclude "*" --include "*.html" --exclude "*/*" \

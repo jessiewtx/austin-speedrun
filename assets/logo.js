@@ -1,12 +1,13 @@
-// Shared inline SVG logo: a forward-motion / speedrun lightning chevron mark.
-// Uses currentColor so it works on both dark and light themes.
+// Shared logo: the Austin Speedrun orbital + lightning-bolt mark (no glow in nav/footer).
 window.ASR_LOGO = function(size){
   size = size || 30;
-  return `<svg class="asr-mark" width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 20 L18 20 M14 12 L26 12 M14 28 L26 28" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.4"/>
-    <path d="M23 4 L11 22 L20 22 L17 36 L31 16 L22 16 Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-  </svg>`;
+  return `<img class="asr-mark" src="assets/brand/speedrun-mark.svg" alt="Austin Speedrun" style="height:${size}px;width:auto;display:block">`;
 };
 window.ASR_WORDMARK = function(size){
-  return `<a class="asr-logo" href="index.html" aria-label="Austin Speedrun home">${window.ASR_LOGO(size)}<span class="asr-word">AUSTIN<span class="asr-word-accent">SPEEDRUN</span></span></a>`;
+  size = size || 28;
+  return `<a class="asr-logo" href="index.html" aria-label="GT School — Austin Speedrun"><img class="gt-mark" src="assets/brand/gt-icon-white.png" alt="" style="height:${size}px;width:auto;display:block"><span class="gt-word">GT School</span><span class="asr-div" aria-hidden="true"></span><span class="asr-word">AUSTIN<span class="asr-word-accent">SPEEDRUN</span></span></a>`;
+};
+// Text-only wordmark (no mark icon), used in the footer.
+window.ASR_WORDMARK_TEXT = function(){
+  return `<a class="asr-logo" href="index.html" aria-label="Austin Speedrun home"><span class="asr-word">AUSTIN<span class="asr-word-accent">SPEEDRUN</span></span></a>`;
 };

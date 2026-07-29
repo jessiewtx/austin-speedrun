@@ -19,6 +19,9 @@ b{font-weight:700}
 .asr-mark{color:var(--yellow)}
 .asr-word{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.01em}
 .asr-word-accent{color:var(--turq);margin-left:2px}
+.gt-word{font-family:var(--display);font-weight:700;font-size:18px;color:#fff;letter-spacing:.01em}
+.asr-div{width:1px;height:24px;background:rgba(255,255,255,.22);margin:0 3px}
+@media(max-width:560px){.gt-word,.asr-div{display:none}}
 .navlinks{display:none;gap:26px;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 .navlinks a:hover{color:var(--turq)}
 @media(min-width:940px){.navlinks{display:flex}}
@@ -81,12 +84,14 @@ h1 .hl{color:var(--yellow)}
 .fl.g2{top:104px;right:4px;z-index:1;animation-duration:5.6s;animation-delay:1.4s}
 .fl.g3{top:8px;right:156px;z-index:1;animation-duration:5s;animation-delay:1s}
 .fl.g4{bottom:150px;left:150px;z-index:1;animation-duration:6.2s;animation-delay:2.2s}
+.fl.g5{bottom:12px;right:34px;z-index:2;animation-duration:6.6s;animation-delay:1.6s}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}
 .hv-ico{display:block}
 .hv-ico.trophy{width:106px;height:106px;color:var(--yellow);filter:drop-shadow(0 0 22px rgba(255,210,30,.5))}
 .hv-ico.texas{width:134px;height:127px;color:var(--green);filter:drop-shadow(0 0 22px rgba(92,212,82,.5))}
 .hv-ico.bolt{width:68px;height:68px;color:var(--turq);filter:drop-shadow(0 0 18px rgba(86,124,223,.6))}
 .hv-ico.star{width:78px;height:78px;color:var(--pink);filter:drop-shadow(0 0 18px rgba(255,116,186,.6))}
+.hv-mark{display:block;width:112px;height:auto;filter:drop-shadow(0 0 16px rgba(255,255,255,.2)) drop-shadow(0 0 20px rgba(255,210,30,.55)) drop-shadow(0 0 46px rgba(255,210,30,.3))}
 .pcard{border-radius:18px;padding:20px 22px;background:rgba(17,18,26,.72);border:2px solid var(--line);backdrop-filter:blur(6px);box-shadow:0 24px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:5px;min-width:200px}
 .pc-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding-right:34px}
 .pc-amt{font-family:var(--display);font-weight:700;font-size:40px;line-height:1}
@@ -400,6 +405,9 @@ h1 .hl{color:var(--yellow)}
 .finalcta{position:relative;overflow:hidden;padding:120px 0 116px;background:radial-gradient(64% 68% at 50% 44%,rgba(86,124,223,.18),transparent 60%),radial-gradient(46% 54% at 50% 48%,rgba(255,116,186,.10),transparent 58%)}
 .finalcta>.wrap{position:relative;z-index:1}
 .cta-kicker{display:inline-block;font-family:var(--mono);font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--turq);font-weight:700;margin-bottom:18px;text-shadow:0 0 16px rgba(86,124,223,.5)}
+.cta-emblem{display:block;margin:0 auto 26px;width:clamp(132px,17vw,196px);height:auto;filter:drop-shadow(0 0 10px rgba(255,255,255,.22)) drop-shadow(0 0 28px rgba(255,210,30,.5)) drop-shadow(0 0 66px rgba(255,210,30,.26));animation:emblemFloat 3.6s ease-in-out infinite}
+@keyframes emblemFloat{0%,100%{transform:translateY(0) rotate(0deg);filter:drop-shadow(0 0 10px rgba(255,255,255,.2)) drop-shadow(0 0 24px rgba(255,210,30,.44)) drop-shadow(0 0 58px rgba(255,210,30,.22))}50%{transform:translateY(-7px) rotate(1.6deg);filter:drop-shadow(0 0 15px rgba(255,255,255,.3)) drop-shadow(0 0 36px rgba(255,210,30,.72)) drop-shadow(0 0 92px rgba(255,210,30,.36))}}
+@media(prefers-reduced-motion:reduce){.cta-emblem{animation:none}}
 .finalcta h2{font-size:clamp(48px,8.5vw,88px);line-height:.94}
 .finalcta p b{color:var(--yellow)}
 .cta-stakes{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:4px 0 34px}

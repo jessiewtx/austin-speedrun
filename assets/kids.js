@@ -1,6 +1,6 @@
 // ---- logo ----
 document.getElementById('logo').innerHTML = window.ASR_WORDMARK(28);
-document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK(24);
+document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK_TEXT();
 
 // ---- ticker ----
 (function(){
