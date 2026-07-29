@@ -1,6 +1,3 @@
-document.getElementById('logo').innerHTML = window.ASR_WORDMARK(28);
-document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK(24);
-
 /* ============================================================
    WAITLIST DESTINATION — Formspree (https://formspree.io).
    Submissions (Name, Email, ZIP, Grade) land in the Formspree form's
