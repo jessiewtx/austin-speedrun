@@ -111,15 +111,30 @@ into the same list. They use your accordion markup and your classes, so a reader
 cannot tell which is which, and nothing about the section depends on the data
 file loading.
 
-Two of your questions and two of ours can be the same question, so entries are
-matched on an explicit id:
+Every entry carries a slug, and that one value does two jobs:
 
 ```html
-<details data-faq-slug="speedrun-cost">
+<details data-faq-slug="speedrun-cost" id="faq-speedrun-cost">
   <summary>How much does it cost?</summary>
   <div class="fa">Nothing. Entry is <b>100% free</b>…</div>
 </details>
 ```
+
+**It is the permalink.** The id is always `faq-` + the slug, so
+`/resources/#faq-speedrun-cost` addresses one question and keeps addressing it.
+Following such a link expands that entry and scrolls it clear of the sticky nav,
+whether the page was already open or not.
+
+**It is also the supersede hook**, which is the part worth understanding,
+because it means the two are the same mechanism rather than two ideas sharing a
+name: publish a library record with a matching slug and that answer starts
+coming from the database, at the URL people have already been sharing. An entry
+gets its identifier today and its migration path for free.
+
+The slugs were derived from the questions once and then written into the markup.
+**They are identifiers now, not derivations — do not regenerate them from edited
+copy.** Reword a question freely; the link and the matching both survive it,
+which is the whole reason they are not computed from the text.
 
 - A library record whose `slug` matches a `data-faq-slug` **replaces that entry
   where it sits**, keeping your ordering and its open/closed state.
@@ -134,11 +149,19 @@ So the attribute is the control surface, and it is yours:
 
 | You want | Do this |
 | --- | --- |
-| Us to maintain an answer | Add `data-faq-slug="…"` to your `<details>` |
-| To take an answer back | Remove the attribute; your copy stands again |
-| To keep an answer entirely yours | Leave the attribute off (the default) |
+| Us to maintain an answer | Publish a library record with that entry's slug |
+| To take an answer back | Unpublish the record; your copy stands again |
+| To keep an answer entirely yours | Nothing — an unmatched slug is just a permalink |
+| To rename a question's URL | Change the slug, knowing existing links stop resolving |
 
-Today only `speedrun-cost` carries one. We left **"Who is eligible?"** alone even
+All ten of your entries now carry a slug, since each one needs a permalink:
+`speedrun-cost`, `eligibility`, `homeschoolers`, `time-commitment`,
+`cheating-prevention`, `prize-taxes`, `timeback-and-gt-school`, `top-prizes`,
+`late-registration`, `program-language`. Only `speedrun-cost` currently has a
+library record behind it; the rest are addresses waiting for one, and behave
+exactly as they always did until then.
+
+We left **"Who is eligible?"** alone even
 though our `requirements` record covers similar ground, because your answer names
 the five counties and ours does not — superseding it would have quietly dropped
 information. That is a judgement call and it is yours to reverse: adding
@@ -149,11 +172,13 @@ information. That is a judgement call and it is yours to reverse: adding
 This is a transitional arrangement, and worth saying so plainly. The end state is
 that the FAQ entries you want maintained become library records, so they carry
 citations, an audit trail, and a review date rather than living only in markup. We
-already have a CSV import path, so the migration is: you send us the questions you
-want to own that way, we import them, you add the matching `data-faq-slug` to each
-`<details>`, and from then on those answers update on a refresh instead of in a
-pull request. Nothing has to move at once — an entry migrates the moment it gets
-an attribute, and the rest keep working untouched.
+already have a CSV import path, and now that every entry carries a slug the
+migration needs nothing from you in the markup at all: tell us which questions
+you want maintained, we import them under the slugs already in your HTML, and
+those answers start updating on a data refresh instead of in a pull request. The
+URLs people have been sharing keep working across the change, because the slug
+that was the permalink is the slug the record matches on. Nothing has to move at
+once, and the entries you keep stay exactly as they are.
 
 ## Using it anywhere else on the site
 

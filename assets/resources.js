@@ -159,6 +159,7 @@
 
     const details = el('details');
     details.setAttribute('data-faq-slug', slug);
+    details.id = `faq-${slug}`;
     details.appendChild(el('summary', null, question));
 
     const body = el('div', 'fa', answer);
@@ -317,4 +318,107 @@
     summary.textContent = checked ? `${described} · updated ${checked}` : described;
     summary.hidden = false;
   }
+})();
+
+/* ============================================================
+   FAQ permalinks.
+
+   A second, independent block on purpose. The renderer above returns early
+   whenever the data file is missing, empty or unreadable, and a broken data
+   file must not cost the hand-written entries their links. It runs after that
+   renderer, so library-supplied entries are already in the list and are
+   linkable on exactly the same terms.
+   ============================================================ */
+(() => {
+  const list = document.getElementById('faq-list');
+  if (!list) return;
+
+  /**
+   * The slug is the single source of truth and the id is derived from it, so
+   * the id written into the markup — which exists so a link still scrolls
+   * before this script runs — cannot drift away from the attribute the
+   * supersede matching uses.
+   */
+  const addLinks = () => {
+    list.querySelectorAll('details[data-faq-slug]').forEach(entry => {
+      const slug = entry.getAttribute('data-faq-slug');
+      if (!slug) return;
+      entry.id = `faq-${slug}`;
+
+      const summary = entry.querySelector('summary');
+      if (!summary || summary.querySelector('.faq-link')) return;
+
+      const link = document.createElement('a');
+      link.className = 'faq-link';
+      link.href = `#faq-${slug}`;
+      link.textContent = '#';
+      link.title = 'Link to this question';
+      // The visible text is a bare '#', which tells a screen reader nothing.
+      link.setAttribute('aria-label', `Link to this question: ${summary.textContent.trim()}`);
+
+      // Inside a <summary>, one click would both follow the link and toggle the
+      // entry, so the answer would collapse at the moment someone copied its
+      // address. The hash change below is what opens it instead.
+      link.addEventListener('click', event => event.stopPropagation());
+
+      summary.appendChild(link);
+    });
+  };
+
+  const targetOfHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return null;
+    const target = document.getElementById(id);
+    if (!target || target.tagName !== 'DETAILS' || !list.contains(target)) return null;
+    return target;
+  };
+
+  const place = (target) => {
+    const root = document.scrollingElement || document.documentElement;
+    const previous = root.style.scrollBehavior;
+    // The site scrolls smoothly, which here is actively harmful: the browser
+    // begins an animation aimed at where the entry sat while it was still
+    // collapsed, and that animation lands after this correction and undoes it.
+    // Placing instantly is what makes the final position predictable.
+    root.style.scrollBehavior = 'auto';
+    target.scrollIntoView({ block: 'start' });
+    root.style.scrollBehavior = previous;
+  };
+
+  // Correcting the scroll position under someone who has started reading is
+  // worse than landing a little low, so any deliberate input stops it.
+  let readerHasMoved = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(type =>
+    window.addEventListener(type, () => { readerHasMoved = true; }, { passive: true })
+  );
+
+  /**
+   * A deep link to a <details> lands on a collapsed element: a heading with
+   * nothing under it, which reads as a broken link rather than as an answer.
+   */
+  const openFromHash = () => {
+    const target = targetOfHash();
+    if (!target) return;
+
+    target.open = true;
+    readerHasMoved = false;
+
+    // Web fonts, images and the browser's own scroll all settle at different
+    // moments, and whichever moves last decides where the reader ends up. So
+    // the position is reasserted a few times across a short window after the
+    // navigation rather than once, optimistically.
+    const reassert = () => { if (!readerHasMoved) place(target); };
+
+    requestAnimationFrame(() => requestAnimationFrame(reassert));
+    setTimeout(reassert, 120);
+    setTimeout(reassert, 400);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(reassert);
+  };
+
+  addLinks();
+  openFromHash();
+
+  // Following a second link while already on the page fires no page load, so
+  // without this the URL would change and nothing else would.
+  window.addEventListener('hashchange', openFromHash);
 })();

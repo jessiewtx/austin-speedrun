@@ -21,6 +21,27 @@ section[id]{scroll-margin-top:20px}
 .faq-note{margin:26px 0 0;font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296)}
 .faq .ev-links{margin-top:14px}
 
+/* A permalink on each question. Kept quiet: it surfaces on hover or focus and
+   sits at a low opacity while an entry is open, so the section still reads as
+   prose rather than as API documentation. */
+.faq-link{margin-left:10px;font-family:var(--mono,ui-monospace,monospace);font-size:14px;font-weight:400;color:var(--orange,#e48b53);text-decoration:none;opacity:0;transition:opacity .15s ease}
+.faq summary:hover .faq-link,.faq details[open] summary .faq-link{opacity:.5}
+.faq-link:hover{opacity:1;text-decoration:underline}
+/* Reachable without a mouse, which hover-only affordances are not. The plain
+   :focus rule carries the reveal because :focus-visible is a browser
+   heuristic — it would leave the link invisible but still focused in the cases
+   the heuristic declines. */
+.faq-link:focus{opacity:1}
+.faq-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:3px;border-radius:3px}
+/* On touch there is no hover, and an invisible tap target is worse than a
+   visible one. */
+@media (hover:none){.faq-link{opacity:.5}}
+
+/* A linked question has to clear the sticky nav, the same as the section
+   headings above. Entries have no top padding of their own, so this carries
+   the whole offset. */
+#faq-list details{scroll-margin-top:88px}
+
 /* STATUS: what stands when the data file is missing, empty, or unreadable */
 .ev-status{background:var(--paper,#fffdfb);border:1px solid var(--line,#ecdfd4);border-radius:20px;padding:clamp(28px,4vw,44px)}
 .ev-status h2{margin-top:12px}
