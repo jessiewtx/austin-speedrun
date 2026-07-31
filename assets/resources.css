@@ -1,0 +1,65 @@
+/* Resources page: the evidence library rendered from assets/evidence.js.
+   Layered on top of parents.css, which supplies the GT-light theme, the nav,
+   the section rhythm and the footer. Only the citation-specific pieces live
+   here. Every token is read with a fallback so that if parents.css is
+   restyled or renamed underneath this page, the entries stay legible instead
+   of going invisible. */
+
+/* Sections the renderer reveals; without this the display rules below would
+   beat the hidden attribute. */
+.ev-group[hidden],.ev-status[hidden],.ev-summary[hidden],.ev-stamp[hidden],.faq-note[hidden]{display:none}
+
+/* The nav is position:sticky, so an anchor arriving from another page would
+   otherwise land with its heading tucked underneath it. The sections carry
+   76px of their own top padding, so a small margin is enough to clear the bar
+   and still open on the heading. */
+section[id]{scroll-margin-top:20px}
+
+/* FAQ: their accordion is inherited wholesale from parents.css and is not
+   restyled here, so a library answer and a hand-written one are the same
+   component. This is only the section's provenance line. */
+.faq-note{margin:26px 0 0;font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296)}
+.faq .ev-links{margin-top:14px}
+
+/* STATUS: what stands when the data file is missing, empty, or unreadable */
+.ev-status{background:var(--paper,#fffdfb);border:1px solid var(--line,#ecdfd4);border-radius:20px;padding:clamp(28px,4vw,44px)}
+.ev-status h2{margin-top:12px}
+.ev-status .intro{max-width:62ch}
+.ev-stamp{font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296);margin-top:26px;padding-top:18px;border-top:1px solid var(--line,#ecdfd4)}
+.ev-summary{font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296);margin-bottom:8px}
+
+/* GROUPS */
+.ev-group{margin-top:56px}
+.ev-group:first-of-type{margin-top:0}
+.ev-group h2{font-family:var(--serif,Georgia,serif);font-weight:600;font-size:clamp(26px,3.6vw,36px);line-height:1.1;letter-spacing:-.01em;margin:12px 0 0}
+.ev-list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:16px}
+
+/* ENTRIES */
+.ev-item{background:var(--paper,#fffdfb);border:1px solid var(--line,#ecdfd4);border-radius:16px;padding:26px 28px}
+.ev-item h3{font-family:var(--serif,Georgia,serif);font-weight:600;font-size:20px;line-height:1.25;margin:0}
+.ev-cite{font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;letter-spacing:.02em;color:var(--sub2,#8f9296);margin-top:8px}
+.ev-note{color:var(--sub,#4b5560);font-size:15.5px;margin-top:12px;max-width:70ch}
+.ev-stat{font-size:15.5px;color:var(--ink,#001117);font-weight:600;margin-top:12px;max-width:70ch}
+
+/* A claim leads with the statement rather than a title, so it is set larger
+   and carries the accent that marks it as the assertion under scrutiny. */
+.ev-claim{position:relative;overflow:hidden;padding-left:34px}
+.ev-claim::before{content:"";position:absolute;top:0;bottom:0;left:0;width:4px;background:var(--blue,#004f71)}
+.ev-claim .ev-statement{font-family:var(--serif,Georgia,serif);font-size:19px;line-height:1.45;color:var(--ink,#001117);margin:0}
+.ev-support{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line,#ecdfd4);display:grid;gap:8px}
+.ev-support li{font-size:14.5px;color:var(--sub,#4b5560)}
+.ev-support .ev-kind{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-ink,#c06a38);font-weight:700;margin-right:9px}
+
+/* TOPIC LABEL: our taxonomy, rendered from the file, never hardcoded here */
+.ev-topic{display:inline-block;font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue,#004f71);background:var(--blue-l,#e4eef2);border-radius:6px;padding:5px 9px;margin-bottom:12px}
+
+/* LINKS OUT: a citation with no link renders as plain text, so these only
+   appear when the file actually carries a URL. */
+.ev-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.ev-link{font-family:var(--mono,ui-monospace,monospace);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--blue-ink,#003b5c);background:var(--blue-l,#e4eef2);border:1px solid transparent;border-radius:8px;padding:7px 12px;transition:border-color .16s,color .16s}
+.ev-link:hover{border-color:var(--blue,#004f71);color:var(--blue,#004f71)}
+
+@media(max-width:620px){
+  .ev-item{padding:22px 20px}
+  .ev-claim .ev-statement{font-size:17px}
+}
