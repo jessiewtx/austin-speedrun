@@ -10,8 +10,8 @@ Static site: plain HTML/CSS/JS, no build step.
 | --- | --- |
 | `index.html` | Split landing page: "I'm a student" vs "I'm a parent". Panels grow on hover. |
 | `students.html` | Student experience: hero countdown, leaderboard, prize lanes, ZIP lookup, 300 Club, Winter Grind. |
-| `parents.html` | Parent explainer: how it works, credibility, prizes & payout, safety/COPPA, timeline, FAQ, waitlist form. |
-| `resources/index.html` | The research behind the claims, rendered from `assets/evidence.js`. Served at `/resources/`. Not linked from the nav yet — see [EVIDENCE.md](EVIDENCE.md). |
+| `parents.html` | Parent explainer: how it works, credibility, prizes & payout, safety/COPPA, timeline, waitlist form. |
+| `resources/index.html` | The research behind the claims, plus the site's FAQ. Rendered from `assets/evidence.js`; served at `/resources/`. See [EVIDENCE.md](EVIDENCE.md). |
 
 ## Assets
 
