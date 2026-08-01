@@ -25,6 +25,20 @@ section[id]{scroll-margin-top:20px}
    between paragraphs are new. */
 .faq .fa p{margin:0 0 13px}
 .faq .fa p:last-child{margin-bottom:0}
+/* A link inside an answer. Underlined rather than coloured alone, so it is
+   still a link on the greyed answer text and without relying on hue. */
+.fa-link{color:var(--blue-ink,#003b5c);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.fa-link:hover{color:var(--orange-ink,#c06a38)}
+.fa-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:2px;border-radius:2px}
+
+/* Topic grouping, added only when every entry's topic is known. The kicker
+   treatment is the one this page already uses for "a label over a section". */
+.faq-topic{font-family:var(--mono,ui-monospace,monospace);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink,#c06a38);font-weight:700;margin:36px 0 0;padding:0 0 6px;scroll-margin-top:88px}
+.faq-topic:first-child{margin-top:0}
+.faq-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.faq-jump-link{font-family:var(--mono,ui-monospace,monospace);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--blue-ink,#003b5c);background:var(--blue-l,#e4eef2);border:1px solid transparent;border-radius:8px;padding:7px 12px;transition:border-color .16s,color .16s}
+.faq-jump-link:hover{border-color:var(--blue,#004f71);color:var(--blue,#004f71)}
+.faq-jump-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:3px}
 
 /* A permalink on each question. Kept quiet: it surfaces on hover or focus and
    sits at a low opacity while an entry is open, so the section still reads as

@@ -48,26 +48,6 @@
 
   const text = (value) => (typeof value === 'string' && value.trim() !== '' ? value.trim() : null);
 
-  // The data file separates paragraphs with a blank line, so build real
-  // elements from them. Several answers run to four paragraphs, and dropping
-  // one into a single text node renders it as an unbroken wall. Text nodes
-  // throughout, for the same reason el() uses textContent.
-  const prose = (tag, className, value) => {
-    const node = el(tag, className);
-    String(value).split(/\n{2,}/).forEach(block => {
-      const trimmed = block.trim();
-      if (!trimmed) return;
-      const para = document.createElement('p');
-      // A single newline is a line break within one paragraph.
-      trimmed.split('\n').forEach((line, index) => {
-        if (index) para.appendChild(document.createElement('br'));
-        para.appendChild(document.createTextNode(line));
-      });
-      node.appendChild(para);
-    });
-    return node.childElementCount ? node : null;
-  };
-
   // A citation with no usable link renders as plain text; the reader still
   // reaches the source through whichever of the others resolves.
   const safeUrl = (value) => {
@@ -76,6 +56,84 @@
       const url = new URL(value, window.location.href);
       return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
     } catch (_) { return null; }
+  };
+
+  // A single newline is a line break within one paragraph. Text nodes
+  // throughout, for the same reason el() uses textContent.
+  const appendText = (parent, value) => {
+    String(value).split('\n').forEach((line, index) => {
+      if (index) parent.appendChild(document.createElement('br'));
+      if (line) parent.appendChild(document.createTextNode(line));
+    });
+  };
+
+  /**
+   * Append one run of an answer, as a link when it has somewhere to point.
+   *
+   * The anchor is built here rather than arriving ready-made because the data
+   * file carries plain text: an <a> written into it would reach this page as
+   * the literal characters "<a href=…>". So the destination travels as its own
+   * field and the element is constructed, which is also the only version of
+   * this that never needs innerHTML.
+   *
+   * A run whose destination is missing or unusable still renders its words. The
+   * reader came for the sentence, not the link.
+   */
+  const appendSpan = (parent, span) => {
+    const href = safeUrl(span.href);
+    if (!href) {
+      appendText(parent, span.text);
+      return;
+    }
+    const anchor = el('a', 'fa-link');
+    anchor.href = href;
+    appendText(anchor, span.text);
+    // Somewhere else on this site stays in this tab; anywhere else leaves.
+    let external = true;
+    try { external = new URL(href).origin !== window.location.origin; } catch (_) {}
+    if (external) {
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+    }
+    parent.appendChild(anchor);
+  };
+
+  /**
+   * The paragraphs of a piece of prose, as runs.
+   *
+   * `spans` is the richer of the two forms the file may carry and is used when
+   * it is well formed. Otherwise the blank lines in the plain text say where
+   * the paragraphs are, which is all an answer without links ever needs — and
+   * the two are guaranteed to be the same words, so falling back here costs
+   * links and never sentences.
+   */
+  const paragraphsOf = (value, spans) => {
+    if (Array.isArray(spans)) {
+      const built = spans
+        .filter(paragraph => Array.isArray(paragraph))
+        .map(paragraph => paragraph.filter(
+          span => span && typeof span === 'object' && typeof span.text === 'string' && span.text !== ''
+        ))
+        .filter(paragraph => paragraph.length > 0);
+      if (built.length > 0) return built;
+    }
+    return String(value)
+      .split(/\n{2,}/)
+      .map(block => block.trim())
+      .filter(Boolean)
+      .map(block => [{ text: block, href: null }]);
+  };
+
+  // Several answers run to four paragraphs, and dropping one into a single text
+  // node renders it as an unbroken wall.
+  const prose = (tag, className, value, spans) => {
+    const node = el(tag, className);
+    paragraphsOf(value, spans).forEach(runs => {
+      const para = document.createElement('p');
+      runs.forEach(run => appendSpan(para, run));
+      node.appendChild(para);
+    });
+    return node.childElementCount ? node : null;
   };
 
   const readableDate = (value) => {
@@ -182,7 +240,7 @@
     details.id = `faq-${slug}`;
     details.appendChild(el('summary', null, question));
 
-    const body = prose('div', 'fa', answer) || el('div', 'fa', answer);
+    const body = prose('div', 'fa', answer, record.answerSpans) || el('div', 'fa', answer);
     const link = linkRow([['Read more on gt.school', record.url]]);
     if (link) body.appendChild(link);
     details.appendChild(body);
@@ -289,10 +347,90 @@
     return { added, superseded };
   };
 
+  /**
+   * Group the accordion by topic, and put a jump list above it.
+   *
+   * Ten hand-written questions read fine in one flat run. Twenty-five do not:
+   * there is no route to the tax question except reading every heading, and
+   * the fifteen the library adds would otherwise sit below the originals in
+   * slug order, which is alphabetical and means nothing to a reader. The five
+   * topics are a grouping the data already carries, so this uses that rather
+   * than inventing one.
+   *
+   * All or nothing. If a single entry's topic cannot be resolved — a
+   * hand-written question no library record superseded, or every entry at once
+   * when the data file is missing, stale or unreadable — the list keeps exactly
+   * the order it was written in and no jump list appears. A half-grouped
+   * accordion, with some questions filed and the rest adrift at the bottom,
+   * reads worse than the flat list it replaced.
+   *
+   * Topics appear in the order their first question already appeared, so the
+   * page keeps leading with what it chose to lead with. Within a topic the
+   * existing order is preserved, which keeps a superseded answer where its
+   * reader last saw it.
+   */
+  const groupFaqByTopic = (records) => {
+    const list = document.getElementById('faq-list');
+    if (!list) return false;
+
+    const topicOfSlug = new Map();
+    records.forEach(record => {
+      if (record && typeof record === 'object') {
+        topicOfSlug.set(text(record.slug), text(record.topicSlug));
+      }
+    });
+
+    const entries = Array.prototype.filter.call(
+      list.children,
+      node => node.tagName === 'DETAILS' && node.hasAttribute('data-faq-slug')
+    );
+    // Anything else living in the list is markup this does not understand, and
+    // moving the entries out from around it would strand it.
+    if (entries.length === 0 || entries.length !== list.children.length) return false;
+
+    const order = [];
+    const groups = new Map();
+    for (const entry of entries) {
+      const topicSlug = topicOfSlug.get(entry.getAttribute('data-faq-slug'));
+      const label = topicSlug ? text(labelBySlug.get(topicSlug)) : null;
+      if (!label) return false;
+      if (!groups.has(topicSlug)) {
+        groups.set(topicSlug, { label, entries: [] });
+        order.push(topicSlug);
+      }
+      groups.get(topicSlug).entries.push(entry);
+    }
+    // One heading over the whole list is a label, not a way to navigate.
+    if (order.length < 2) return false;
+
+    const jump = el('nav', 'faq-jump');
+    jump.setAttribute('aria-label', 'Jump to a topic');
+    const ordered = document.createDocumentFragment();
+
+    order.forEach(topicSlug => {
+      const group = groups.get(topicSlug);
+      const heading = el('h3', 'faq-topic', group.label);
+      heading.id = `faq-topic-${topicSlug}`;
+      ordered.appendChild(heading);
+      // Appending an element that is already in the document moves it, so this
+      // reorders the entries rather than duplicating them.
+      group.entries.forEach(entry => ordered.appendChild(entry));
+
+      const link = el('a', 'faq-jump-link', group.label);
+      link.href = `#faq-topic-${topicSlug}`;
+      jump.appendChild(link);
+    });
+
+    list.appendChild(ordered);
+    list.parentNode.insertBefore(jump, list);
+    return true;
+  };
+
   // The FAQ is deliberately outside the count below. That count decides whether
   // the research sections have anything to show, and the FAQ section is never
   // empty because their hand-written entries are always in the markup.
   const faqMerged = mergeFaq(faq);
+  groupFaqByTopic(faq);
 
   const counts = {
     claims:     fill('ev-claims', claims, renderClaim),

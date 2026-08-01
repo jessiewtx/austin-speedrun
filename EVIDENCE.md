@@ -84,7 +84,7 @@ working unchanged when content arrives:
 | `topics[]` | `slug` (join on this), `label` (the display name — never hardcode it) |
 | `references[]` | `slug`, `title`, `citationAuthors`, `source` (journal or publisher), `year`, `keyStat`, `summary`, `doiUrl`, `sourceUrl`, `topicSlug`, `url` |
 | `articles[]` | `slug`, `title`, `excerpt`, `topicSlug`, `publishDate`, `updatedDate` (both `YYYY-MM-DD` — format them however you like), `referenceSlugs`, `url` |
-| `faq[]` | `slug`, `question`, `answer`, `topicSlug`, `updated`, `relatedArticleSlugs`, `url` |
+| `faq[]` | `slug`, `question`, `answer`, `answerSpans`, `topicSlug`, `updated`, `relatedArticleSlugs`, `url` |
 | `claims[]` | `key`, `statement`, `referenceSlugs`, `articleSlugs`, `url` |
 
 Things you can rely on:
@@ -98,6 +98,23 @@ Things you can rely on:
   splits on the blank line and builds a `<p>` per block. If you rewrite the
   renderer, do the same: dropping the whole string into one node runs the
   paragraphs together.
+- An answer that contains a link also carries `answerSpans`: the same answer,
+  as paragraphs of `{ text, href }`, where `href` is an absolute `http(s)` URL
+  or null. It is **null on answers with no links**, which is most of them — the
+  field exists so two records can carry a destination, not so all twenty-five
+  can carry a second copy of themselves.
+
+  Concatenating every span's `text` and joining the paragraphs with a blank line
+  reproduces `answer` exactly. That is checked when the file is built, and the
+  field is dropped rather than emitted when the two disagree, so the pair can
+  never say different things. Read whichever one you understand.
+
+  The destination travels as data because the text does not carry markup: an
+  `<a>` written into `answer` would arrive here as the characters `<a href=…>`.
+  `assets/resources.js` builds the element with `createElement` and
+  `textContent` and sets `href` only after checking the scheme. If you rewrite
+  the renderer, keep that shape — and if you skip the field entirely, every
+  answer still reads correctly and only loses its links.
 - Every non-null `topicSlug` resolves to a record in `topics`.
 - Every entry in a `*Slugs` array resolves to a record in its collection.
 - Collections are sorted by slug. **That is not a ranking** — it just keeps the
@@ -160,18 +177,50 @@ So the attribute is the control surface, and it is yours:
 | To keep an answer entirely yours | Nothing — an unmatched slug is just a permalink |
 | To rename a question's URL | Change the slug, knowing existing links stop resolving |
 
-All ten of your entries now carry a slug, since each one needs a permalink:
+All ten of your entries carry a slug, since each one needs a permalink:
 `speedrun-cost`, `eligibility`, `homeschoolers`, `time-commitment`,
 `cheating-prevention`, `prize-taxes`, `timeback-and-gt-school`, `top-prizes`,
-`late-registration`, `program-language`. Only `speedrun-cost` currently has a
-library record behind it; the rest are addresses waiting for one, and behave
-exactly as they always did until then.
+`late-registration`, `program-language`. **All ten now have a library record
+behind them**, so every answer in the section is coming from the database. The
+markup you wrote is still in the file and is still what renders if the data file
+does not load.
 
-We left **"Who is eligible?"** alone even
-though our `requirements` record covers similar ground, because your answer names
-the five counties and ours does not — superseding it would have quietly dropped
-information. That is a judgement call and it is yours to reverse: adding
-`data-faq-slug="requirements"` to that entry hands it over.
+Each of the nine that changed in this refresh says everything your version said
+and then adds to it — usually a third paragraph naming something the programme
+has *not* published yet. Two changes are worth your judgement rather than ours:
+
+- **Your bold is gone.** Your answers emphasised the figures that matter —
+  **$200,000 Double Crown**, **30 minutes a day**, **Dec 20** — and the contract
+  carries plain text, so nothing survives to re-bold. Every answer is now an
+  even grey. Nothing was lost except the emphasis, but on a page that has to
+  sell, the emphasis was doing work. Say the word and we will carry it the same
+  way we now carry links.
+- **"What language is the programme in?"** gained a paragraph saying that if
+  your child is still learning English, that is a real thing to weigh, and that
+  no English-learner support has been published. It is true and it is the
+  register the library writes in. It is also the kind of sentence a campaign page
+  might reasonably decline. Unpublishing that one record puts your original back.
+
+### Twenty-five questions, five headings
+
+Ten questions read fine as one flat run. Twenty-five do not — there was no route
+to the tax question except reading every heading on the way down. So the section
+is now grouped under the five topics the data already carries, with a row of
+jump links above it.
+
+Two things about that are deliberate. The topics appear in the order their first
+question already appeared, so the page still opens on cost, as you wrote it. And
+it is all or nothing: if any entry's topic cannot be resolved — including the
+case where the data file is missing entirely — the list keeps exactly the order
+it has in your HTML and no jump links appear. A half-filed accordion would be
+worse than the flat one.
+
+The one placement we would change if you want it changed: **"What is the Austin
+Speedrun?"** currently sits near the bottom of Participation, because within a
+topic we keep your existing order and append the rest alphabetically, and it is
+new. It is the most basic question on the page. We can carry an explicit order
+from the library the same way we carry topics — it is a small addition and it
+would let you sequence the whole section from the CMS.
 
 ### Where this is heading
 
