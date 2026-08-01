@@ -61,13 +61,13 @@ const LB = {
   ]},
   climb: {label:'VGLs per week enrolled', rows:[
     ['Liam O.','Grade 8 · 78664 Round Rock','1.8 / wk'],
+    ['Isaac J.','Grade 8 · 78130 New Braunfels','1.7 / wk'],
     ['Priya R.','Grade 8 · 78660 Pflugerville','1.6 / wk'],
     ['Logan M.','Grade 8 · 78613 Cedar Park','1.5 / wk'],
     ['Nadia H.','Grade 6 · 78745 Austin','1.4 / wk'],
     ['Alex H.','Grade 8 · 78703 Austin','1.3 / wk'],
     ['Sofia M.','Grade 6 · 78704 Austin','1.2 / wk'],
     ['Ava K.','Grade 7 · 78681 Round Rock','1.1 / wk'],
-    ['Isaac J.','Grade 8 · 78130 New Braunfels','1.0 / wk'],
   ]},
 };
 function renderLB(key){
