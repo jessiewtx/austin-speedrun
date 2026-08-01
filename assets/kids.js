@@ -94,37 +94,26 @@ function lookupZip(zip){
   if(!rec){
     el.hidden=false;
     el.innerHTML = `<div class="zr-top"><div class="zr-zip">${/^\d{5}$/.test(zip)?zip:'-'}</div></div>
-      <p style="color:var(--dim)">That zip isn't in the 5-county Austin metro (92 zips across Travis, Williamson, Hays, Bastrop, Caldwell). Try one of the samples above.</p>`;
+      <p style="color:var(--dim)">That zip code isn't in the 5-county Austin metro (92 zip codes across Travis, Williamson, Hays, Bastrop, Caldwell). Try one of the samples above.</p>`;
     return;
   }
   const kids = rec.kids;
-  // unlock thresholds: fixed kid count OR % of zip's est middle schoolers, whichever is smaller
-  const t1 = Math.min(50, Math.ceil(kids*0.25));
-  const t2 = Math.min(100, Math.ceil(kids*0.40));
-  const t3 = Math.min(150, Math.ceil(kids*0.50));
   const el2=el;
   el2.hidden=false;
   el2.innerHTML = `
     <div class="zr-top">
       <div class="zr-zip">${zip}<span>${rec.county} County</span></div>
-      <div class="zr-tier tier-${rec.tier}">Tier ${rec.tier} zip</div>
+      <div class="zr-tier tier-${rec.tier}">Tier ${rec.tier} zip code</div>
     </div>
     <div class="zr-kids">
       <div><span>Est. middle schoolers</span><b>${kids.toLocaleString()}</b></div>
       <div><span>Guaranteed prizes</span><b style="color:var(--accent)">3 × $1,000</b></div>
       <div><span>Prizes grow</span><b>+$1,000 / 25 kids</b></div>
     </div>
-    <div class="zr-guar">Your zip is guaranteed <b>3 prizes all season</b>: <b>$1,000</b> each to ${zip}'s best <b>mathematician</b>, best <b>reader</b>, and hardest worker (<b>top XP</b>). Winners are decided at the <b>end of the season (January)</b> from proctored scores. And the more kids from ${zip} who sign up, the more prizes get added: a new <b>$1,000 prize for every 25 kids</b>, then runner-up medals, grade champions, and school prizes at bigger milestones.</div>
-    <div class="ladder-h">The more kids from ${zip} who sign up, the more prizes turn on</div>
-    ${unlockRow(t1, '+2 more $1,000 prizes', '$1,000 for 2nd place in Math/Science and $1,000 for 2nd place in Reading/Language in '+zip+'.')}
-    ${unlockRow(t2, '+$3,000 in grade prizes', '$1,000 each for the top 6th, 7th, and 8th grader in '+zip+'.')}
-    ${unlockRow(t3, '+$2,500 &amp; school prizes', 'Every school in '+zip+' gets its own prize race, plus a $2,500 bonus added to the pot.')}
-    <p class="zr-cta">Once <b>${t1}/${t2}/${t3}</b> kids from ${zip} sign up, these prizes unlock. Get your parent to sign you up, then get your friends to join.</p>
+    <div class="zr-guar">Your zip code is guaranteed <b>3 × $1,000</b> prizes all season for ${zip}'s best <b>mathematician</b>, best <b>reader</b>, and hardest worker (<b>top XP</b>). Winners are decided at the <b>end of the season (January)</b> from proctored scores. Every <b>25 kids</b> from ${zip} who sign up unlocks <b>another $1,000 winner</b>.</div>
+    <p class="zr-cta">Get your parent to sign you up, then <b>invite friends</b> so ${zip} climbs the zip code team board.</p>
   `;
   el2.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function unlockRow(threshold, title, desc){
-  return `<div class="unlock"><span class="unlock-badge">${threshold} kids</span><div class="unlock-txt"><b>${title}</b><span>${desc}</span></div></div>`;
 }
 document.getElementById('zipGo').addEventListener('click',()=>lookupZip(document.getElementById('zipIn').value.trim()));
 document.getElementById('zipIn').addEventListener('keydown',e=>{if(e.key==='Enter')lookupZip(e.target.value.trim())});
