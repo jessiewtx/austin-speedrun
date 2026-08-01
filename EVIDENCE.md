@@ -92,6 +92,12 @@ Things you can rely on:
 - Every value is **plain text**. No HTML, no entities. (The renderer still uses
   `textContent` rather than `innerHTML` — a promise is not a reason to skip the
   safe call.)
+- Prose fields — FAQ `answer`, article `excerpt`, reference `summary` — separate
+  **paragraphs with a blank line** (`\n\n`), and a line break within a paragraph
+  with a single `\n`. Answers run to four paragraphs, so `assets/resources.js`
+  splits on the blank line and builds a `<p>` per block. If you rewrite the
+  renderer, do the same: dropping the whole string into one node runs the
+  paragraphs together.
 - Every non-null `topicSlug` resolves to a record in `topics`.
 - Every entry in a `*Slugs` array resolves to a record in its collection.
 - Collections are sorted by slug. **That is not a ranking** — it just keeps the

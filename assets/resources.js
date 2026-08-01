@@ -48,6 +48,26 @@
 
   const text = (value) => (typeof value === 'string' && value.trim() !== '' ? value.trim() : null);
 
+  // The data file separates paragraphs with a blank line, so build real
+  // elements from them. Several answers run to four paragraphs, and dropping
+  // one into a single text node renders it as an unbroken wall. Text nodes
+  // throughout, for the same reason el() uses textContent.
+  const prose = (tag, className, value) => {
+    const node = el(tag, className);
+    String(value).split(/\n{2,}/).forEach(block => {
+      const trimmed = block.trim();
+      if (!trimmed) return;
+      const para = document.createElement('p');
+      // A single newline is a line break within one paragraph.
+      trimmed.split('\n').forEach((line, index) => {
+        if (index) para.appendChild(document.createElement('br'));
+        para.appendChild(document.createTextNode(line));
+      });
+      node.appendChild(para);
+    });
+    return node.childElementCount ? node : null;
+  };
+
   // A citation with no usable link renders as plain text; the reader still
   // reaches the source through whichever of the others resolves.
   const safeUrl = (value) => {
@@ -111,7 +131,7 @@
       el('h3', null, title),
       citationLine(reference),
       text(reference.keyStat) ? el('p', 'ev-stat', text(reference.keyStat)) : null,
-      text(reference.summary) ? el('p', 'ev-note', text(reference.summary)) : null,
+      text(reference.summary) ? prose('div', 'ev-note', text(reference.summary)) : null,
       linkRow([['Source', reference.doiUrl], ['Full text', reference.sourceUrl], ['On gt.school', reference.url]])
     );
   };
@@ -132,7 +152,7 @@
       topicChip(article.topicSlug),
       el('h3', null, title),
       dateLine ? el('p', 'ev-cite', dateLine) : null,
-      text(article.excerpt) ? el('p', 'ev-note', text(article.excerpt)) : null
+      text(article.excerpt) ? prose('div', 'ev-note', text(article.excerpt)) : null
     );
 
     if (cited.length) {
@@ -162,7 +182,7 @@
     details.id = `faq-${slug}`;
     details.appendChild(el('summary', null, question));
 
-    const body = el('div', 'fa', answer);
+    const body = prose('div', 'fa', answer) || el('div', 'fa', answer);
     const link = linkRow([['Read more on gt.school', record.url]]);
     if (link) body.appendChild(link);
     details.appendChild(body);
