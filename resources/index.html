@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin Speedrun: Resources</title>
+<meta name="description" content="The research behind the Austin Speedrun: the studies, test documentation, and notes behind what this site claims, each one named so you can check it yourself.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=Inter+Tight:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/parents.css">
+<link rel="stylesheet" href="../assets/resources.css">
+<link rel="icon" type="image/png" sizes="512x512" href="../social/gt-tile.png">
+<link rel="apple-touch-icon" href="../social/gt-tile.png">
+</head>
+<body>
+<header class="nav">
+  <a class="nav-logo" href="../index.html" aria-label="GT School — Austin Speedrun"><img src="../assets/brand/gt-school-logo.svg" alt="GT School"></a>
+  <nav class="navlinks">
+    <a href="../parents.html#what">What it is</a>
+    <a href="../parents.html#trust">Why it's credible</a>
+    <a href="../parents.html#why">Why we run this</a>
+    <a href="../parents.html#prizes">Prizes</a>
+    <a href="../parents.html#safety">Safety</a>
+    <a href="#faq">FAQ</a>
+    <a href="./">Resources</a>
+  </nav>
+  <a href="../parents.html#join" class="nav-cta">Join the waitlist</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Resources</span>
+    <h1>The research behind <span class="hl">the Speedrun</span>.</h1>
+    <p class="lede">The questions parents ask most are <a href="#faq">answered first</a>. Underneath them sits gt.school's evidence library: the studies, the test documentation, and our own notes on them, each entry <b>named so you can check it yourself</b>, appearing here as it's published.</p>
+  </div>
+</section>
+
+<!-- FAQ
+     Directly under the hero, because it is what a parent arrives for. The
+     library below it is the credibility layer: worth reading after an answer
+     has raised the question of whether to believe it, not before. -->
+<!-- Their component, structure and classes unchanged, so the two sources of
+     entry are indistinguishable.
+
+     `data-faq-slug` is the only addition, and it does two jobs with one value:
+
+       1. It is the permalink. The id is always "faq-" + the slug, so
+          /resources/#faq-prize-taxes addresses one question forever.
+       2. It is the supersede hook. Publish a library record with a matching
+          slug and that answer starts coming from the database instead, at the
+          same URL people have been sharing.
+
+     Which is the point: an entry gets its identifier today and its migration
+     path for free. Both jobs match on the slug and never on the question text,
+     so rewording the copy below breaks neither the links nor the matching. The
+     slugs were derived from the questions once and are now fixed values — do
+     not regenerate them from edited copy. -->
+<section class="sec" id="faq">
+  <div class="narrow">
+    <span class="kicker">Questions</span>
+    <h2>Frequently asked</h2>
+    <div class="faq" id="faq-list">
+      <details data-faq-slug="speedrun-cost" id="faq-speedrun-cost" open><summary>How much does it cost?</summary><div class="fa">Nothing. Entry is <b>100% free</b>, and every registered child gets full, unlimited Timeback access for the entire season at no charge. Free entry is also what keeps this a lawful skill contest rather than a sweepstakes.</div></details>
+      <details data-faq-slug="eligibility" id="faq-eligibility"><summary>Who is eligible?</summary><div class="fa">Every middle schooler (grades 6–8) living in the five-county Austin metro (Travis, Williamson, Hays, Bastrop, and Caldwell), regardless of school type: <b>public, private, charter, microschool, or homeschool</b>.</div></details>
+      <details data-faq-slug="homeschoolers" id="faq-homeschoolers"><summary>My child is homeschooled. Can they compete?</summary><div class="fa">Absolutely. Homeschoolers compete in their <b>zip-code pool</b> alongside every other kid in the neighborhood, and there's a virtual "Homeschool Austin" campus for school-level boards. The zip pool is the homeschoolers' home turf.</div></details>
+      <details data-faq-slug="time-commitment" id="faq-time-commitment"><summary>How much time does it take?</summary><div class="fa">About <b>30 minutes a day</b> is enough to compete casually. Kids chasing the biggest prizes will do more. The speedrun pace is roughly <b>30 hours to master a full subject at a grade level</b>, especially on weekends and over winter break, which is where the standings really move.</div></details>
+      <details data-faq-slug="cheating-prevention" id="faq-cheating-prevention"><summary>How do you prevent cheating?</summary><div class="fa">Every prize-bearing score comes from a <b>proctored</b> sitting only: AI proctoring on remote tests and in-person proctored finals for the largest prizes. And no prize is tied to a pre/post delta, so <b>there's no baseline to tank</b>: the Effort Grand counts only Timeback XP earned on mastered work, telemetry-audited before payout, and Verified Grade Level bounties require a proctored mastery exam. We publish a methodology memo and invite audits.</div></details>
+      <details data-faq-slug="prize-taxes" id="faq-prize-taxes"><summary>Are the prizes taxable?</summary><div class="fa">Yes. Contest winnings are the child's income; prizes of $600+ trigger a 1099 and a W-9 at claim, and the <b>winner is responsible for taxes</b>. Families choose how a prize is paid (cash, Trump account, 529, or tuition scholarship), and we'll publish a plain-English parent tax FAQ before registration opens.</div></details>
+      <details data-faq-slug="timeback-and-gt-school" id="faq-timeback-and-gt-school"><summary>What are Timeback and GT School?</summary><div class="fa"><b>Timeback</b> is GT School's AI learning platform. It builds personalized lessons so kids can master academics in about <b>2 hours a day</b>, and they advance only after true mastery. Every registered child gets full Timeback access free for the Speedrun season. <b>GT School</b> (<a href="https://gt.school" target="_blank" rel="noopener">gt.school</a>) is the school running the contest.</div></details>
+      <details data-faq-slug="top-prizes" id="faq-top-prizes"><summary>What are the top prizes?</summary><div class="fa">Two <b>$100,000 subject crowns</b> sit at the top: the <b>Math/Science Crown</b> (best young mathematician) and the <b>Reading/Language Crown</b> (best young reader), each for the highest proctored segment score in the metro. There's no overall composite prize, but the crowns <b>stack</b>: one child topping both boards wins the <b>$200,000 Double Crown</b>. The <b>$50,000 Effort Grand</b> (most Timeback XP, which counts only for mastered work at each kid's own level, so any kid can win it) is the third pillar, plus $10k grade champions, $5k grade effort champions, and $1,000 winners in every zip. Verified Grade Level completions also earn $1,000 bounties (first 250, max 3 per student).</div></details>
+      <details data-faq-slug="late-registration" id="faq-late-registration"><summary>Can we still join if we hear about it late?</summary><div class="fa">Yes, registration is rolling all the way through <b>Dec 20</b>, with <b>no growth-window cutoff</b> because no prize depends on a baseline. A kid who joins in November loses nothing on the two subject-crown score boards, and a Fastest Climber lane (Verified Grade Levels per week enrolled) gives late joiners a fair shot to out-grind everyone during the Winter Grind.</div></details>
+      <details data-faq-slug="program-language" id="faq-program-language"><summary>What language is the program in?</summary><div class="fa">All program content, registration, and communications are in <b>English</b>, consistent with the tools involved (Timeback, MAP, and the SAT).</div></details>
+    </div>
+    <p class="faq-note" id="faq-note" hidden></p>
+  </div>
+</section>
+
+<!-- THE LIBRARY -->
+<section class="sec" id="library">
+  <div class="wrap">
+
+    <!-- Shown until the renderer has something better to put here. If the data
+         file is missing, empty, or fails to parse, this is what stands. -->
+    <div class="ev-status" id="ev-status">
+      <span class="kicker">The library</span>
+      <h2>The research is still being written.</h2>
+      <p class="intro">It's being written now, and entries land on this page as they go live: there's no separate announcement to wait for. <b>The questions further down are answered already</b> — what's still coming is the published research sitting behind them.</p>
+      <p class="intro">One thing worth knowing before it fills up. An entry appears here only once <b>every source underneath it is published</b>. Where we can't source something, it stays off this page rather than turning up with a citation that doesn't hold. So a short page means a short list of things we're ready to stand behind, not a short list of things we believe.</p>
+      <p class="ev-stamp" id="ev-stamp" hidden></p>
+    </div>
+
+    <p class="ev-summary" id="ev-summary" hidden></p>
+
+    <section class="ev-group" id="ev-claims" hidden>
+      <span class="kicker">Claims and their sources</span>
+      <h2>What we're prepared to stand behind.</h2>
+      <ul class="ev-list" data-ev-list></ul>
+    </section>
+
+    <section class="ev-group" id="ev-references" hidden>
+      <span class="kicker">Sources</span>
+      <h2>The published research.</h2>
+      <ul class="ev-list" data-ev-list></ul>
+    </section>
+
+    <!-- "Our reading of it" pointed at the Sources section above, which renders
+         nothing while no reference is published — so the heading referred to
+         something that was not on the page. These notes have to stand on their
+         own, and the intro says what each card is so nobody waits for a link
+         that has nowhere to go yet. -->
+    <section class="ev-group" id="ev-articles" hidden>
+      <span class="kicker">Notes</span>
+      <h2>What we went and checked.</h2>
+      <p class="ev-intro">Each note below is the whole of what we found, including the parts we couldn't confirm.</p>
+      <ul class="ev-list" data-ev-list></ul>
+    </section>
+
+  </div>
+</section>
+
+<!-- HOW TO READ IT -->
+<section class="sec paper" id="standard">
+  <div class="wrap">
+    <div class="trust-box">
+      <span class="kicker">The standard</span>
+      <h2>How to read this page.</h2>
+      <p class="intro">A citation is only worth having if it supports the exact sentence next to it. Three rules follow from that, and they hold whether this page is long or short.</p>
+      <div class="trust-cols">
+        <div>
+          <h4>Named sources, not summaries</h4>
+          <p>Every entry names its authors, where it was published, and when, and points at the original wherever one is publicly reachable. You should never have to take our word for what a source says.</p>
+        </div>
+        <div>
+          <h4>Omission is the default</h4>
+          <p>A claim shows up here only when every source beneath it is published. We would rather say nothing than attach a source that doesn't survive being read. Some sentences on this site will never appear here, and that's deliberate.</p>
+        </div>
+        <div>
+          <h4>It changes, and it's dated</h4>
+          <p>Entries carry the date they were last materially updated. If a source is superseded or withdrawn, the entries resting on it come down with it rather than being quietly left standing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mission">
+  <div class="wrap">
+    <img class="mission-mark" src="../assets/brand/speedrun-mark-gt.svg" alt="Austin Speedrun" width="70" height="62">
+    <span class="kicker">The bigger mission</span>
+    <h2>Ordinary kids, measured honestly.</h2>
+    <p>The contest is only worth running if the results hold up afterwards. That's what this page is for: everything the campaign claims should be checkable by the people it's aimed at.</p>
+    <div class="mission-foot">
+      <span class="gt-foot"><img src="../assets/brand/gt-school-logo.svg" alt="GT School"></span>
+      <p>Austin Speedrun by gt.school · A free academic skill contest · Every middle schooler in the 5-county Austin metro is eligible · Registration at austin.gt.school</p>
+      <a href="../parents.html">For parents →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/evidence.js"></script>
+<script src="../assets/resources.js"></script>
+</body>
+</html>

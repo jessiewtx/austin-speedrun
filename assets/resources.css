@@ -1,0 +1,117 @@
+/* Resources page: the evidence library rendered from assets/evidence.js.
+   Layered on top of parents.css, which supplies the GT-light theme, the nav,
+   the section rhythm and the footer. Only the citation-specific pieces live
+   here. Every token is read with a fallback so that if parents.css is
+   restyled or renamed underneath this page, the entries stay legible instead
+   of going invisible. */
+
+/* Sections the renderer reveals; without this the display rules below would
+   beat the hidden attribute. */
+.ev-group[hidden],.ev-status[hidden],.ev-summary[hidden],.ev-stamp[hidden],.faq-note[hidden]{display:none}
+
+/* The nav is position:sticky, so an anchor arriving from another page would
+   otherwise land with its heading tucked underneath it. The sections carry
+   76px of their own top padding, so a small margin is enough to clear the bar
+   and still open on the heading. */
+section[id]{scroll-margin-top:20px}
+
+/* FAQ: their accordion is inherited wholesale from parents.css and is not
+   restyled here, so a library answer and a hand-written one are the same
+   component. This is only the section's provenance line. */
+.faq-note{margin:26px 0 0;font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296)}
+.faq .ev-links{margin-top:14px}
+/* Library answers arrive as paragraphs. The first and last sit flush so an
+   answer starts and ends exactly where a hand-written one does; only the gaps
+   between paragraphs are new. */
+.faq .fa p{margin:0 0 13px}
+.faq .fa p:last-child{margin-bottom:0}
+/* A link inside an answer. Underlined rather than coloured alone, so it is
+   still a link on the greyed answer text and without relying on hue. */
+.fa-link{color:var(--blue-ink,#003b5c);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.fa-link:hover{color:var(--orange-ink,#c06a38)}
+.fa-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:2px;border-radius:2px}
+/* Emphasis from the library arrives as <strong>; the hand-written entries use
+   <b>, which parents.css already weights at 600 and darkens to --ink. Matching
+   it here means a reader cannot tell which answer came from where. */
+.faq .fa strong{font-weight:600;color:var(--ink)}
+
+/* Topic grouping, added only when every entry's topic is known. The kicker
+   treatment is the one this page already uses for "a label over a section". */
+.faq-topic{font-family:var(--mono,ui-monospace,monospace);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink,#c06a38);font-weight:700;margin:36px 0 0;padding:0 0 6px;scroll-margin-top:88px}
+.faq-topic:first-child{margin-top:0}
+.faq-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.faq-jump-link{font-family:var(--mono,ui-monospace,monospace);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--blue-ink,#003b5c);background:var(--blue-l,#e4eef2);border:1px solid transparent;border-radius:8px;padding:7px 12px;transition:border-color .16s,color .16s}
+.faq-jump-link:hover{border-color:var(--blue,#004f71);color:var(--blue,#004f71)}
+.faq-jump-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:3px}
+
+/* A permalink on each question. Kept quiet: it surfaces on hover or focus and
+   sits at a low opacity while an entry is open, so the section still reads as
+   prose rather than as API documentation. */
+.faq-link{margin-left:10px;font-family:var(--mono,ui-monospace,monospace);font-size:14px;font-weight:400;color:var(--orange,#e48b53);text-decoration:none;opacity:0;transition:opacity .15s ease}
+.faq summary:hover .faq-link,.faq details[open] summary .faq-link{opacity:.5}
+.faq-link:hover{opacity:1;text-decoration:underline}
+/* Reachable without a mouse, which hover-only affordances are not. The plain
+   :focus rule carries the reveal because :focus-visible is a browser
+   heuristic — it would leave the link invisible but still focused in the cases
+   the heuristic declines. */
+.faq-link:focus{opacity:1}
+.faq-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:3px;border-radius:3px}
+/* On touch there is no hover, and an invisible tap target is worse than a
+   visible one. */
+@media (hover:none){.faq-link{opacity:.5}}
+
+/* A linked question has to clear the sticky nav, the same as the section
+   headings above. Entries have no top padding of their own, so this carries
+   the whole offset. */
+#faq-list details{scroll-margin-top:88px}
+
+/* STATUS: what stands when the data file is missing, empty, or unreadable */
+.ev-status{background:var(--paper,#fffdfb);border:1px solid var(--line,#ecdfd4);border-radius:20px;padding:clamp(28px,4vw,44px)}
+.ev-status h2{margin-top:12px}
+.ev-status .intro{max-width:62ch}
+.ev-stamp{font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296);margin-top:26px;padding-top:18px;border-top:1px solid var(--line,#ecdfd4)}
+.ev-summary{font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;color:var(--sub2,#8f9296);margin-bottom:8px}
+
+/* GROUPS */
+.ev-group{margin-top:56px}
+.ev-group:first-of-type{margin-top:0}
+.ev-group h2{font-family:var(--serif,Georgia,serif);font-weight:600;font-size:clamp(26px,3.6vw,36px);line-height:1.1;letter-spacing:-.01em;margin:12px 0 0}
+.ev-list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:16px}
+
+/* ENTRIES */
+.ev-item{background:var(--paper,#fffdfb);border:1px solid var(--line,#ecdfd4);border-radius:16px;padding:26px 28px}
+.ev-item h3{font-family:var(--serif,Georgia,serif);font-weight:600;font-size:20px;line-height:1.25;margin:0}
+.ev-cite{font-family:var(--mono,ui-monospace,monospace);font-size:12.5px;letter-spacing:.02em;color:var(--sub2,#8f9296);margin-top:8px}
+.ev-note{color:var(--sub,#4b5560);font-size:15.5px;margin-top:12px;max-width:70ch}
+.ev-note p{margin:0 0 11px}
+.ev-note p:last-child{margin-bottom:0}
+/* A note has no article behind it to link to, so its summary is the entry
+   rather than a caption introducing one. Set at reading size and reading
+   colour so it is the thing on the card, not the small print under a headline. */
+.ev-read{font-size:16.5px;line-height:1.6;color:var(--ink,#001117);margin-top:14px}
+.ev-read p{margin:0 0 13px}
+.ev-intro{color:var(--sub,#4b5560);font-size:15.5px;margin:12px 0 0;max-width:60ch}
+.ev-stat{font-size:15.5px;color:var(--ink,#001117);font-weight:600;margin-top:12px;max-width:70ch}
+
+/* A claim leads with the statement rather than a title, so it is set larger
+   and carries the accent that marks it as the assertion under scrutiny. */
+.ev-claim{position:relative;overflow:hidden;padding-left:34px}
+.ev-claim::before{content:"";position:absolute;top:0;bottom:0;left:0;width:4px;background:var(--blue,#004f71)}
+.ev-claim .ev-statement{font-family:var(--serif,Georgia,serif);font-size:19px;line-height:1.45;color:var(--ink,#001117);margin:0}
+.ev-support{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line,#ecdfd4);display:grid;gap:8px}
+.ev-support li{font-size:14.5px;color:var(--sub,#4b5560)}
+.ev-support .ev-kind{font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-ink,#c06a38);font-weight:700;margin-right:9px}
+
+/* TOPIC LABEL: our taxonomy, rendered from the file, never hardcoded here */
+.ev-topic{display:inline-block;font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue,#004f71);background:var(--blue-l,#e4eef2);border-radius:6px;padding:5px 9px;margin-bottom:12px}
+
+/* LINKS OUT: a citation with no link renders as plain text, so these only
+   appear when the file actually carries a URL. */
+.ev-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.ev-link{font-family:var(--mono,ui-monospace,monospace);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--blue-ink,#003b5c);background:var(--blue-l,#e4eef2);border:1px solid transparent;border-radius:8px;padding:7px 12px;transition:border-color .16s,color .16s}
+.ev-link:hover{border-color:var(--blue,#004f71);color:var(--blue,#004f71)}
+
+@media(max-width:620px){
+  .ev-item{padding:22px 20px}
+  .ev-claim .ev-statement{font-size:17px}
+}
