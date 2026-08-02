@@ -84,7 +84,7 @@ working unchanged when content arrives:
 | `topics[]` | `slug` (join on this), `label` (the display name — never hardcode it) |
 | `references[]` | `slug`, `title`, `citationAuthors`, `source` (journal or publisher), `year`, `keyStat`, `summary`, `doiUrl`, `sourceUrl`, `topicSlug`, `url` |
 | `articles[]` | `slug`, `title`, `excerpt`, `topicSlug`, `publishDate`, `updatedDate` (both `YYYY-MM-DD` — format them however you like), `referenceSlugs`, `url` |
-| `faq[]` | `slug`, `question`, `answer`, `answerSpans`, `topicSlug`, `updated`, `relatedArticleSlugs`, `url` |
+| `faq[]` | `slug`, `question`, `answer`, `answerSpans`, `order`, `topicSlug`, `updated`, `relatedArticleSlugs`, `url` |
 | `claims[]` | `key`, `statement`, `referenceSlugs`, `articleSlugs`, `url` |
 
 Things you can rely on:
@@ -98,27 +98,37 @@ Things you can rely on:
   splits on the blank line and builds a `<p>` per block. If you rewrite the
   renderer, do the same: dropping the whole string into one node runs the
   paragraphs together.
-- An answer that contains a link also carries `answerSpans`: the same answer,
-  as paragraphs of `{ text, href }`, where `href` is an absolute `http(s)` URL
-  or null. It is **null on answers with no links**, which is most of them — the
-  field exists so two records can carry a destination, not so all twenty-five
-  can carry a second copy of themselves.
+- An answer that carries a link or a bold run also carries `answerSpans`: the
+  same answer, as paragraphs of `{ text, href, strong }`, where `href` is an
+  absolute `http(s)` URL or null and `strong` is a boolean. It is **null on
+  plain answers** — the field exists so ten records can carry formatting, not so
+  all twenty-five can carry a second copy of themselves.
 
   Concatenating every span's `text` and joining the paragraphs with a blank line
   reproduces `answer` exactly. That is checked when the file is built, and the
   field is dropped rather than emitted when the two disagree, so the pair can
   never say different things. Read whichever one you understand.
 
-  The destination travels as data because the text does not carry markup: an
-  `<a>` written into `answer` would arrive here as the characters `<a href=…>`.
-  `assets/resources.js` builds the element with `createElement` and
+  Both travel as data because the text does not carry markup: an `<a>` or a
+  `<b>` written into `answer` would arrive here as the characters `<a href=…>`.
+  `assets/resources.js` builds the elements with `createElement` and
   `textContent` and sets `href` only after checking the scheme. If you rewrite
   the renderer, keep that shape — and if you skip the field entirely, every
-  answer still reads correctly and only loses its links.
+  answer still reads correctly and only loses its formatting.
+
+  Links and bold, and nothing else. Headings, lists and italics are still
+  flattened to text. If you want another one, it is a small change.
+- `faq[].order` is the sequence an editor put the questions in, ascending. It is
+  **not a ranking and not an instruction** — where the questions go on the page
+  is still entirely yours; this only says which one we think a reader should
+  meet first within a group, which is the one thing you cannot work out from the
+  records themselves. Ties are normal (the column defaults to zero), so sort
+  stably or tie-break on your own order. Ignore it and you get slug order, which
+  is what you got before the field existed.
 - Every non-null `topicSlug` resolves to a record in `topics`.
 - Every entry in a `*Slugs` array resolves to a record in its collection.
 - Collections are sorted by slug. **That is not a ranking** — it just keeps the
-  diff of a refresh small. Ordering and emphasis are yours.
+  diff of a refresh small. Placement is yours.
 - `url` and the top-level `source` are **null today**. They point at our own
   site, and it has no public home yet. They will start appearing on their own.
 
@@ -186,20 +196,28 @@ markup you wrote is still in the file and is still what renders if the data file
 does not load.
 
 Each of the nine that changed in this refresh says everything your version said
-and then adds to it — usually a third paragraph naming something the programme
-has *not* published yet. Two changes are worth your judgement rather than ours:
+and then adds to it — usually a third paragraph naming something the program has
+*not* published yet.
 
-- **Your bold is gone.** Your answers emphasised the figures that matter —
-  **$200,000 Double Crown**, **30 minutes a day**, **Dec 20** — and the contract
-  carries plain text, so nothing survives to re-bold. Every answer is now an
-  even grey. Nothing was lost except the emphasis, but on a page that has to
-  sell, the emphasis was doing work. Say the word and we will carry it the same
-  way we now carry links.
-- **"What language is the programme in?"** gained a paragraph saying that if
-  your child is still learning English, that is a real thing to weigh, and that
-  no English-learner support has been published. It is true and it is the
-  register the library writes in. It is also the kind of sentence a campaign page
-  might reasonably decline. Unpublishing that one record puts your original back.
+**Your bold is back.** The contract now carries emphasis as data, and the nine
+answers we replaced emphasise exactly what yours did: **$200,000 Double Crown**,
+**30 minutes a day**, **December 20**, **proctored**, **English**. We matched
+your originals rather than inventing new emphasis, so the fifteen answers the
+library added are unemphasised. If you would rather they were all treated the
+same way, say so — but adding bold to an answer nobody wrote in your voice
+seemed like the wrong default.
+
+Everything is in American English, including the dates. Our editor had drifted
+into British spelling and day-month order, which is how `$100,000 cheques` and
+`registration closes on 20 December` ended up on an Austin page.
+
+One change is worth your judgement rather than ours. **"What language is the
+program in?"** carries a sentence saying no English-learner support has been
+published, pointed at asking about it rather than at whether to enter. The
+earlier draft told a family that a child still learning English "is a real thing
+to weigh", which is the library's register and probably not yours; that is gone.
+The remaining sentence is a fact a parent needs and we would keep it, but
+unpublishing that record puts your original back.
 
 ### Twenty-five questions, five headings
 
@@ -215,12 +233,11 @@ case where the data file is missing entirely — the list keeps exactly the orde
 it has in your HTML and no jump links appear. A half-filed accordion would be
 worse than the flat one.
 
-The one placement we would change if you want it changed: **"What is the Austin
-Speedrun?"** currently sits near the bottom of Participation, because within a
-topic we keep your existing order and append the rest alphabetically, and it is
-new. It is the most basic question on the page. We can carry an explicit order
-from the library the same way we carry topics — it is a small addition and it
-would let you sequence the whole section from the CMS.
+Within a topic the questions now follow `faq[].order`, so **"What is the Austin
+Speedrun?"** leads Participation instead of sitting near the bottom in
+alphabetical order. That is the only thing the new field does, and it means the
+whole section can be sequenced from the CMS without a pull request to either
+repository. Which topic goes where on the page is still decided by your markup.
 
 ### Where this is heading
 
@@ -234,6 +251,36 @@ those answers start updating on a data refresh instead of in a pull request. The
 URLs people have been sharing keep working across the change, because the slug
 that was the permalink is the slug the record matches on. Nothing has to move at
 once, and the entries you keep stay exactly as they are.
+
+## The order of the page, and what the notes can't do yet
+
+Two changes to `resources/index.html` worth reading before you skim the diff.
+
+**The FAQ now sits directly under the hero, and the library sits below it.** It
+was the other way round. The reasoning is that a parent arrives at this page
+with a question, and the questions were 2,300 pixels down behind the hero, two
+note cards and the three-column standards panel. They start at 864 now. The
+library is the credibility layer: it earns attention *after* an answer has
+raised the question of whether to believe it, which is also the moment "here is
+what we checked" reads as substantiation rather than as preamble. The whole
+library section moved as one, so the sources and claims blocks land in the right
+place when they have records. This is your page and it is the most invasive
+thing in the change — if you want it back the way it was, it is one section
+moving in the markup and nothing else depends on it.
+
+**Two capabilities are staged rather than broken.** The Sources block renders
+nothing, because no reference in the library is published yet — an entry only
+appears once every source under it is published, which is the rule the page's
+own standards panel describes. And the notes carry no "read it" link, because
+the library is `noindex` and not publicly reachable, so `articles[].url` is
+`null` for both. Rather than draw a dead link or a "coming soon" placeholder,
+each note is written to be the whole entry: what it found, and what it could not
+confirm. A reader who never clicks anything still learns something.
+
+Both fill in on their own. The renderer skips a destination it cannot use, so
+the day the library becomes reachable and `url` stops being `null`, the "Read
+it" links appear with no change to the markup, the stylesheet or the renderer.
+The same is true of the Sources block the first time a reference publishes.
 
 ## Using it anywhere else on the site
 

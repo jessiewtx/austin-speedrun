@@ -30,6 +30,10 @@ section[id]{scroll-margin-top:20px}
 .fa-link{color:var(--blue-ink,#003b5c);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 .fa-link:hover{color:var(--orange-ink,#c06a38)}
 .fa-link:focus-visible{outline:2px solid var(--orange,#e48b53);outline-offset:2px;border-radius:2px}
+/* Emphasis from the library arrives as <strong>; the hand-written entries use
+   <b>, which parents.css already weights at 600 and darkens to --ink. Matching
+   it here means a reader cannot tell which answer came from where. */
+.faq .fa strong{font-weight:600;color:var(--ink)}
 
 /* Topic grouping, added only when every entry's topic is known. The kicker
    treatment is the one this page already uses for "a label over a section". */
@@ -81,6 +85,12 @@ section[id]{scroll-margin-top:20px}
 .ev-note{color:var(--sub,#4b5560);font-size:15.5px;margin-top:12px;max-width:70ch}
 .ev-note p{margin:0 0 11px}
 .ev-note p:last-child{margin-bottom:0}
+/* A note has no article behind it to link to, so its summary is the entry
+   rather than a caption introducing one. Set at reading size and reading
+   colour so it is the thing on the card, not the small print under a headline. */
+.ev-read{font-size:16.5px;line-height:1.6;color:var(--ink,#001117);margin-top:14px}
+.ev-read p{margin:0 0 13px}
+.ev-intro{color:var(--sub,#4b5560);font-size:15.5px;margin:12px 0 0;max-width:60ch}
 .ev-stat{font-size:15.5px;color:var(--ink,#001117);font-weight:600;margin-top:12px;max-width:70ch}
 
 /* A claim leads with the statement rather than a title, so it is set larger

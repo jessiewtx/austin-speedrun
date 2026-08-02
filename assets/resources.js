@@ -80,9 +80,15 @@
    * reader came for the sentence, not the link.
    */
   const appendSpan = (parent, span) => {
+    // Emphasis wraps the link rather than the other way round, so a run that is
+    // both reads as one emphasised link instead of two nested decorations.
+    const target = span.strong === true
+      ? parent.appendChild(document.createElement('strong'))
+      : parent;
+
     const href = safeUrl(span.href);
     if (!href) {
-      appendText(parent, span.text);
+      appendText(target, span.text);
       return;
     }
     const anchor = el('a', 'fa-link');
@@ -95,7 +101,7 @@
       anchor.target = '_blank';
       anchor.rel = 'noopener noreferrer';
     }
-    parent.appendChild(anchor);
+    target.appendChild(anchor);
   };
 
   /**
@@ -121,7 +127,7 @@
       .split(/\n{2,}/)
       .map(block => block.trim())
       .filter(Boolean)
-      .map(block => [{ text: block, href: null }]);
+      .map(block => [{ text: block, href: null, strong: false }]);
   };
 
   // Several answers run to four paragraphs, and dropping one into a single text
@@ -194,6 +200,20 @@
     );
   };
 
+  /**
+   * A note, written to survive having nowhere to send the reader.
+   *
+   * `url` is null for every article while the library is noindex and not
+   * publicly reachable, and manufacturing a destination would be worse than
+   * having none — an unreachable link is a broken promise, and a "coming soon"
+   * placeholder is a missing button drawn in words. So the summary is the whole
+   * entry: what the note found, and what it could not confirm. A reader who
+   * only ever scrolls past has still learned something.
+   *
+   * Nothing here needs revisiting when the library goes public. `linkRow` skips
+   * a destination it cannot use, so the day `url` stops being null the "Read
+   * it" link appears on its own, with no change to this file or the markup.
+   */
   const renderArticle = (article) => {
     const title = text(article.title);
     if (!title) return null;
@@ -210,7 +230,10 @@
       topicChip(article.topicSlug),
       el('h3', null, title),
       dateLine ? el('p', 'ev-cite', dateLine) : null,
-      text(article.excerpt) ? prose('div', 'ev-note', text(article.excerpt)) : null
+      // `ev-read` typesets this as the body of the entry rather than as the
+      // caption under a headline, which is all it can be when there is no
+      // article behind it for the caption to introduce.
+      text(article.excerpt) ? prose('div', 'ev-note ev-read', text(article.excerpt)) : null
     );
 
     if (cited.length) {
@@ -365,18 +388,24 @@
    * reads worse than the flat list it replaced.
    *
    * Topics appear in the order their first question already appeared, so the
-   * page keeps leading with what it chose to lead with. Within a topic the
-   * existing order is preserved, which keeps a superseded answer where its
-   * reader last saw it.
+   * page keeps leading with what it chose to lead with — the cost question is
+   * still the first thing on the page. Within a topic the entries follow the
+   * `order` the file carries, which is the sequence an editor chose; entries
+   * that tie keep the order they were written in.
    */
   const groupFaqByTopic = (records) => {
     const list = document.getElementById('faq-list');
     if (!list) return false;
 
     const topicOfSlug = new Map();
+    const orderOfSlug = new Map();
     records.forEach(record => {
       if (record && typeof record === 'object') {
-        topicOfSlug.set(text(record.slug), text(record.topicSlug));
+        const slug = text(record.slug);
+        topicOfSlug.set(slug, text(record.topicSlug));
+        // Absent or malformed means "no opinion", which ties with everything
+        // and therefore leaves the written order alone.
+        if (Number.isFinite(record.order)) orderOfSlug.set(slug, record.order);
       }
     });
 
@@ -412,9 +441,15 @@
       const heading = el('h3', 'faq-topic', group.label);
       heading.id = `faq-topic-${topicSlug}`;
       ordered.appendChild(heading);
-      // Appending an element that is already in the document moves it, so this
-      // reorders the entries rather than duplicating them.
-      group.entries.forEach(entry => ordered.appendChild(entry));
+      // Decorate-sort-undecorate rather than a bare comparator: Array#sort is
+      // only guaranteed stable in engines new enough to promise it, and the
+      // written order is the tie-break this relies on.
+      group.entries
+        .map((entry, at) => ({ entry, at, key: orderOfSlug.get(entry.getAttribute('data-faq-slug')) }))
+        .sort((a, b) => (a.key ?? 0) - (b.key ?? 0) || a.at - b.at)
+        // Appending an element that is already in the document moves it, so
+        // this reorders the entries rather than duplicating them.
+        .forEach(({ entry }) => ordered.appendChild(entry));
 
       const link = el('a', 'faq-jump-link', group.label);
       link.href = `#faq-topic-${topicSlug}`;
