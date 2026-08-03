@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=Inter+Tight:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/parents.css">
+<link rel="stylesheet" href="assets/parents.css?v=kids2">
 <link rel="icon" type="image/png" sizes="512x512" href="social/gt-tile.png">
 <link rel="apple-touch-icon" href="social/gt-tile.png">
 </head>
@@ -209,17 +209,24 @@
 
 <!-- WAITLIST FORM -->
 <section class="formsec" id="join">
-  <div class="narrow">
+  <div class="form-center">
     <span class="kicker">Register interest</span>
     <h2>Join the waitlist.</h2>
-    <p class="intro">Registration opens August 3. Add your family now and we'll email you the moment sign-ups go live for your zip.</p>
+    <p class="intro">Registration opens soon. Add your family now and we'll email you when sign-ups go live for your zip.</p>
     <div class="form-card" id="formCard">
       <form id="waitForm" novalidate>
-        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <div class="field" id="f-name">
-          <label for="in-name">Parent / guardian name</label>
-          <input id="in-name" type="text" autocomplete="name" placeholder="Your full name">
-          <span class="err">Please enter your name.</span>
+        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden">
+        <div class="form-row">
+          <div class="field" id="f-first">
+            <label for="in-first">Parent first name</label>
+            <input id="in-first" type="text" autocomplete="given-name" placeholder="First name">
+            <span class="err">Enter a first name.</span>
+          </div>
+          <div class="field" id="f-last">
+            <label for="in-last">Parent last name</label>
+            <input id="in-last" type="text" autocomplete="family-name" placeholder="Last name">
+            <span class="err">Enter a last name.</span>
+          </div>
         </div>
         <div class="field" id="f-email">
           <label for="in-email">Email address</label>
@@ -247,6 +254,7 @@
         <p class="form-error" id="form-error">Hmm, that didn't send. Please check your connection and try again.</p>
         <button type="submit" class="form-submit">Add my family to the waitlist</button>
         <p class="form-fine">Free to join. We'll only email you about the Austin Speedrun. Parent-first &amp; COPPA-compliant.</p>
+        <p class="form-fine" style="margin-top:10px">Ready to register? <a href="signup.html">Sign up here</a>.</p>
       </form>
     </div>
   </div>
@@ -268,6 +276,8 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
 <script src="assets/zipdata.js"></script>
 <script src="assets/parents.js"></script>
 </body>

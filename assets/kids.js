@@ -124,9 +124,10 @@ document.querySelectorAll('.zh').forEach(b=>b.addEventListener('click',()=>{
 
 // ---- share ----
 document.getElementById('shareBtn').addEventListener('click',()=>{
-  const link = 'https://austin.gt.school/?ref=speedrun';
+  // Personal ?ref= codes are shown on the signup success screen after register.
+  const link = new URL('signup.html', window.location.href).toString();
   const msg = document.getElementById('shareMsg');
   navigator.clipboard && navigator.clipboard.writeText(link).then(()=>{
-    msg.textContent='Copied! Share it. Verified signups credit you.';
+    msg.textContent='Copied! Share signup — after you register, your success screen has a personal invite link.';
   }).catch(()=>{ msg.textContent='Your link: '+link; });
 });
