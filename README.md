@@ -20,7 +20,7 @@ Static site: plain HTML/CSS/JS, no build step.
 | `assets/logo.js` | Shared inline SVG wordmark (`ASR_LOGO` / `ASR_WORDMARK`). |
 | `assets/kids.css` / `assets/kids.js` | Styles + interactivity for the student page (countdown, leaderboard tabs, ZIP tool, share). |
 | `assets/parents.css` / `assets/parents.js` | Styles + waitlist form validation for the parent page. |
-| `assets/zipdata.js` | The 99 Austin-metro residential ZIPs (county, est. middle-schoolers, tier). |
+| `assets/zipdata.js` | The 92 Austin-metro residential ZIPs (county, est. middle-schoolers, tier). |
 | `assets/evidence.js` | Generated citation data (`window.GT_EVIDENCE`), same idiom as `zipdata.js`. Do not hand-edit. |
 | `assets/resources.css` / `assets/resources.js` | Styles + renderer for the Resources page. See [EVIDENCE.md](EVIDENCE.md). |
 
