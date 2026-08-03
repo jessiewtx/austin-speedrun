@@ -124,7 +124,9 @@ document.querySelectorAll('.zh').forEach(b=>b.addEventListener('click',()=>{
 
 // ---- share ----
 document.getElementById('shareBtn').addEventListener('click',()=>{
-  const link = 'https://austin.gt.school/?ref=speedrun';
+  // follows whatever host is serving the page, so the copied link resolves today
+  // and becomes the austin.gt.school one as soon as the site is served from there
+  const link = location.origin + '/?ref=speedrun';
   const msg = document.getElementById('shareMsg');
   navigator.clipboard && navigator.clipboard.writeText(link).then(()=>{
     msg.textContent='Copied! Share it. Verified signups credit you.';
