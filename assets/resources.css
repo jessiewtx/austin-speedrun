@@ -105,6 +105,15 @@ section[id]{scroll-margin-top:20px}
 /* TOPIC LABEL: our taxonomy, rendered from the file, never hardcoded here */
 .ev-topic{display:inline-block;font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue,#004f71);background:var(--blue-l,#e4eef2);border-radius:6px;padding:5px 9px;margin-bottom:12px}
 
+/* TOPIC HEADINGS: matched to the FAQ's, because they do the same job on the
+   same page and a reader should not have to learn two of them. The chip is
+   hidden once the cards sit under a heading that already says it — but only
+   then, since the chip is the only topic signal when grouping is skipped. */
+.ev-topic-head{margin:40px 0 -4px}
+.ev-topic-head:first-child{margin-top:0}
+.ev-topic-title{font-family:var(--mono,ui-monospace,monospace);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink,#c06a38);font-weight:700;margin:0;scroll-margin-top:88px}
+.ev-list-grouped .ev-item .ev-topic{display:none}
+
 /* LINKS OUT: a citation with no link renders as plain text, so these only
    appear when the file actually carries a URL. */
 .ev-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}

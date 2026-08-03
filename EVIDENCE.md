@@ -282,6 +282,23 @@ the day the library becomes reachable and `url` stops being `null`, the "Read
 it" links appear with no change to the markup, the stylesheet or the renderer.
 The same is true of the Sources block the first time a reference publishes.
 
+### How the notes are ordered
+
+The notes are grouped under topic headings, in the order the file lists its
+topics — the same headings and the same sequence the FAQ above them uses.
+
+**Within a topic the order is alphabetical by title, and that is arbitrary on
+purpose.** Notes carry no editorial sequence in the data, and their publish
+dates are nearly all the same day, so there is nothing real to sort on. What
+alphabetical buys is a list that stays put: inside a topic of two or three,
+that is something a reader can scan. Across all eighteen it was noise, which
+is what the section did before this.
+
+If a deliberate order ever matters, it belongs in the data as a field on the
+record — the way `faq[].order` already works — rather than being inferred in
+the renderer. `groupNotesByTopic` in `assets/resources.js` is the one place
+that would read it. Nobody has asked for it, so it is not there.
+
 ## Using it anywhere else on the site
 
 If you ever want a citation next to a specific sentence on `parents.html` or

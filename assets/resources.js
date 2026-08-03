@@ -236,6 +236,12 @@
       text(article.excerpt) ? prose('div', 'ev-note ev-read', text(article.excerpt)) : null
     );
 
+    // Read back by the grouping pass. Recorded on the rendered card rather than
+    // tracked alongside the records, so a record the renderer skipped cannot
+    // shift every heading after it onto the wrong group.
+    const topic = text(article.topicSlug);
+    if (topic) item.setAttribute('data-topic', topic);
+
     if (cited.length) {
       const support = el('ul', 'ev-support');
       cited.forEach(reference => {
@@ -461,6 +467,91 @@
     return true;
   };
 
+  /**
+   * Group the notes under topic headings.
+   *
+   * Every note card already carries a topic chip, which advertises a taxonomy
+   * the flat list then ignored: eighteen notes in slug order put eight topics
+   * across fifteen separate runs, so a reader looking for the prize notes met
+   * that label four times, screens apart, with no way to tell they had found
+   * them all. A chip promising a grouping that is not there is worse than no
+   * chip. The FAQ rejected the same shape at half the size.
+   *
+   * Topics appear in the order the file lists them, so the section agrees with
+   * the library's own taxonomy rather than with the alphabet.
+   *
+   * Within a topic the order is by title. That is arbitrary and is meant to be
+   * read as arbitrary: notes carry no editorial sequence, and publish dates are
+   * nearly all the same day, so there is no real signal here to sort on. What
+   * alphabetical buys is predictability — inside a topic of two or three it is
+   * a list you can scan, which is what alphabetical across all eighteen was
+   * not. If a genuine sequence is ever wanted it belongs in the data, as a
+   * field on the record the way the FAQ's `order` works, and this comparator is
+   * where it would be read; deriving one here would be inventing editorial
+   * intent in a renderer.
+   *
+   * Same all-or-nothing rule as the FAQ: if any card has no resolvable topic
+   * the list is left exactly as it was.
+   */
+  const groupNotesByTopic = () => {
+    const section = document.getElementById('ev-articles');
+    if (!section) return false;
+    const list = section.querySelector('[data-ev-list]');
+    if (!list) return false;
+
+    const items = Array.prototype.slice.call(list.children);
+    // Anything else in the list is markup this does not understand, and
+    // regrouping the cards around it would strand it.
+    if (items.length === 0 || items.some(node => node.tagName !== 'LI')) return false;
+
+    const order = [];
+    const groups = new Map();
+    for (const item of items) {
+      const topicSlug = item.getAttribute('data-topic');
+      const label = topicSlug ? text(labelBySlug.get(topicSlug)) : null;
+      if (!label) return false;
+      if (!groups.has(topicSlug)) {
+        groups.set(topicSlug, { label, items: [] });
+        order.push(topicSlug);
+      }
+      groups.get(topicSlug).items.push(item);
+    }
+    // One heading over the whole list is a label, not a way to navigate.
+    if (order.length < 2) return false;
+
+    const titleOf = (item) => {
+      const heading = item.querySelector('h3');
+      return heading ? heading.textContent.trim() : '';
+    };
+
+    const grouped = document.createDocumentFragment();
+    order.forEach(topicSlug => {
+      const group = groups.get(topicSlug);
+
+      // A heading inside a <ul> has to be inside an <li> to be valid, and the
+      // list is a single-column grid, so it simply becomes another row.
+      const head = el('li', 'ev-topic-head');
+      const heading = el('h3', 'ev-topic-title', group.label);
+      heading.id = `notes-topic-${topicSlug}`;
+      head.appendChild(heading);
+      grouped.appendChild(head);
+
+      // Decorate-sort-undecorate rather than a bare comparator, so the
+      // tie-break is the written order and does not depend on the engine
+      // promising a stable sort.
+      group.items
+        .map((item, at) => ({ item, at, key: titleOf(item) }))
+        .sort((a, b) => a.key.localeCompare(b.key, 'en') || a.at - b.at)
+        .forEach(({ item }) => grouped.appendChild(item));
+    });
+
+    list.appendChild(grouped);
+    // Only now that the headings are in place: the class is what hides the
+    // per-card chip, and a chip is better than nothing if this bailed out above.
+    list.classList.add('ev-list-grouped');
+    return true;
+  };
+
   // The FAQ is deliberately outside the count below. That count decides whether
   // the research sections have anything to show, and the FAQ section is never
   // empty because their hand-written entries are always in the markup.
@@ -472,6 +563,10 @@
     references: fill('ev-references', references, renderReference),
     articles:   fill('ev-articles', articles, renderArticle)
   };
+
+  // After `fill`, which counts the cards. The headings this adds are furniture
+  // rather than notes, and the summary line below says how many notes there are.
+  groupNotesByTopic();
 
   const rendered = Object.values(counts).reduce((total, n) => total + n, 0);
   const checked = readableDate(data.generatedAt);
