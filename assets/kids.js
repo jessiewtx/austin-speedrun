@@ -5,17 +5,17 @@ document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK_TEXT();
 // ---- ticker ----
 (function(){
   const items = [
-    'SEASON STARTS <b>AUG 24, 2026</b>','MATH/SCIENCE CROWN <b>$100,000</b>','READING/LANGUAGE CROWN <b>$100,000</b>','DOUBLE CROWN <b>$200,000</b>',
-    'EFFORT GRAND <b>$50,000</b>','MOST TIMEBACK XP WINS','<b>FREE</b> ALL SEASON','92 ZIP TEAMS','<b>$1,000</b> WINNERS CITYWIDE','19-WEEK SEASON','WINTER GRIND <b>DEC 19–JAN 3</b>',
-    'BREAK THE SCALE: <b>MATH 300</b>','1 PRIZE PER <b>25 KIDS</b>'
+    'SEASON STARTS <b>OCT 5, 2026</b>','MATH/SCIENCE CROWN <b>$100,000</b>','READING/LANGUAGE CROWN <b>$100,000</b>','DOUBLE CROWN <b>$200,000</b>',
+    'EFFORT GRAND <b>$50,000</b>','MOST TIMEBACK XP WINS','<b>FREE</b> ALL SEASON','92 ZIP TEAMS','<b>$1,000</b> WINNERS CITYWIDE','MONTHLY EFFORT <b>$5,000</b>','GRADE CHAMPS <b>$10,000</b>',
+    'REGISTRATION <b>OPEN NOW</b>'
   ];
   const html = items.map(i=>'<span>'+i+'</span>').join('');
   document.getElementById('ticker').innerHTML = html + html;
 })();
 
-// ---- countdown to Aug 24 2026 (Central) ----
+// ---- countdown to Oct 5 2026 (Central) ----
 (function(){
-  const target = new Date('2026-08-24T08:00:00-05:00').getTime();
+  const target = new Date('2026-10-05T08:00:00-05:00').getTime();
   const d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   function pad(n){return String(n).padStart(2,'0')}
   function tick(){
@@ -29,7 +29,7 @@ document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK_TEXT();
 
 // ---- leaderboard (SAMPLE data) ----
 const LB = {
-  math: {label:'MAP Math + AlphaTest math/science', rows:[
+  math: {label:'Math + Science score', rows:[
     ['Priya R.','Grade 8 · 78660 Pflugerville','2,984'],
     ['Alex H.','Grade 8 · 78703 Austin','2,921'],
     ['Sofia M.','Grade 6 · 78704 Austin','2,877'],
@@ -39,7 +39,7 @@ const LB = {
     ['Liam O.','Grade 8 · 78664 Round Rock','2,690'],
     ['Nadia H.','Grade 6 · 78745 Austin','2,641'],
   ]},
-  read: {label:'MAP Reading + Language + AlphaTest ELA', rows:[
+  read: {label:'Reading + Language score', rows:[
     ['Sofia M.','Grade 6 · 78704 Austin','2,958'],
     ['Nadia H.','Grade 6 · 78745 Austin','2,902'],
     ['Priya R.','Grade 8 · 78660 Pflugerville','2,861'],
@@ -58,16 +58,6 @@ const LB = {
     ['Isaac J.','Grade 8 · 78130 New Braunfels','158,300 XP'],
     ['Ava K.','Grade 7 · 78681 Round Rock','151,700 XP'],
     ['Liam O.','Grade 8 · 78664 Round Rock','147,050 XP'],
-  ]},
-  climb: {label:'VGLs per week enrolled', rows:[
-    ['Liam O.','Grade 8 · 78664 Round Rock','1.8 / wk'],
-    ['Isaac J.','Grade 8 · 78130 New Braunfels','1.7 / wk'],
-    ['Priya R.','Grade 8 · 78660 Pflugerville','1.6 / wk'],
-    ['Logan M.','Grade 8 · 78613 Cedar Park','1.5 / wk'],
-    ['Nadia H.','Grade 6 · 78745 Austin','1.4 / wk'],
-    ['Alex H.','Grade 8 · 78703 Austin','1.3 / wk'],
-    ['Sofia M.','Grade 6 · 78704 Austin','1.2 / wk'],
-    ['Ava K.','Grade 7 · 78681 Round Rock','1.1 / wk'],
   ]},
 };
 function renderLB(key){

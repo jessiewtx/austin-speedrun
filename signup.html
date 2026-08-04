@@ -4,117 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Austin Speedrun: Sign up</title>
-<meta name="description" content="Register for the Austin Speedrun. Free contest for Austin-metro middle schoolers.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=Inter+Tight:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/parents.css?v=kids2">
+<meta http-equiv="refresh" content="0;url=parents.html">
+<script>
+  (function () {
+    var params = window.location.search || "";
+    var hash = "#join";
+    window.location.replace("parents.html" + params + hash);
+  })();
+</script>
 <link rel="icon" type="image/png" sizes="512x512" href="social/gt-tile.png">
-<link rel="apple-touch-icon" href="social/gt-tile.png">
 </head>
 <body>
-<header class="nav">
-  <a class="nav-logo" href="index.html" aria-label="GT School — Austin Speedrun"><img src="assets/brand/gt-school-logo.svg" alt="GT School"></a>
-  <nav class="navlinks">
-    <a href="parents.html#what">What it is</a>
-    <a href="parents.html#prizes">Prizes</a>
-    <a href="parents.html#safety">Safety</a>
-    <a href="parents.html#join">Waitlist</a>
-    <a href="resources/#faq">FAQ</a>
-  </nav>
-  <a href="#signup" class="nav-cta">Sign up</a>
-</header>
-
-<section class="formsec" id="signup">
-  <div class="form-center">
-    <span class="kicker">Registration</span>
-    <h2>Sign up for Austin Speedrun.</h2>
-    <p class="intro">Register your family for the contest. If you opened a friend’s invite link, their referral is applied automatically. Already on the waitlist? Use the same email and we’ll upgrade you.</p>
-    <div class="form-card" id="formCard">
-      <form id="signupForm" novalidate>
-        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden">
-        <p class="referred-by" id="referredBy" hidden></p>
-
-        <p class="form-section-label">Parent / guardian</p>
-        <div class="form-row">
-          <div class="field" id="f-first">
-            <label for="in-first">First name</label>
-            <input id="in-first" type="text" autocomplete="given-name" placeholder="First name">
-            <span class="err">Enter a first name.</span>
-          </div>
-          <div class="field" id="f-last">
-            <label for="in-last">Last name</label>
-            <input id="in-last" type="text" autocomplete="family-name" placeholder="Last name">
-            <span class="err">Enter a last name.</span>
-          </div>
-        </div>
-        <div class="field" id="f-email">
-          <label for="in-email">Email address</label>
-          <input id="in-email" type="email" autocomplete="email" placeholder="you@email.com">
-          <span class="err">Please enter a valid email address.</span>
-        </div>
-        <div class="field" id="f-zip">
-          <label for="in-zip">Home ZIP code</label>
-          <input id="in-zip" type="text" inputmode="numeric" maxlength="5" placeholder="787__">
-          <span class="err">Enter a 5-digit ZIP.</span>
-        </div>
-        <div class="field" id="f-referral">
-          <label for="in-referral">Referral code <span style="font-weight:500;color:var(--sub2)">(optional)</span></label>
-          <input id="in-referral" type="text" autocomplete="off" placeholder="e.g. TRINC3F" spellcheck="false">
-        </div>
-
-        <div class="kids-head">
-          <p class="form-section-label">Child(ren)</p>
-          <button type="button" class="btn-add-child" id="addChild" aria-label="Add another child">+</button>
-        </div>
-        <div id="kidsList">
-          <div class="kid-row" data-kid="0">
-            <div class="form-row">
-              <div class="field">
-                <label for="in-child-first-0">First name</label>
-                <input id="in-child-first-0" class="kid-first" type="text" autocomplete="off" placeholder="First name">
-                <span class="err">Enter a first name.</span>
-              </div>
-              <div class="field kid-grade-field">
-                <label for="in-grade-0">Grade (2026–27)</label>
-                <div class="kid-grade-wrap">
-                  <select id="in-grade-0" class="kid-grade">
-                    <option value="">Select…</option>
-                    <option>6th grade</option>
-                    <option>7th grade</option>
-                    <option>8th grade</option>
-                  </select>
-                  <button type="button" class="btn-remove-child" hidden aria-label="Remove child">×</button>
-                </div>
-                <span class="err">Select a grade.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p class="form-error" id="form-error">Hmm, that didn't send. Please check your connection and try again.</p>
-        <button type="submit" class="form-submit">Sign my family up</button>
-        <p class="form-fine">Free to join. Parent-first &amp; COPPA-compliant.</p>
-      </form>
-    </div>
-    <p class="intro" style="margin-top:28px">Not ready yet? <a href="parents.html#join">Join the waitlist</a> instead.</p>
-  </div>
-</section>
-
-<footer class="mission">
-  <div class="wrap">
-    <img class="mission-mark" src="assets/brand/speedrun-mark-gt.svg" alt="Austin Speedrun" width="70" height="62">
-    <div class="mission-foot">
-      <span class="gt-foot"><img src="assets/brand/gt-school-logo.svg" alt="GT School"></span>
-      <p>Austin Speedrun by gt.school</p>
-      <a href="parents.html">Parent info →</a>
-    </div>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/supabase-config.js"></script>
-<script src="assets/zipdata.js"></script>
-<script src="assets/signup.js"></script>
+  <p>Registration moved to <a href="parents.html#join">parents.html#join</a>.</p>
 </body>
 </html>

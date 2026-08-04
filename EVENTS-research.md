@@ -16,6 +16,33 @@ Evaluate which academic events GT School can host in Austin as a **live-event fu
 
 ---
 
+## Recommendation
+
+**Host a middle-school MATH contest, "presented by GT School," as the live-event funnel, and skip the spelling bee.** Math pulls the biggest crowd, costs the least to host, needs no gt.school domain or MAP/legal ruling, and Austin is a deep math-competition market.
+
+- **Pilot (run it soon):** a **MathLeague** contest. You pick the date, it's a flat ~$500 for 100+ kids, and any org can host, the fastest, cheapest way to get a real event on the calendar.
+- **Flagship (aim for Jan 2027):** host the **AMC 8** for prestige and draw (~80k kids/yr nationally, grades 8 and under). Fixed window Jan 21–27, 2027; GT registers as the host "learning center."
+- **Venue:** keep the pilot in a **free/low-cost** room (Austin Public Library, a partner school gym/cafeteria, or a university room), **not** Palmer or the Convention Center ($4k–15k/day flagship venues).
+- **Skip for now:** spelling bee (~243 kids nationally; $5,500+ to own a region) and Math Kangaroo (~60% grades 1–4, too young).
+
+### Cost to pursue: MathLeague pilot (~150 middle-schoolers, low-cost venue)
+
+| Item | Notes | Est. cost |
+|---|---|---|
+| MathLeague license | Flat site license, 100+ students, one test set | $500 |
+| Venue (half day) | Library room / partner school / university room | $0–500 |
+| Snacks + water | ~150 kids, light refreshments (~$3–4/kid) | $450–600 |
+| Prizes & medals | Medals for top scorers + a few trophies/gift cards | $800–1,200 |
+| Printing & signage | Answer sheets, name tags, GT banner | $250–400 |
+| Marketing / flyers | The whole point, funnel to Timeback (flyers + social) | $200–500 |
+| Proctors / staff | GT staff + volunteers (internal) | $0 |
+| Contingency (~10%) | Buffer | ~$250 |
+| **Total** | **≈ $16–26 per kid all-in** | **≈ $2,450–3,950** |
+
+**Bare-bones floor** (free partner venue, medals-only prizes, minimal snacks): **~$1,200**.
+
+---
+
 ## DOK 4: Spiky Points of View (SPOVs)
 
 - **SPOV 1 — Lead with AMC 8 or MathLeague; shelve the spelling bee.** Math out-draws spelling by ~3–6× at the event level and costs a fraction to host; a Scripps regional partnership is $5,500 for a structurally tiny field.
@@ -190,15 +217,17 @@ Evaluate which academic events GT School can host in Austin as a **live-event fu
 - **Link to source:** [Palmer Events Center — Plan](https://www.palmereventscenter.com/plan) · [Facts](https://www.palmereventscenter.com/palmer-events-center-facts) · [Facility Rental rates](https://www.yumpu.com/en/document/view/39302181/facility-rental-palmer-events-center)  (accessed Aug 1, 2026)
 
 #### Subcategory 3.2: Austin Convention Center (city rate schedule)
-- **Source 1:** City of Austin Convention Center rate ordinance
+- **Source 1:** City of Austin FY 2022-23 Fee Schedule (Exhibit "A"), "Austin Convention Center — Operating Fund" section
 - **DOK 1 — Facts:**
-  - Exhibit-hall daily rentals run roughly $2,300–$8,300/day depending on hall.
-  - Meeting rooms are ~$125/day each.
-  - Move-in/move-out days charged at one-half the daily rate.
-  - Directly network-connected to Palmer Events Center.
+  - The Convention Center prices in two tiers: lower **Convention rates** (multi-day conventions) and higher **Standard rates** (most other/one-day events).
+  - **Exhibit halls (Standard rates):** ~$4,100–$14,750/day depending on hall (Hall 2 smallest at ~$4,100–$6,050; Hall 4 largest at ~$10,050–$14,750). Convention-rate halls are lower, ~$2,625–$6,025/day.
+  - **Ballrooms:** ~$925/day (Ballroom B) up to ~$6,700/day (Ballroom D); the full D–G ballroom block is ~$10,300/day.
+  - **Meeting rooms:** roughly ~$110–$1,040/day depending on room/combination (e.g., Meeting Room 01 ~$230/day; Standard rates run higher) — an order of magnitude cheaper than the exhibit halls.
+  - **Austin Suite** (permanent boardroom set for 28): ~$1,410/day with AV, or ~$955/day facility-only.
+  - Move-in/move-out: one day free per event day (up to 3 days), additional days at half the daily rental; a show office is typically included free with exhibit-hall or ballroom use.
 - **DOK 2 — Summary:**
-  - The city-run Austin Convention Center is the larger downtown option with a published rate schedule in the same ballpark as Palmer (halls in the low-to-high thousands per day, meeting rooms ~$125/day), best reserved for a large flagship rather than a pilot.
-- **Link to source:** [City of Austin Convention Center rate ordinance](https://services.austintexas.gov/edims/document.cfm?id=99116)  (accessed Aug 1, 2026)
+  - The City's published fee schedule confirms the Austin Convention Center is a flagship, four-figure-per-day venue. For a one-day GT event you'd pay the higher **Standard** tier: a single meeting room runs a few hundred dollars/day (the only affordable slice for a pilot), a ballroom ~$925–$6,700/day, and an exhibit hall ~$4,100–$14,750/day. Rooms are cheap; halls are not, so ACC only makes sense for a large flagship, not a first pilot. (FY22-23 schedule; actual rates are likely somewhat higher today.)
+- **Link to source:** [City of Austin FY 2022-23 Fee Schedule — Austin Convention Center (EDIMS id=389909)](https://services.austintexas.gov/edims/document.cfm?id=389909)  (accessed Aug 1, 2026)
 
 ---
 
