@@ -451,3 +451,60 @@ h1 .hl{color:var(--yellow)}
 .theme-toggle{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 15px 0 13px;border-radius:999px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-left:14px;flex:none;transition:transform .15s,border-color .15s,background .15s;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff}
 .theme-toggle:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06)}
 .theme-toggle .tt-ico{width:16px;height:16px;display:block;flex:none}
+
+/* ===== FEEDBACK TWEAKS (Aug 3) ===== */
+/* Bigger, clearer TWO EQUAL CROWNS */
+.crowns-kicker{font-size:14px;letter-spacing:.24em;margin-bottom:26px}
+.ch-lbl{margin-top:18px;font-size:16px;line-height:1.4;display:flex;flex-direction:column;gap:5px}
+.ch-lbl b{font-family:var(--display);font-weight:700;font-size:23px;letter-spacing:-.01em;color:var(--ink)}
+.ch-lbl span{font-size:15.5px;color:var(--dim)}
+.crowns-note{max-width:840px;font-size:clamp(17px,2.3vw,21px);line-height:1.5;margin-top:46px;color:var(--dim)}
+.crowns-note b{color:var(--ink);white-space:normal}
+.crowns-note .t{color:var(--turq)}.crowns-note .p{color:var(--pink)}.crowns-note .g{color:var(--green)}
+@media(max-width:720px){.ch-lbl{align-items:flex-start}}
+
+/* CTA inside How-it-works */
+.how-cta{display:flex;flex-direction:column;align-items:center;gap:12px;margin:6px 0 46px;text-align:center}
+.how-cta-note{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:var(--dim);text-transform:uppercase}
+
+/* Bonus-round divider + sections (SAT / Winter Grind live past the CTA) */
+.bonus-divider{display:flex;align-items:center;justify-content:center;gap:16px;max-width:1180px;margin:14px auto 0;padding:0 26px}
+.bonus-divider::before,.bonus-divider::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+.bonus-divider span{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.sec.bonus{padding-top:54px}
+
+/* Austin metro map (replaces the old zip list) */
+.austin-map{max-width:720px;margin:6px auto 4px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 14px}
+.austin-map svg{width:100%;height:auto;display:block}
+.am-land{fill:var(--bg2);stroke:var(--line);stroke-width:2}
+.am-river{stroke:var(--green);stroke-width:4;opacity:.6}
+.am-dt .am-dtdot{fill:var(--ink)}
+.am-dt text{font-family:var(--mono);font-size:11px;letter-spacing:.05em;fill:var(--dim);text-transform:uppercase}
+.am-pin circle{stroke:var(--card);stroke-width:2.5}
+.am-pin text{font-family:var(--mono);font-weight:700;font-size:12px;fill:var(--ink)}
+.am-pin.c1 circle{fill:var(--turq)}.am-pin.c2 circle{fill:var(--pink)}.am-pin.c3 circle{fill:var(--green)}.am-pin.c4 circle{fill:var(--yellow)}.am-pin.c5 circle{fill:var(--turq)}.am-pin.c6 circle{fill:var(--pink)}.am-pin.c7 circle{fill:var(--green)}
+.am-pin circle{animation:ampulse 2.8s ease-in-out infinite}
+.am-pin.c2 circle{animation-delay:.4s}.am-pin.c3 circle{animation-delay:.8s}.am-pin.c4 circle{animation-delay:1.2s}.am-pin.c5 circle{animation-delay:1.6s}
+@keyframes ampulse{0%,100%{opacity:1}50%{opacity:.5}}
+.am-cap{margin:12px auto 0;text-align:center;font-size:14px;color:var(--dim);max-width:520px}
+@media(prefers-reduced-motion:reduce){.am-pin circle{animation:none}}
+
+/* Scroll journey dots */
+.journey{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:20px;padding:16px 8px}
+.journey::before{content:"";position:absolute;left:50%;top:16px;bottom:16px;width:2px;transform:translateX(-50%);background:var(--line);z-index:-1}
+.jdot{position:relative;width:12px;height:12px;border-radius:50%;background:var(--card);border:2px solid var(--line);transition:background .2s,border-color .2s,box-shadow .2s;display:block}
+.jdot:hover{border-color:var(--turq)}
+.jdot.active{background:var(--turq);border-color:var(--turq);box-shadow:0 0 0 4px rgba(240,133,31,.22)}
+.jlabel{position:absolute;right:24px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:4px 9px;border-radius:7px;opacity:0;pointer-events:none;transition:opacity .18s}
+.jdot:hover .jlabel,.jdot.active .jlabel{opacity:1}
+@media(max-width:1080px){.journey{display:none}}
+
+/* Crowns clarity fix */
+.crowns-kicker{font-size:16px;letter-spacing:.2em;margin-bottom:14px}
+.crowns-h{font-family:var(--display);font-weight:700;font-size:clamp(27px,4.6vw,46px);line-height:1.02;letter-spacing:-.015em;text-align:center;max-width:900px;margin:0 auto 46px;color:var(--ink)}
+.crowns-h .hl{color:var(--turq)}
+.ch-tag{display:inline-block;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.ch-col.math .ch-tag{color:var(--turq)}
+.ch-col.read .ch-tag{color:var(--pink)}
+.ch-lbl b{font-size:24px}
+.ch-lbl span{font-size:17px}

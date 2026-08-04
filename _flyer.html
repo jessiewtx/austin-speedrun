@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdf6ec; --bg2:#f6ecdc; --card:#fffbf3; --line:#e7d8c1;
+  --orange:#d9741c; --pink:#C65C8A; --yellow:#E6A100; --teal:#159FBE;
+  --ink:#001117; --dim:#4b5560;
+  --display:'Clash Display',sans-serif; --sans:'General Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{-webkit-font-smoothing:antialiased}
+.page{
+  position:relative;width:816px;height:1056px;overflow:hidden;
+  background:
+    radial-gradient(46% 20% at 88% 4%,rgba(217,116,28,.22),transparent 70%),
+    radial-gradient(44% 18% at 10% 22%,rgba(198,92,138,.18),transparent 70%),
+    radial-gradient(48% 20% at 92% 46%,rgba(21,159,190,.18),transparent 70%),
+    radial-gradient(44% 18% at 8% 66%,rgba(230,161,0,.16),transparent 70%),
+    radial-gradient(50% 22% at 90% 92%,rgba(217,116,28,.20),transparent 70%),
+    var(--bg);
+  color:var(--ink);font-family:var(--sans);
+  padding:50px 54px 44px;display:flex;flex-direction:column;
+}
+/* decorative watermarks */
+.wm{position:absolute;color:var(--orange);opacity:.06;z-index:0}
+.wm.c1{top:-60px;right:-50px;width:340px}
+.wm.c2{bottom:120px;left:-70px;width:300px;color:var(--teal);opacity:.05}
+.page > *{position:relative;z-index:1}
+
+.top{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:44px;height:44px}
+.bw{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.01em;line-height:1}
+.by{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:5px}
+.free{font-family:var(--mono);font-weight:800;font-size:12px;letter-spacing:.08em;color:#fff;background:var(--orange);padding:8px 13px;border-radius:8px;transform:rotate(3deg);box-shadow:0 6px 16px rgba(217,116,28,.35)}
+
+.eyebrow{margin-top:30px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pink)}
+h1{font-family:var(--display);font-weight:700;font-size:76px;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;margin-top:12px}
+h1 .hl{color:var(--orange)}
+.sub{font-size:18.5px;line-height:1.45;color:var(--dim);margin-top:20px;max-width:660px}
+.sub b{color:var(--ink);font-weight:600}
+
+.prizes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.pcard{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:20px 22px;overflow:hidden}
+.pcard .crown{position:absolute;top:-14px;right:-6px;width:88px;color:var(--yellow);opacity:.22;transform:rotate(12deg)}
+.pcard .tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.pcard .amt{font-family:var(--display);font-weight:700;font-size:44px;line-height:1;margin-top:8px;letter-spacing:-.02em}
+.pcard.a .amt{color:var(--orange)}
+.pcard.b .amt{color:var(--teal)}
+.pcard .lbl{font-family:var(--display);font-weight:600;font-size:17px;margin-top:6px}
+
+.chips{display:flex;gap:12px;margin-top:14px}
+.chip{flex:1;display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--line);border-radius:13px;padding:13px 16px}
+.chip .b{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em}
+.chip.p .b{color:var(--pink)} .chip.y .b{color:var(--yellow)}
+.chip .t{font-size:13px;line-height:1.25;color:var(--dim);font-weight:500}
+
+.steps{margin-top:26px}
+.steps-h{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+.step{display:flex;align-items:center;gap:14px;padding:9px 0}
+.step + .step{border-top:1px dashed var(--line)}
+.step .n{flex:none;width:34px;height:34px;border-radius:9px;background:var(--ink);color:#fff;font-family:var(--display);font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center}
+.step .s{font-size:17px;font-weight:500}
+.step .s b{font-weight:700}
+
+.cta{margin-top:auto;display:flex;align-items:center;gap:20px;background:var(--ink);border-radius:18px;padding:20px 24px;color:#fff}
+.qr{flex:none;width:96px;height:96px;border-radius:12px;background:#fff;color:#001117;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:800;font-size:15px;letter-spacing:.1em}
+.scan{font-family:var(--display);font-weight:700;font-size:28px;line-height:1;letter-spacing:-.01em}
+.scan .a{color:var(--yellow)}
+.url{font-family:var(--mono);font-size:15px;font-weight:600;color:#ffd98a;margin-top:8px}
+.fine{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:#c9c6cf;margin-top:9px}
+</style>
+</head>
+<body>
+<div class="page">
+  <svg class="wm c1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 7l4 4 5-7 5 7 4-4v11H3z"/></svg>
+  <svg class="wm c2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 13.5h5.5L8 22l9-11.5h-5.5L13 2Z"/></svg>
+
+  <div class="top">
+    <div class="brand">
+      <img src="assets/brand/speedrun-mark-gt.svg" alt="">
+      <div><div class="bw">AUSTIN SPEEDRUN</div><div class="by">Presented by GT School</div></div>
+    </div>
+    <div class="free">FREE TO PLAY</div>
+  </div>
+
+  <div class="eyebrow">Austin Metro &middot; Grades 6&ndash;8</div>
+  <h1>Speedrun school.<br><span class="hl">Win real money.</span></h1>
+  <p class="sub">School, but it plays like a video game. Learn on <b>Timeback</b>, level up, climb the leaderboard, and race every kid in Austin, all season long.</p>
+
+  <div class="prizes">
+    <div class="pcard a">
+      <svg class="crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 7l4 4 5-7 5 7 4-4v11H3z"/></svg>
+      <div class="tag">Top Mathematician</div>
+      <div class="amt">$100,000</div>
+      <div class="lbl">Math &amp; Science crown</div>
+    </div>
+    <div class="pcard b">
+      <svg class="crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 7l4 4 5-7 5 7 4-4v11H3z"/></svg>
+      <div class="tag">Top Reader</div>
+      <div class="amt">$100,000</div>
+      <div class="lbl">Reading &amp; Language crown</div>
+    </div>
+  </div>
+  <div class="chips">
+    <div class="chip p"><span class="b">$50,000</span><span class="t">for the hardest worker all season</span></div>
+    <div class="chip y"><span class="b">$1,000</span><span class="t">winners in every Austin zip code</span></div>
+  </div>
+
+  <div class="steps">
+    <div class="steps-h">// How to get in</div>
+    <div class="step"><span class="n">1</span><span class="s">Get a parent to <b>sign you up</b> (it's free)</span></div>
+    <div class="step"><span class="n">2</span><span class="s">Learn on <b>Timeback</b> and level up</span></div>
+    <div class="step"><span class="n">3</span><span class="s">Climb the board and <b>win real money</b></span></div>
+  </div>
+
+  <div class="cta">
+    <div class="qr">SCAN<br>ME</div>
+    <div>
+      <div class="scan">SCAN TO <span class="a">JOIN</span></div>
+      <div class="url">austinspeedrun.gt.school</div>
+      <div class="fine">Free &middot; No purchase &middot; Austin metro &middot; Grades 6&ndash;8</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
