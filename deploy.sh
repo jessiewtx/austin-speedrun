@@ -56,8 +56,11 @@ aws s3 sync "$SRC_DIR/social" "s3://$BUCKET/social" \
   --delete --cache-control "no-cache"
 
 echo "==> Uploading HTML"
+# Root-level pages, plus resources/index.html which serves at /resources/.
+# The "*/*" exclude keeps this from sweeping up stray HTML under assets/ or
+# social/, so any further subdirectory page needs its own --include here.
 aws s3 sync "$SRC_DIR" "s3://$BUCKET" \
-  --exclude "*" --include "*.html" --exclude "*/*" \
+  --exclude "*" --include "*.html" --exclude "*/*" --include "resources/*.html" \
   --cache-control "no-cache" --content-type "text/html; charset=utf-8"
 
 # 5. Done.
