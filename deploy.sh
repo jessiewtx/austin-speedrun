@@ -48,8 +48,16 @@ aws s3 website "s3://$BUCKET/" --index-document index.html --error-document inde
 
 # 4. Upload. Long cache for assets, short for HTML.
 echo "==> Uploading assets"
+# supabase-config.js is gitignored (real Supabase keys) and may be absent on some
+# machines. Exclude it from the destructive sync so a deploy can't wipe it off
+# S3, then upload it separately only when this machine actually has it.
 aws s3 sync "$SRC_DIR/assets" "s3://$BUCKET/assets" \
-  --delete --cache-control "no-cache"
+  --delete --exclude "supabase-config.js" --cache-control "no-cache"
+if [ -f "$SRC_DIR/assets/supabase-config.js" ]; then
+  echo "==> Uploading Supabase config"
+  aws s3 cp "$SRC_DIR/assets/supabase-config.js" "s3://$BUCKET/assets/supabase-config.js" \
+    --cache-control "no-cache" --content-type "application/javascript; charset=utf-8"
+fi
 
 echo "==> Uploading social (favicons, profile/banner)"
 aws s3 sync "$SRC_DIR/social" "s3://$BUCKET/social" \
