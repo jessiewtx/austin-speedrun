@@ -204,6 +204,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(37px,6vw,60px);line-
 .form-card{background:var(--paper);color:var(--ink);border-radius:22px;padding:clamp(28px,4vw,40px);margin-top:36px;width:100%;max-width:none;box-shadow:0 24px 60px rgba(0,42,58,.14);box-sizing:border-box}
 .referred-by{margin:0 0 18px;padding:12px 14px;border-radius:12px;background:var(--orange-l);color:var(--ink);font-size:14px;font-weight:500;line-height:1.4}
 .referred-by[hidden]{display:none}
+.field[hidden],.field.is-collapsed{display:none!important}
 .field{margin-bottom:18px}
 .field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:7px}
 .field input,.field select{width:100%;font-family:var(--sans);font-size:16px;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;background:#fffdfb;color:var(--ink);outline:none;transition:border-color .18s,box-shadow .18s}
@@ -223,15 +224,16 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(37px,6vw,60px);line-
 .form-success h3{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:10px}
 .form-success p{color:var(--sub);font-size:16px;max-width:400px;margin:0 auto}
 .form-success .ss-detail{margin-top:20px;font-family:var(--mono);font-size:13px;color:var(--blue-ink);background:var(--blue-l);border-radius:12px;padding:14px}
-.invite-box{margin-top:24px;text-align:left;background:var(--orange-l);border-radius:16px;padding:18px 18px 16px}
-.invite-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--orange-ink);margin:0 0 8px}
-.invite-help{color:var(--sub)!important;font-size:14px!important;max-width:none!important;margin:0 0 14px!important;text-align:left}
-.invite-code{font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:.06em;color:var(--ink);margin:0 0 12px}
-.invite-row{display:flex;gap:8px;align-items:stretch}
-.invite-url{flex:1;min-width:0;font-family:var(--mono);font-size:13px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fffdfb;color:var(--ink)}
-.invite-copy{flex-shrink:0;font-family:var(--sans);font-size:14px;font-weight:600;padding:12px 18px;border:none;border-radius:12px;background:var(--orange);color:#fff;cursor:pointer}
+.form-success .invite-box{margin:24px 0 0;text-align:left;background:var(--orange-l);border-radius:16px;padding:18px;max-width:none}
+.form-success .invite-box p{display:block;width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important;text-align:left!important;font-size:inherit}
+.invite-code{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--sub)!important;margin:0 0 10px!important;letter-spacing:.02em}
+.invite-code span{color:var(--ink);font-weight:700;letter-spacing:.04em}
+.invite-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--orange-ink);margin:0 0 6px!important}
+.invite-help{color:var(--sub)!important;font-size:14px!important;line-height:1.45!important;max-width:none!important;margin:0 0 14px!important;text-align:left!important}
+.invite-row{display:flex;gap:10px;align-items:center}
+.invite-url{flex:1;min-width:0;height:48px;font-family:var(--mono);font-size:12.5px;padding:0 14px;border:1.5px solid var(--line);border-radius:12px;background:#fffdfb;color:var(--ink);box-sizing:border-box}
+.invite-copy{flex-shrink:0;height:48px;font-family:var(--sans);font-size:14px;font-weight:600;padding:0 18px;border:none;border-radius:12px;background:var(--orange);color:#fff;cursor:pointer;box-sizing:border-box}
 .invite-copy:hover{background:var(--orange-ink)}
-.invite-copied{margin:10px 0 0!important;font-size:13px!important;color:var(--blue-ink)!important;max-width:none!important;text-align:left}
 
 /* MISSION FOOTER (GT dark navy) */
 .mission{position:relative;overflow:hidden;background:radial-gradient(64% 92% at 84% -10%,rgba(228,139,83,.26),transparent 60%),radial-gradient(52% 84% at 4% 110%,rgba(0,79,113,.08),transparent 60%),var(--gold-l);color:var(--ink);padding:74px 0}

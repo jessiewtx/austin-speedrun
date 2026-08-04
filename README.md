@@ -11,7 +11,6 @@ Static site: plain HTML/CSS/JS, no build step.
 | `index.html` | Split landing page: "I'm a student" vs "I'm a parent". Panels grow on hover. |
 | `students.html` | Student experience: hero countdown, leaderboard, prize lanes, ZIP lookup, 300 Club, Winter Grind. |
 | `parents.html` | Parent explainer + registration form (`#join`). Referrals via `?ref=CODE`. Writes to Supabase → Tracker. |
-| `signup.html` | Redirects to `parents.html` signup (kept for old invite links). |
 | `resources/index.html` | The research behind the claims, plus the site's FAQ. Rendered from `assets/evidence.js`; served at `/resources/`. See [EVIDENCE.md](EVIDENCE.md). |
 
 ## Assets

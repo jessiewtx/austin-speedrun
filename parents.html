@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=Inter+Tight:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/parents.css">
+<link rel="stylesheet" href="assets/parents.css?v=invite9">
 <link rel="icon" type="image/png" sizes="512x512" href="social/gt-tile.png">
 <link rel="apple-touch-icon" href="social/gt-tile.png">
 </head>
@@ -222,7 +222,8 @@
     <p class="intro">A parent or guardian signs up each child, it's free. Based on your child's age, we'll email you the next step: either the consent forms to sign, or a link to set up TimeBack.</p>
     <div class="form-card" id="formCard">
       <form id="regForm" novalidate>
-        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden">
+        <p class="referred-by" id="referredBy" hidden></p>
 
         <h3 class="fs-h">Parent / guardian</h3>
         <div class="field" id="f-pname">
@@ -280,14 +281,18 @@
           <label for="in-heard">How did you hear about the Speedrun? <span class="opt">(optional)</span></label>
           <select id="in-heard">
             <option value="">Select&#8230;</option>
-            <option>Friend or family</option>
-            <option>My child's school</option>
-            <option>Social media</option>
-            <option>Live event or flyer</option>
-            <option>Search engine</option>
-            <option>News or article</option>
-            <option>Other</option>
+            <option value="Friend or family">Friend or family</option>
+            <option value="My child's school">My child's school</option>
+            <option value="Social media">Social media</option>
+            <option value="Live event or flyer">Live event or flyer</option>
+            <option value="Search engine">Search engine</option>
+            <option value="News or article">News or article</option>
+            <option value="Other">Other</option>
           </select>
+        </div>
+        <div class="field is-collapsed" id="f-referral" hidden>
+          <label for="in-referral">Referral code <span class="opt">(optional)</span></label>
+          <input id="in-referral" type="text" autocomplete="off" placeholder="Enter their code" spellcheck="false">
         </div>
 
         <div class="consents">
@@ -325,7 +330,9 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
 <script src="assets/zipdata.js"></script>
-<script src="assets/parents.js"></script>
+<script src="assets/parents.js?v=invite9"></script>
 </body>
 </html>
