@@ -194,3 +194,30 @@
 
 /* nav links removed -> keep toggle + CTA grouped on the right */
 .nav .theme-toggle{margin-left:auto}
+
+/* ===== dark-mode neon glows for v2-only elements (match base dark theme) ===== */
+/* prize tiles: color-matched glow on the amount so all four pop like the crowns */
+[data-theme="dark"] .pm-tile.orange .pm-amt{text-shadow:0 0 24px rgba(240,133,31,.55)}
+[data-theme="dark"] .pm-tile.pinkt .pm-amt{text-shadow:0 0 24px rgba(219,106,152,.55)}
+[data-theme="dark"] .pm-tile.gold .pm-amt{text-shadow:0 0 24px rgba(255,197,58,.55)}
+[data-theme="dark"] .pm-tile.teal .pm-amt{text-shadow:0 0 24px rgba(43,194,212,.55)}
+/* subtle border glow on the tiles themselves */
+[data-theme="dark"] .pm-tile.orange{box-shadow:0 0 26px rgba(240,133,31,.14)}
+[data-theme="dark"] .pm-tile.pinkt{box-shadow:0 0 26px rgba(219,106,152,.14)}
+[data-theme="dark"] .pm-tile.gold{box-shadow:0 0 26px rgba(255,197,58,.14)}
+[data-theme="dark"] .pm-tile.teal{box-shadow:0 0 26px rgba(43,194,212,.14)}
+/* zip prize cards */
+[data-theme="dark"] .z3.a .z3-amt{text-shadow:0 0 20px rgba(43,194,212,.5)}
+[data-theme="dark"] .z3.b .z3-amt{text-shadow:0 0 20px rgba(219,106,152,.5)}
+[data-theme="dark"] .z3.c .z3-amt{text-shadow:0 0 20px rgba(255,197,58,.5)}
+/* level badges + tracker + tabs */
+[data-theme="dark"] .level-tag{box-shadow:0 0 22px rgba(240,133,31,.5)}
+[data-theme="dark"] .level-tag.alt{box-shadow:0 0 22px rgba(219,106,152,.5)}
+[data-theme="dark"] .lvl.active .lvl-n{box-shadow:0 0 18px rgba(240,133,31,.6)}
+[data-theme="dark"] .board-tabs .btab.active{box-shadow:0 0 18px rgba(43,194,212,.45)}
+/* ways-to-win icons */
+[data-theme="dark"] .mode.m1 .mode-ico{box-shadow:0 0 24px rgba(240,133,31,.32)}
+[data-theme="dark"] .mode.m2 .mode-ico{box-shadow:0 0 24px rgba(43,194,212,.32)}
+[data-theme="dark"] .mode.m3 .mode-ico{box-shadow:0 0 24px rgba(219,106,152,.32)}
+/* leaderboard scores a touch brighter */
+[data-theme="dark"] .lb .metric{text-shadow:0 0 16px rgba(240,133,31,.5)}
