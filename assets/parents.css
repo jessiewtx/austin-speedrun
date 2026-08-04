@@ -175,6 +175,10 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(37px,6vw,60px);line-
 .tl-row:last-child{border-bottom:none}
 .tl-row::before{content:"";position:absolute;left:-7px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--orange)}
 .tl-row.key::before{background:var(--orange);box-shadow:0 0 0 4px var(--orange-l)}
+.tl-row.finale{background:linear-gradient(90deg,var(--orange-l) 0%,transparent 82%);border-radius:0 16px 16px 0;border-bottom:none}
+.tl-row.finale::before{width:16px;height:16px;left:-9px;top:22px;background:var(--orange);box-shadow:0 0 0 5px var(--orange-l)}
+.tl-row.finale .tl-body b{font-size:19px}
+.tl-badge{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--orange);padding:3px 10px;border-radius:999px;vertical-align:middle;white-space:nowrap}
 .tl-date{font-family:var(--mono);font-size:13px;color:var(--blue-ink);font-weight:600;letter-spacing:.01em}
 .tl-body b{font-family:var(--serif);font-weight:600;font-size:16px}
 .tl-body p{color:var(--sub);font-size:14.5px}
@@ -190,7 +194,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(37px,6vw,60px);line-
 .faq .fa{padding:0 40px 24px 0;color:var(--sub);font-size:16px}
 .faq .fa b{color:var(--ink)}
 
-/* WAITLIST FORM (GT dark navy panel) */
+/* REGISTRATION FORM (GT dark navy panel) */
 .formsec{position:relative;overflow:hidden;background:radial-gradient(60% 90% at 88% 2%,rgba(228,139,83,.24),transparent 62%),radial-gradient(58% 92% at 2% 98%,rgba(0,79,113,.08),transparent 60%),var(--orange-l);color:var(--ink);padding:82px 0}
 .formsec .narrow{position:relative;z-index:2}
 .formsec .kicker{color:var(--orange-ink)}

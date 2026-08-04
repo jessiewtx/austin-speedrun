@@ -34,7 +34,7 @@ _Status: Aug 1, 2026 · Owner: Jessie_
 ---
 
 ### What's already done (only the 3 unlocks remain)
-- Full marketing site: landing page + parent page + student page (light/dark toggle), FAQ, and waitlist form, built and deploy-ready.
+- Full marketing site: landing page + parent page + student page (light/dark toggle), FAQ, and registration form, built and deploy-ready.
 - Prize structure + rules designed; cost modeled (**~$450K–$790K** realistic all-in, dominated by fixed guaranteed prizes; SAT scholarships ~$25–90K on top).
 - Contest mechanics redesigned to be **MAP-free** (Timeback season → SAT finals).
 - Brand assets, short-form/TikTok creative direction, and pitch slides.

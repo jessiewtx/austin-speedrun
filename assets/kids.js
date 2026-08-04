@@ -7,7 +7,7 @@ document.getElementById('logoFoot').innerHTML = window.ASR_WORDMARK_TEXT();
   const items = [
     'SEASON STARTS <b>OCT 5, 2026</b>','MATH/SCIENCE CROWN <b>$100,000</b>','READING/LANGUAGE CROWN <b>$100,000</b>','DOUBLE CROWN <b>$200,000</b>',
     'EFFORT GRAND <b>$50,000</b>','MOST TIMEBACK XP WINS','<b>FREE</b> ALL SEASON','92 ZIP TEAMS','<b>$1,000</b> WINNERS CITYWIDE','MONTHLY EFFORT <b>$5,000</b>','GRADE CHAMPS <b>$10,000</b>',
-    'REGISTRATION OPENS <b>SEP 14</b>'
+    'REGISTRATION <b>OPEN NOW</b>'
   ];
   const html = items.map(i=>'<span>'+i+'</span>').join('');
   document.getElementById('ticker').innerHTML = html + html;
