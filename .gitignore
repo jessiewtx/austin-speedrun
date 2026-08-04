@@ -14,3 +14,9 @@
 _previews/
 video/
 node_modules/
+
+# Local Supabase keys for waitlist / signup (copy from supabase-config.example.js)
+assets/supabase-config.js
+
+# Local throwaways
+.chrome-profile-tmp/
