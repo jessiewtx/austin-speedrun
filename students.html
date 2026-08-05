@@ -14,6 +14,11 @@
 <noscript><link rel="stylesheet" href="assets/kids-light-cream-2.css"><link rel="stylesheet" href="assets/kids-v2.css"></noscript>
 <link rel="icon" type="image/png" sizes="512x512" href="social/speedrun-tile.png">
 <script>document.documentElement.className+=' js';if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
+<style>
+/* "what is this" explainer lede */
+.what-lede{max-width:860px;margin:0 auto 36px;text-align:center;font-size:clamp(17px,1.9vw,20px);line-height:1.65;color:var(--ink);font-weight:500}
+.what-lede b{font-weight:600}
+</style>
 </head>
 <body class="v2">
 <div class="scroll-prog" aria-hidden="true"></div>
@@ -42,9 +47,9 @@
   <div class="ribbon">SEASON 01</div>
   <div class="wrap hero-grid">
     <div class="hero-inner">
-      <span class="eyebrow"><span class="live-dot"></span>AUSTIN METRO · GRADES 6-8</span>
-      <h1>SPEEDRUN SCHOOL.<br><span class="hl">WIN REAL MONEY.</span></h1>
-      <p class="lede">Like school, but plays like a video game. Every middle schooler in Austin can join <b>free</b>, level up, and win real cash.</p>
+      <span class="eyebrow"><span class="live-dot"></span>AUSTIN METRO · GRADES 6-8 · 100% FREE</span>
+      <h1>GET SMARTER.<br><span class="hl">WIN REAL MONEY.</span></h1>
+      <p class="lede">The <b>Austin Speedrun</b> is a free academic contest for every middle schooler in Austin. Learn on the TimeBack app, climb your city's leaderboard, and the top scorers win real cash, including two <b>$100,000</b> grand prizes.</p>
       <div class="hero-cta">
         <a class="btn primary" href="parents.html">Get your parent to sign you up</a>
         <a class="btn ghost" href="#zip">Find your team →</a>
@@ -54,6 +59,18 @@
         <span class="badge">$100K READING</span>
         <span class="badge">$50K EFFORT</span>
         <span class="badge">$1K ZIP</span>
+      </div>
+      <div class="v2clock">
+        <div class="v2clock-lbl">Season starts in</div>
+        <div class="cd-clock mini" id="clock">
+          <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-tag">days</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-tag">hrs</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-tag">min</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-tag">sec</span></div>
+        </div>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -69,20 +86,21 @@
   </div>
 </section>
 
-<!-- COUNTDOWN -->
-<section class="cd-sec">
-  <div class="countdown" role="timer" aria-label="Countdown to season start">
-    <div class="cd-label">Season starts in</div>
-    <div class="cd-clock" id="clock">
-      <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-tag">days</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-tag">hrs</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-tag">min</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-tag">sec</span></div>
+<!-- WHAT IS THIS -->
+<section class="v2sec" id="what">
+  <div class="wrap">
+    <div class="level-head">
+      <span class="level-tag">New here?</span>
+      <h2 class="v2h2">So what is the Austin Speedrun?</h2>
+      <p class="v2sub">The plain-English version, no hype.</p>
     </div>
-    <div class="cd-foot">Season starts Oct 5, 2026 · <b>Registration open now</b> · Get in before day one.</div>
+    <p class="what-lede">It's a <b>free academic competition</b> for every middle schooler in grades 6-8 across the Austin metro. <b>GT School</b> runs it to find, and pay, the city's most talented young students. You sign up free, spend the season learning on an app called <b>TimeBack</b>, and the highest scorers on Austin's leaderboard win <b>real cash</b>, including two $100,000 grand prizes.</p>
+    <div class="cards4 facts4">
+      <div class="gcard"><div class="gnum">6-8</div><h3>Who can play</h3><p>Any middle schooler living in the Austin metro. All 92 zip codes count.</p></div>
+      <div class="gcard"><div class="gnum">$0</div><h3>What it costs</h3><p>Free to enter and free to play all season. No catch, no fees.</p></div>
+      <div class="gcard"><div class="gnum">Oct 5</div><h3>When it runs</h3><p>One season, October to February. Registration is open right now.</p></div>
+      <div class="gcard"><div class="gnum">$100K</div><h3>The prizes</h3><p>Two $100,000 grand prizes, plus dozens more from $1,000 up.</p></div>
+    </div>
   </div>
 </section>
 
