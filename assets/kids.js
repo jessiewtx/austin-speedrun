@@ -78,7 +78,30 @@ document.getElementById('boardTabs').addEventListener('click',e=>{
 // ---- ZIP lookup ----
 const ZD = window.ZIP_DATA || {};
 function pct(kids, threshold){ return Math.min(100, Math.round(threshold/kids*100)); }
+
+// ---- live signups per zip (Supabase RPC) ----
+function zipSB(){
+  const cfg = window.ASR_SUPABASE;
+  if(!cfg || !cfg.url || !cfg.anonKey || cfg.url.indexOf('YOUR_PROJECT_REF') > -1) return null;
+  if(!window.supabase || !window.supabase.createClient) return null;
+  if(!window.__asrSB) window.__asrSB = window.supabase.createClient(cfg.url, cfg.anonKey);
+  return window.__asrSB;
+}
+async function zipSignupCount(zip){
+  const sb = zipSB();
+  if(!sb) return null;
+  try{
+    const { data, error } = await sb.rpc('zip_signup_count', { p_zip: zip });
+    if(error) return null;
+    if(typeof data === 'number') return data;
+    if(data && typeof data.count === 'number') return data.count;
+    const n = Number(data);
+    return isNaN(n) ? null : n;
+  }catch(e){ return null; }
+}
+
 function lookupZip(zip){
+  lookupZip._cur = zip;
   const el = document.getElementById('zipResult');
   const rec = ZD[zip];
   if(!rec){
@@ -95,6 +118,7 @@ function lookupZip(zip){
       <div class="zr-zip">${zip}<span>${rec.county} County</span></div>
       <div class="zr-tier tier-${rec.tier}">Tier ${rec.tier} zip code</div>
     </div>
+    <div class="zr-live" id="zrLive" hidden></div>
     <div class="zr-kids">
       <div><span>Est. middle schoolers</span><b>${kids.toLocaleString()}</b></div>
       <div><span>Guaranteed prizes</span><b style="color:var(--accent)">3 × $1,000</b></div>
@@ -104,6 +128,13 @@ function lookupZip(zip){
     <p class="zr-cta">Get your parent to sign you up, then <b>invite friends</b> so ${zip} climbs the zip code team board.</p>
   `;
   el2.scrollIntoView({behavior:'smooth',block:'nearest'});
+  zipSignupCount(zip).then(function(n){
+    if(lookupZip._cur !== zip || n == null) return; // stale lookup or RPC unavailable
+    const live = document.getElementById('zrLive');
+    if(!live) return;
+    live.innerHTML = '<span class="zr-live-dot"></span><b>'+n.toLocaleString()+'</b> '+(n===1?'kid':'kids')+' from '+zip+' signed up so far';
+    live.hidden = false;
+  });
 }
 document.getElementById('zipGo').addEventListener('click',()=>lookupZip(document.getElementById('zipIn').value.trim()));
 document.getElementById('zipIn').addEventListener('keydown',e=>{if(e.key==='Enter')lookupZip(e.target.value.trim())});

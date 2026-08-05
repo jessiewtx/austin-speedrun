@@ -3,124 +3,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Austin Speedrun: Speedrun school. Win real money.</title>
-<meta name="description" content="A city-wide academic contest for every Austin-metro middle schooler. Two $100,000 crowns: Austin's best young mathematician and best young reader. Free to enter. Season starts Oct 5, 2026.">
+<title>Austin Speedrun: Get Smarter. Win Real Money.</title>
+<meta name="description" content="A free academic contest for every Austin-metro middle schooler (grades 6-8). Learn on TimeBack, climb the city leaderboard, and top scorers win real cash, including two $100,000 grand prizes. Season starts Oct 5, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600,700&f[]=zodiak@400,500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script>(function(){var t="light";try{t=localStorage.getItem("asr-theme")||"light"}catch(e){}document.documentElement.setAttribute("data-theme",t);document.write('<link id="themecss" rel="stylesheet" href="assets/kids-light-cream-2'+(t==="dark"?"-dark":"")+'.css">');document.write('<link rel="stylesheet" href="assets/kids-v2.css">')})();</script>
+<noscript><link rel="stylesheet" href="assets/kids-light-cream-2.css"><link rel="stylesheet" href="assets/kids-v2.css"></noscript>
+<link rel="icon" type="image/png" sizes="512x512" href="social/speedrun-tile.png">
+<script>document.documentElement.className+=' js';if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
 <style>
-:root{
-  --mono:'JetBrains Mono',ui-monospace,monospace;
-  --sans:'General Sans','Inter',sans-serif;
-  --display:'Clash Display','General Sans',sans-serif;
-  --serif:'Source Serif 4','Zodiak',Georgia,serif;
-  --kid-bg:#fdf6ec; --kid-accent:#d9741c; --kid-pink:#C65C8A; --kid-yellow:#E6A100; --kid-green:#159FBE;
-  --par-bg:#fcf4ef; --par-ink:#001117; --par-accent:#e48b53; --par-gold:#c06a38;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:#05040a;color:#fff;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-
-/* top bar */
-.top{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:20px;pointer-events:none}
-.asr-logo{display:inline-flex;align-items:center;gap:10px;pointer-events:auto;color:#fff}
-.asr-mark{color:var(--kid-yellow);filter:drop-shadow(0 0 8px rgba(255,210,30,.5))}
-.asr-word{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.02em;line-height:1}
-.asr-word-accent{color:var(--kid-accent);margin-left:2px}
-
-/* split */
-.split{display:flex;min-height:100vh;flex-direction:column}
-@media(min-width:820px){.split{flex-direction:row}}
-.panel{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;padding:96px 32px 64px;overflow:hidden;transition:flex .5s cubic-bezier(.7,0,.2,1)}
-.panel-inner{position:relative;z-index:3;max-width:440px;margin:0 auto;width:100%}
-@media(min-width:820px){.panel:hover{flex:1.35}}
-
-/* kid panel — matches the light-cream-2 student side */
-.kid{background:linear-gradient(165deg,#fdf6ec,#f4e9d6)}
-@media(min-width:820px){.kid{border-right:1px solid rgba(120,90,40,.16)}}
-.kid::before{content:none}
-.kid .eyebrow{color:var(--kid-accent)}
-.kid h2{font-family:var(--display);font-weight:700;font-size:clamp(38px,7vw,60px);line-height:.94;letter-spacing:-.01em;color:#001117;text-transform:uppercase}
-.kid h2 .hl{color:var(--kid-yellow)}
-.kid .dot{background:var(--kid-pink)}
-.kid .sub{color:#4b5560;margin:18px 0 30px;font-size:17px;line-height:1.5}
-.kid .go{background:var(--kid-accent);color:#fff}
-.orb{display:none}
-
-/* parent panel */
-.par{background:linear-gradient(160deg,#fffdfb,#f5ebde)}
-.par .panel-inner{color:var(--par-ink)}
-.par .eyebrow{color:var(--par-gold)}
-.par .eyebrow .dot{background:var(--par-accent)}
-.par h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.03;letter-spacing:-.01em;color:var(--par-ink)}
-.par h2 .hl{color:var(--par-gold);font-style:italic}
-.par .sub{color:#4b4f57;margin:18px 0 30px;font-size:17px;line-height:1.55}
-.par .go{background:var(--par-accent);color:#fff}
-.par .deco{position:absolute;right:-30px;top:-30px;width:200px;height:200px;border:1px solid rgba(228,139,83,.30);border-radius:50%;z-index:0}
-.par .deco2{position:absolute;left:-50px;bottom:-40px;width:160px;height:160px;border:1px solid rgba(0,79,113,.20);border-radius:50%;z-index:0}
-
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-bottom:16px;display:inline-flex;align-items:center;gap:8px}
-.dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
-.go{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:15px 26px;border-radius:100px;transition:transform .18s,gap .18s}
-.go:hover{transform:translateY(-2px);gap:16px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.chip{font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:6px 11px;border-radius:6px;border:1px solid;text-transform:uppercase;font-weight:500}
-.kid .chip{border:none;color:#fff;font-weight:800;padding:8px 12px;border-radius:8px}
-.kid .chip.c-blue{background:var(--kid-accent)}
-.kid .chip.c-pink{background:var(--kid-pink)}
-.kid .chip.c-green{background:var(--kid-green)}
-.kid .chip.c-yellow{background:var(--kid-yellow)}
-.par .chip{border-color:rgba(20,22,24,.14);color:#5a5e66}
-
-/* center brand marker */
-.brandtag{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:60;text-align:center;pointer-events:none}
-.brandtag .asr-logo{background:#0b0c12;border:1px solid rgba(255,255,255,.14);padding:10px 22px;border-radius:100px;box-shadow:0 8px 30px rgba(0,0,0,.45);gap:13px}
-.brandtag .asr-word{color:#fff}
-.brandtag .asr-lockup{display:inline-flex;align-items:baseline;gap:10px}
-.brandtag .asr-word-accent{margin-left:5px}
-.brandtag .asr-by{font-family:var(--sans);font-size:13px;font-weight:500;color:#c6c3d6;letter-spacing:normal;text-transform:none}
-.divider-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:40;font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:#8f8ca3;background:#05040a;border:1px solid rgba(255,255,255,.15);padding:9px 15px;border-radius:100px;pointer-events:none;text-transform:uppercase}
-@media(max-width:819px){.divider-label{display:none}}
-.footnote{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:45;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:#6f6c85;text-align:center;width:90%}
-@media(max-width:819px){.footnote{position:static;transform:none;color:#8b8b8b;padding:24px 20px 30px}}
-.par-fn{color:#7a7770}
+/* nav room for the "For parents" link */
+.nav-parents{margin-left:auto;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);padding:10px 12px;border-radius:9px;transition:color .15s,background .15s;white-space:nowrap;text-decoration:none}
+.nav-parents:hover{color:var(--ink);background:var(--card)}
+.nav .theme-toggle{margin-left:14px}
+/* "what is this" explainer lede */
+.what-lede{max-width:860px;margin:0 auto 36px;text-align:center;font-size:clamp(17px,1.9vw,20px);line-height:1.65;color:var(--ink);font-weight:500}
+.what-lede b{font-weight:600}
+/* concept: polished, contained "For parents" panel (was a flat text wall on cream) */
+#parents{padding:16px 0 56px}
+#zip{padding-bottom:30px}
+#parents .wrap{background:#F5E4CD;border:2px solid #E8D1B0;border-radius:22px;padding:46px clamp(24px,4vw,56px) 42px;position:relative;overflow:hidden}
+#parents .parents-wm{position:absolute;top:-34px;right:-24px;width:230px;height:230px;color:var(--turq,#d9741c);opacity:.06;pointer-events:none}
+#parents .sec-head{margin-bottom:14px;position:relative;z-index:1}
+#parents .sec-lede{max-width:780px;margin-bottom:34px;position:relative;z-index:1}
+#parents .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0;position:relative;z-index:1}
+@media(max-width:820px){#parents .who-grid{grid-template-columns:1fr}}
+#parents .who-card{background:#FFFCF7;border:2px solid #EBD9BD;border-radius:14px;padding:24px 22px}
+#parents .who-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:13px;margin-bottom:15px;background:color-mix(in srgb,var(--turq,#d9741c) 15%,transparent);color:var(--turq,#d9741c)}
+#parents .who-ico svg{width:23px;height:23px}
+#parents .who-card:nth-child(1) .who-ico{background:color-mix(in srgb,var(--green,#159FBE) 16%,transparent);color:var(--green,#159FBE)}
+#parents .who-card:nth-child(3) .who-ico{background:color-mix(in srgb,var(--pink,#C65C8A) 18%,transparent);color:var(--pink,#C65C8A)}
+#parents .who-card h3{font-family:var(--sans);font-weight:700;font-size:19px;letter-spacing:-.005em;margin:0 0 8px;color:var(--ink)}
+#parents .who-card p{font-size:14.5px;line-height:1.55;color:var(--dim);margin:0}
+#parents .how-cta{margin:32px 0 0;position:relative;z-index:1}
 </style>
 </head>
-<body>
-<div class="brandtag"><span id="logoTop"></span></div>
+<body class="v2">
+<div class="scroll-prog" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
 
-<div class="split">
-  <section class="panel kid">
-    <div class="orb a"></div><div class="orb b"></div>
-    <div class="panel-inner">
-      <span class="eyebrow"><span class="dot"></span>I'm a student</span>
-      <h2>Speedrun school.<br><span class="hl">Win real money.</span></h2>
-      <p class="sub">Race every middle schooler in Austin. Master grade levels fast, climb the leaderboard, and go for one of the <strong style="color:#001117">two $100,000 crowns</strong>: Austin's best young mathematician and best young reader.</p>
-      <a class="go" href="students.html">Enter the arena <span aria-hidden="true">→</span></a>
-      <div class="chips"><span class="chip c-blue">$100K Math</span><span class="chip c-pink">$100K Reading</span><span class="chip c-green">$50K Effort</span><span class="chip c-yellow">$1K Zip</span></div>
+<!-- LEVEL TRACKER -->
+<nav class="leveltrack" aria-label="Progress">
+  <a class="lvl" href="#prizes" data-j="prizes"><span class="lvl-n">1</span><span class="lvl-t">The prizes</span></a>
+  <a class="lvl" href="#how" data-j="how"><span class="lvl-n">2</span><span class="lvl-t">How to play</span></a>
+  <a class="lvl" href="#win" data-j="win"><span class="lvl-n">3</span><span class="lvl-t">Ways to win</span></a>
+  <a class="lvl" href="#zip" data-j="zip"><span class="lvl-n">4</span><span class="lvl-t">Your zip</span></a>
+  <a class="lvl" href="#run" data-j="run"><span class="lvl-n">★</span><span class="lvl-t">Sign up</span></a>
+</nav>
+
+<header class="nav">
+  <span id="logo"></span>
+  <a href="#parents" class="nav-parents">For parents →</a>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch color theme"><span class="tt-ico" aria-hidden="true"></span><span class="tt-label">Dark</span></button><a href="parents.html" class="nav-cta">Get signed up →</a>
+</header>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-wm" aria-hidden="true">$100K</div>
+  <div class="ribbon">SEASON 01</div>
+  <div class="wrap hero-grid">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="live-dot"></span>AUSTIN METRO · GRADES 6-8 · 100% FREE</span>
+      <h1>GET SMARTER.<br><span class="hl">WIN REAL MONEY.</span></h1>
+      <p class="lede">The <b>Austin Speedrun</b> is a free academic contest for every middle schooler in Austin. Learn on the TimeBack app, climb your city's leaderboard, and the top scorers win real cash, including two <b>$100,000</b> grand prizes.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="parents.html">Get your parent to sign you up</a>
+        <a class="btn ghost" href="#zip">Find your team →</a>
+      </div>
+      <div class="badges">
+        <span class="badge">$100K MATH</span>
+        <span class="badge">$100K READING</span>
+        <span class="badge">$50K EFFORT</span>
+        <span class="badge">$1K ZIP</span>
+      </div>
+      <div class="v2clock">
+        <div class="v2clock-lbl">Season starts in</div>
+        <div class="cd-clock mini" id="clock">
+          <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-tag">days</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-tag">hrs</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-tag">min</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-tag">sec</span></div>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <section class="panel par">
-    <div class="deco"></div><div class="deco2"></div>
-    <div class="panel-inner">
-      <span class="eyebrow"><span class="dot"></span>I'm a parent</span>
-      <h2>We're searching for the <span class="hl">gifted kids</span> in every Austin zip code.</h2>
-      <p class="sub">A free, citywide academic contest for every Austin middle schooler. Real learning on Timeback, a real proctored score, and two $100,000 prizes.</p>
-      <a class="go" href="parents.html">Sign up <span aria-hidden="true">→</span></a>
-      <div class="chips"><span class="chip">Free to enter</span><span class="chip">Proctored testing</span><span class="chip">COPPA-safe</span></div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-orb a"></div><div class="hv-orb b"></div><div class="hv-orb c"></div>
+      <div class="fl f1"><div class="pcard turq"><svg class="pc-crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg><span class="pc-tag">Math / Science Crown</span><span class="pc-amt">$100,000</span></div></div>
+      <div class="fl f2"><div class="pcard pink"><svg class="pc-crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg><span class="pc-tag">Reading / Language Crown</span><span class="pc-amt">$100,000</span></div></div>
+      <div class="fl g1"><svg class="hv-ico trophy" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h20v8a10 10 0 0 1-20 0V8Z"/><path d="M14 11H8v3a6 6 0 0 0 6 6M34 11h6v3a6 6 0 0 1-6 6"/><path d="M24 26v8M17 40h14M19 40c0-2.4 1.8-4 5-4s5 1.6 5 4"/></svg></div>
+      <div class="fl g2"><svg class="hv-ico texas" viewBox="0 0 100 95" fill="currentColor" aria-hidden="true"><path d="M50.61 15.65L50.61 17.31L51.2 17.19L52.94 18.94L53.54 18.97L53.86 18.58L55.14 18.99L55.52 18.37L56.25 18.71L56.63 19.3L56.79 20.39L58.5 20.52L60.04 21.1L61.3 20.88L62.25 21.74L63.1 20.91L64.59 21.3L65.23 22.29L66.3 22.41L66.05 23.3L66.82 23.65L68.39 22.39L69.01 22.73L69.03 23.19L70.02 23.19L69.98 23.73L70.26 23.93L70.67 23.93L71.91 23.07L72.24 23.68L71.95 24.1L72.59 24.84L73.72 22.89L74.11 22.68L74.62 23.68L75.71 23.82L76.12 23.21L76.45 23.38L76.47 23.8L77.33 24.35L77.92 24.31L78.33 24.84L79.77 24.47L80.02 23.76L82.96 23.67L84.21 22.9L84.52 22.94L84.63 23.39L86.59 23.44L87.11 22.66L88.28 23.05L88.49 23.56L89.79 24.58L90.62 24.75L90.81 25.07L92.39 25.74L92.71 25.55L93.71 26.39L95.04 25.95L96.09 26.31L96.1 40.17L97.65 41.95L97.86 42.71L97.68 43.86L99.17 45.77L98.93 46.42L99.37 46.76L99.49 47.53L100.0 47.48L99.76 50.71L98.41 53.21L98.73 54.1L98.27 54.53L98.21 55.04L98.56 55.37L98.62 57.42L97.26 59.42L97.2 60.05L97.66 60.78L95.41 61.17L91.88 62.77L90.48 63.71L91.29 62.69L91.78 62.63L92.1 62.19L92.64 62.26L92.19 61.82L90.46 62.2L91.13 60.74L90.77 59.92L90.19 60.19L89.6 61.04L89.05 60.69L88.67 61.23L88.92 61.57L88.65 61.99L88.93 62.38L89.48 62.51L89.32 62.92L89.62 63.07L89.65 64.28L90.13 64.21L90.23 63.79L90.91 63.98L88.16 65.95L85.87 68.13L79.47 71.48L78.26 72.44L79.51 71.32L81.26 70.45L81.32 70.06L79.4 70.68L79.69 69.67L79.45 69.63L77.43 70.78L77.34 70.19L76.85 70.11L76.69 69.41L76.08 69.65L76.49 70.16L76.49 70.64L77.14 70.89L78.07 71.92L76.02 72.87L75.73 72.24L75.23 72.24L75.04 73.87L74.01 74.76L73.31 74.76L73.32 75.49L72.09 77.44L71.43 76.92L70.62 77.31L70.7 78.17L71.58 78.57L70.45 81.8L69.45 82.3L69.82 81.77L69.69 81.52L68.63 82.37L68.71 82.62L69.37 82.75L70.28 82.43L70.13 83.75L69.73 83.95L69.86 84.8L69.28 84.88L69.22 86.2L69.92 86.94L70.33 88.78L70.15 89.65L70.69 90.19L70.53 90.75L70.99 90.59L70.81 90.91L70.89 91.33L71.14 91.27L71.26 92.75L71.99 93.03L71.86 93.77L72.24 93.65L72.12 93.24L72.36 93.16L72.41 93.97L70.86 94.33L70.4 95.0L69.61 94.72L68.39 93.41L64.04 93.05L62.53 91.82L60.49 91.24L59.72 90.42L57.44 89.8L56.19 86.19L54.84 84.59L54.99 83.22L54.79 82.43L54.14 81.97L54.58 80.46L54.11 79.38L53.16 79.09L51.8 77.88L51.4 76.72L49.97 74.58L49.06 74.17L48.38 73.41L47.96 72.23L48.06 71.41L47.65 71.28L46.79 69.96L46.52 68.68L45.63 67.45L45.46 66.05L44.52 64.74L43.01 63.7L42.51 62.85L41.18 62.26L41.06 61.37L40.35 61.03L39.89 60.18L34.45 59.87L32.87 59.13L32.38 60.14L31.62 59.92L30.07 60.49L28.65 63.78L28.5 64.4L28.72 64.93L27.73 65.5L26.82 67.07L24.77 66.73L23.44 65.56L22.24 65.3L21.65 64.6L19.87 64.14L18.79 63.35L18.26 62.51L16.13 61.22L14.87 58.72L14.65 55.91L13.5 54.53L12.97 52.67L10.82 50.88L9.42 50.35L8.18 49.19L7.82 48.35L6.7 47.62L4.94 45.74L3.2 44.9L1.88 42.56L1.19 42.38L0.0 41.41L0.22 40.16L27.21 40.16L27.38 0.2L27.68 0.0L50.61 0.01L50.61 15.65Z"/></svg></div>
+      <div class="fl g3"><svg class="hv-ico bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 13.5h5.5L8 22l9-11.5h-5.5L13 2Z"/></svg></div>
+      <div class="fl g4"><svg class="hv-ico star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 16.9 6.2 20.4l1.6-6.6L2.6 9.3l6.8-.5L12 2Z"/></svg></div>
+      <div class="fl g5"><img class="hv-mark" src="assets/brand/speedrun-mark-gt.svg" alt=""></div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
-<div class="divider-label">Pick your path</div>
-<p class="footnote">Austin Speedrun by gt.school · Season starts Oct 5, 2026 · Registration open now · Every middle schooler in the metro is eligible.</p>
+<!-- WHAT IS THIS -->
+<section class="v2sec" id="what">
+  <div class="wrap">
+    <div class="level-head">
+      <span class="level-tag">New here?</span>
+      <h2 class="v2h2">So what is the Austin Speedrun?</h2>
+      <p class="v2sub">The plain-English version, no hype.</p>
+    </div>
+    <p class="what-lede">It's a <b>free academic competition</b> for every middle schooler in grades 6-8 across the Austin metro. <b>GT School</b> runs it to find, and pay, the city's most talented young students. You sign up free, spend the season learning on an app called <b>TimeBack</b>, and the highest scorers on Austin's leaderboard win <b>real cash</b>, including two $100,000 grand prizes.</p>
+    <div class="cards4 facts4">
+      <div class="gcard"><div class="gnum">6-8</div><h3>Who can play</h3><p>Any middle schooler living in the Austin metro. All 92 zip codes count.</p></div>
+      <div class="gcard"><div class="gnum">$0</div><h3>What it costs</h3><p>Free to enter and free to play all season. No catch, no fees.</p></div>
+      <div class="gcard"><div class="gnum">Oct 5</div><h3>When it runs</h3><p>One season, October to February. Registration is open right now.</p></div>
+      <div class="gcard"><div class="gnum">$100K</div><h3>The prizes</h3><p>Two $100,000 grand prizes, plus dozens more from $1,000 up.</p></div>
+    </div>
+  </div>
+</section>
 
+<!-- LEVEL 1: THE PRIZES -->
+<section class="v2sec" id="prizes">
+  <div class="wrap">
+    <div class="level-head">
+      <span class="level-tag">Level 1</span>
+      <h2 class="v2h2">What can you win?</h2>
+      <p class="v2sub">Real cash prizes, in every one of Austin's 92 zip codes.</p>
+    </div>
+
+    <div class="crown-duo">
+      <div class="cd-card math ch-col">
+        <span class="cd-badge">Crown #1</span>
+        <svg class="cd-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg>
+        <span class="ch-amt cd-big">$100,000</span>
+        <span class="cd-for">Best young <b>mathematician</b></span>
+        <span class="cd-sub">Top Math + Science score in Austin</span>
+      </div>
+      <div class="crown-vs">+</div>
+      <div class="cd-card read ch-col">
+        <span class="cd-badge">Crown #2</span>
+        <svg class="cd-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg>
+        <span class="ch-amt cd-big">$100,000</span>
+        <span class="cd-for">Best young <b>reader</b></span>
+        <span class="cd-sub">Top Reading + Language score in Austin</span>
+      </div>
+    </div>
+    <p class="crown-stack">Win <b>both</b>? They stack into the <b class="hl">$200,000 Double Crown.</b></p>
+
+    <div class="prize-more four">
+      <div class="pm-tile orange">
+        <span class="ch-amt pm-amt">$50,000</span>
+        <h3>Work-hardest prize</h3>
+        <p>Not the smartest, the <b>hardest working</b>. Most XP all season. Any kid can win.</p>
+      </div>
+      <div class="pm-tile pinkt">
+        <span class="pm-amt">$10,000<span class="pm-x">×6</span></span>
+        <h3>Grade champions</h3>
+        <p>Three grades (6th, 7th, 8th) × two subjects (<b>math</b> and <b>reading</b>) = 6 winners.</p>
+      </div>
+      <div class="pm-tile gold">
+        <span class="pm-amt">$5,000<span class="pm-x">/mo</span></span>
+        <h3>Monthly effort prize</h3>
+        <p>Top XP <b>each month</b>. Join late? Fresh shot every single month.</p>
+      </div>
+      <div class="pm-tile teal">
+        <span class="pm-amt">$1,000<span class="pm-x">×3</span></span>
+        <h3>Winners in every zip</h3>
+        <p>Top math, top reader, and hardest worker in <b>each of the 92 zips</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 2: HOW TO PLAY -->
+<section class="v2sec alt" id="how">
+  <div class="wrap">
+    <div class="level-head">
+      <span class="level-tag">Level 2</span>
+      <h2 class="v2h2">How to play. 3 steps.</h2>
+      <p class="v2sub">That's the whole game. Seriously.</p>
+    </div>
+    <div class="steps play3">
+      <div class="step"><span class="step-n">1</span><h3>Sign up free</h3><p>A parent signs you up (you're under 18). Costs nothing, ever.</p></div>
+      <div class="step"><span class="step-n">2</span><h3>Learn &amp; level up</h3><p>You learn on an app called <b>Timeback</b>. Finish topics, level up, race past your grade.</p></div>
+      <div class="step"><span class="step-n">3</span><h3>Test &amp; win cash</h3><p>Take a <b>proctored test</b> at the start and end of the season. Top scores win real money.</p></div>
+    </div>
+    <div class="cards4 facts4">
+      <div class="gcard"><div class="gnum">$0</div><h3>Totally free</h3><p>Every kid, every school in Austin.</p></div>
+      <div class="gcard"><div class="gnum">∞</div><h3>No level cap</h3><p>A fast 6th grader can crush 9th-grade math.</p></div>
+      <div class="gcard"><div class="gnum">30<span>min</span></div><h3>A day to play</h3><p>Want big prizes? Grind more on weekends.</p></div>
+      <div class="gcard"><div class="gnum">5<span>mo</span></div><h3>One season</h3><p>October to February. Jump in any time.</p></div>
+    </div>
+    <div class="how-cta">
+      <a class="btn primary big" href="#run">I'm in, take me to sign-up ↓</a>
+      <span class="how-cta-note">Free · takes 2 minutes · a parent does it</span>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 3: WAYS TO WIN + LEADERBOARD -->
+<section class="v2sec" id="win">
+  <div class="wrap">
+    <div class="level-head">
+      <span class="level-tag">Level 3</span>
+      <h2 class="v2h2">Lots of ways to win.</h2>
+      <p class="v2sub">You don't have to be #1 in Austin. Pick your lane and climb.</p>
+    </div>
+    <div class="modes">
+      <div class="mode m1"><span class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/></svg></span><h3>Be the best</h3><p>Top score wins a <b>$100,000</b> crown. Two crowns: math and reading.</p></div>
+      <div class="mode m2"><span class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 13.5h5.5L8 22l9-11.5h-5.5L13 2Z"/></svg></span><h3>Work the hardest</h3><p>Most XP wins <b>$50,000</b>. Rewards hours, not talent. Anyone can win.</p></div>
+      <div class="mode m3"><span class="mode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8z"/></svg></span><h3>Rep your zip</h3><p>Beat your neighborhood, not all of Austin. <b>$1,000</b> winners in every zip.</p></div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board-title"><span class="kicker">// live standings (sample)</span><h3>See where you'd stand.</h3></div>
+      <div class="board-tabs" id="boardTabs">
+        <button class="btab active" data-b="math">Math/Science</button>
+        <button class="btab" data-b="read">Reading/Language</button>
+        <button class="btab" data-b="speed">Effort (XP)</button>
+      </div>
+      <div class="lb" id="lb"></div>
+      <p class="lb-note">Names and scores are just examples. Every board has its own prizes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 4: YOUR ZIP -->
+<section class="v2sec alt" id="zip">
+  <div class="wrap">
+    <div class="level-head">
+      <span class="level-tag">Level 4</span>
+      <h2 class="v2h2">Your zip code is your team.</h2>
+      <p class="v2sub">You only race the kids in <b>your own zip</b>, not all of Austin. So every zip hands out its own <b>$1,000</b> prizes:</p>
+    </div>
+    <div class="zip3">
+      <div class="z3 a"><span class="z3-amt">$1,000</span><h4>Best mathematician</h4><p>Highest Math + Science score in your zip.</p></div>
+      <div class="z3 b"><span class="z3-amt">$1,000</span><h4>Best reader</h4><p>Highest Reading + Language score in your zip.</p></div>
+      <div class="z3 c"><span class="z3-amt">$1,000</span><h4>Hardest worker</h4><p>Most XP in your zip. Any kid can win this one.</p></div>
+    </div>
+    <p class="zip3-note">Look up your zip below to find your team, then get your friends to sign up so your zip fills out.</p>
+
+    <div class="austin-map" id="austinMap">
+      <div id="amMap" class="am-leaflet"></div>
+      <div class="am-legend">
+        <span class="al t"><i></i>Travis</span>
+        <span class="al w"><i></i>Williamson</span>
+        <span class="al h"><i></i>Hays</span>
+        <span class="al b"><i></i>Bastrop</span>
+        <span class="al c"><i></i>Caldwell</span>
+      </div>
+      <div class="am-cap"><b>Tap any dot</b> to see that zip's prizes · scroll or use + / &minus; to zoom · drag to pan<br><b>92 zip teams</b></div>
+    </div>
+
+    <div class="zip-tool">
+      <div class="zip-input">
+        <input id="zipIn" type="text" inputmode="numeric" maxlength="5" placeholder="Enter your ZIP (e.g. 78660)" aria-label="Enter your zip code">
+        <button id="zipGo">Look up my team</button>
+      </div>
+      <div class="zip-hints">Try: <button class="zh" data-z="78660">78660</button><button class="zh" data-z="78704">78704</button><button class="zh" data-z="78641">78641</button><button class="zh" data-z="78644">78644</button></div>
+      <div id="zipResult" class="zip-result" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR PARENTS LANE -->
+<section class="sec dark" id="parents">
+  <div class="wrap">
+    <svg class="parents-wm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3Z"/></svg>
+    <div class="sec-head"><span class="kicker">// PARENTS, START HERE</span><h2>Wait, is this actually real?</h2></div>
+    <p class="sec-lede">Short answer: yes. A parent or guardian signs each child up, it's completely free, and every prize is decided by a proctored assessment, no random drawings, no catch. GT School (<a href="https://gt.school" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">gt.school</a>) runs it as a real search for gifted kids across the Austin metro.</p>
+    <div class="who-grid">
+      <div class="who-card"><span class="who-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.2c-.4-1-1.4-1.6-2.6-1.6-1.6 0-2.7.9-2.7 2.1 0 2.9 5.5 1.3 5.5 4.3 0 1.3-1.1 2.2-2.8 2.2-1.3 0-2.4-.6-2.8-1.7M12 6.1v1.5M12 16.4v1.5"/></svg></span><h3>100% free, no obligation</h3><p>Free to enter and free TimeBack access all season. Win the money, keep the season, walk away, there's no pressure to enroll.</p></div>
+      <div class="who-card"><span class="who-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Real, proctored results</h3><p>Every dollar pays on a proctored assessment, so the numbers can't be gamed. Winners are decided on skill, never a drawing.</p></div>
+      <div class="who-card"><span class="who-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.4" r="1.3"/></svg></span><h3>Parent-first &amp; safe</h3><p>COPPA-compliant: a parent enrolls each child and signs everything. Kids under 13 need a signed consent form before they start.</p></div>
+    </div>
+    <div class="how-cta">
+      <a class="btn primary big" href="parents.html">See the full parent guide →</a>
+      <span class="how-cta-note">Prizes, timeline, safety, FAQ, and sign-up, all in one place</span>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="finalcta" id="run">
+  <svg class="cta-fx crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg>
+  <svg class="cta-fx star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 16.9 6.2 20.4l1.6-6.6L2.6 9.3l6.8-.5L12 2Z"/></svg>
+  <svg class="cta-fx bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 13.5h5.5L8 22l9-11.5h-5.5L13 2Z"/></svg>
+  <div class="wrap">
+    <span class="cta-kicker">// press start · season 01</span>
+    <h2>Ready to <span class="hl">run it?</span></h2>
+    <p>Two <b>$100K</b> crowns, a <b>$50K</b> effort grand, <b>$5K</b> every month, and <b>$1K</b> in every zip. Your parent signs you up, so send them the link and you're in the arena.</p>
+    <div class="cta-stakes">
+      <span class="badge">$100K MATH</span>
+      <span class="badge">$100K READING</span>
+      <span class="badge">$50K EFFORT</span>
+      <span class="badge">$1K ZIP</span>
+    </div>
+    <a class="btn primary big" href="parents.html">Get your parent to sign you up →</a>
+    <div class="share">
+      <button id="shareBtn" class="btn ghost">Copy your share link</button>
+      <span id="shareMsg" class="share-msg"></span>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap footrow">
+    <span id="logoFoot"></span>
+    <p>Austin Speedrun by <b>gt.school</b>. A free contest to find the smartest kids in America, starting right here in Austin.</p>
+    <a href="parents.html" class="foot-link">Parent info →</a>
+  </div>
+</footer>
+
+<script src="assets/zipdata.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/ziplatlng.js"></script>
 <script src="assets/logo.js"></script>
-<script>document.getElementById('logoTop').innerHTML = window.ASR_WORDMARK(28);</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script src="assets/kids.js"></script>
+<script src="assets/fx.js"></script>
+<script>document.getElementById("logo").innerHTML='<a class="asr-logo" href="index.html" aria-label="Austin Speedrun by GT School"><img src="assets/brand/speedrun-mark-gt.svg" alt="" style="height:34px;width:auto;display:block"><span class="asr-lockup"><span class="asr-word">AUSTIN<span class="asr-word-accent">SPEEDRUN</span></span><span class="asr-by">by GT School</span></span></a>';</script>
+<script>(function(){var b=document.getElementById("themeToggle");if(!b)return;var L=document.getElementById("themecss");var I=b.querySelector(".tt-ico");var T=b.querySelector(".tt-label");var MOON='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.8A8 8 0 1 1 9.2 3.5a6.3 6.3 0 0 0 11.3 11.3Z"/></svg>';var SUN='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4L19 19M19 5l-1.6 1.6M6.6 17.4L5 19"/></svg>';function render(t){if(t==="dark"){if(I)I.innerHTML=SUN;if(T)T.textContent="Light";}else{if(I)I.innerHTML=MOON;if(T)T.textContent="Dark";}}function ap(t){document.documentElement.setAttribute("data-theme",t);if(L)L.href="assets/kids-light-cream-2"+(t==="dark"?"-dark":"")+".css";render(t);try{localStorage.setItem("asr-theme",t)}catch(e){}}var c=document.documentElement.getAttribute("data-theme")||"light";render(c);b.addEventListener("click",function(){ap(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark")})})();</script>
+<script>(function(){var dots=[].slice.call(document.querySelectorAll(".leveltrack .lvl"));if(!dots.length||!("IntersectionObserver" in window))return;function setActive(id){dots.forEach(function(d){d.classList.toggle("active",d.getAttribute("href")==="#"+id);});}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});},{rootMargin:"-45% 0px -50% 0px",threshold:0});dots.forEach(function(d){var el=document.getElementById(d.getAttribute("href").slice(1));if(el)io.observe(el);});})();</script>
+<script>(function(){
+  if(typeof L==="undefined")return;
+  var el=document.getElementById('amMap'); if(!el)return;
+  var ZD=window.ZIP_DATA||{}, LL=window.ZIP_LATLNG||{};
+  var map=L.map('amMap',{scrollWheelZoom:true,zoomControl:true,attributionControl:true,preferCanvas:true,renderer:L.canvas({tolerance:12})});
+  map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+  var colors={Travis:'#159FBE',Williamson:'#d9741c',Hays:'#C65C8A',Bastrop:'#E6A100',Caldwell:'#7C6BEA'};
+  var zin=document.getElementById('zipIn'),zgo=document.getElementById('zipGo');
+  var pts=[],markers={},fromMarker=false;
+  Object.keys(ZD).forEach(function(z){
+    var c=LL[z]; if(!c)return;
+    var cty=ZD[z].county;
+    var mk=L.circleMarker([c[0],c[1]],{radius:7,weight:2,color:'#ffffff',fillColor:colors[cty]||'#888888',fillOpacity:.95});
+    // click a dot -> fill the lookup + show the full card below (no mini popup)
+    mk.on('click',function(){ if(zin&&zgo){ zin.value=z; fromMarker=true; zgo.click(); fromMarker=false; } });
+    mk.addTo(map); pts.push([c[0],c[1]]); markers[z]=mk;
+  });
+  if(pts.length){ map.fitBounds(pts,{padding:[26,26]}); } else { map.setView([30.35,-97.75],9); }
+  setTimeout(function(){ map.invalidateSize(); },200);
+  // typing / looking up a zip flies the map there (a direct dot click just shows the card, no jump)
+  function goToZip(z){ z=(z||'').trim(); var mk=markers[z]; if(mk){ map.flyTo(mk.getLatLng(),12,{duration:.8}); } }
+  if(zgo) zgo.addEventListener('click',function(){ if(!fromMarker) goToZip(zin&&zin.value); });
+  if(zin) zin.addEventListener('keydown',function(e){ if(e.key==='Enter') goToZip(zin.value); });
+  Array.prototype.forEach.call(document.querySelectorAll('.zh'),function(b){ b.addEventListener('click',function(){ goToZip(b.getAttribute('data-z')); }); });
+})();</script>
 </body>
 </html>

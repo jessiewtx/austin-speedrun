@@ -184,6 +184,12 @@
 .z3 p{font-size:14px;color:var(--dim);line-height:1.45}
 .zip3-note{text-align:center;font-size:15.5px;color:var(--dim);max-width:660px;margin:0 auto 28px;line-height:1.5}
 .zip3-note b{color:var(--ink)}
+/* live signups per zip (Supabase count) */
+.zr-live{display:flex;align-items:center;gap:10px;margin:2px 0 16px;font-size:15px;font-weight:500;color:var(--ink)}
+.zr-live[hidden]{display:none}
+.zr-live b{font-family:var(--display);font-weight:700;font-size:22px;line-height:1;color:var(--turq,#d9741c)}
+.zr-live-dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 22%,transparent);flex:none;animation:zrlivepulse 1.8s ease-in-out infinite}
+@keyframes zrlivepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.82)}}
 
 /* how-to-play CTA now closes the section */
 .how-cta{margin:40px 0 2px}
