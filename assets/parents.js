@@ -243,20 +243,30 @@ function renderSuccess({ first, email, zip, kids, anyUnder13, myCode, creditedRe
   const urlInput = document.getElementById("inviteUrl");
   if (copyBtn && urlInput) {
     copyBtn.addEventListener("click", async () => {
+      const text = urlInput.value;
+      let ok = false;
       try {
-        if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(urlInput.value);
-        else {
-          urlInput.focus();
-          urlInput.select();
-          document.execCommand("copy");
+        if (navigator.clipboard?.writeText && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          ok = true;
         }
+      } catch (_) {
+        /* fall through */
+      }
+      if (!ok) {
+        urlInput.focus();
+        urlInput.select();
+        try {
+          ok = document.execCommand("copy");
+        } catch (_) {
+          ok = false;
+        }
+      }
+      if (ok) {
         copyBtn.textContent = "Copied";
         setTimeout(() => {
           copyBtn.textContent = "Copy";
         }, 2000);
-      } catch (_) {
-        urlInput.focus();
-        urlInput.select();
       }
     });
   }
