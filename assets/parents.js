@@ -195,7 +195,7 @@ function ageOf(dobStr) {
   return a;
 }
 
-function renderSuccess({ first, email, zip, kids, anyUnder13, myCode, creditedRef }) {
+function renderSuccess({ first, email, zip, kids, anyUnder13, myCode, creditedRef, portalUrl }) {
   const many = kids.length > 1;
   const body = anyUnder13
     ? `<h3>Almost there, ${escapeHtml(first)}!</h3>
@@ -220,6 +220,15 @@ function renderSuccess({ first, email, zip, kids, anyUnder13, myCode, creditedRe
       </div>`;
   }
 
+  let portalBlock = "";
+  if (portalUrl) {
+    portalBlock = `
+      <div class="ss-portal" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,.08)">
+        <p style="font-size:14px;color:#4b5560;margin:0 0 12px">Check <b>${escapeHtml(email)}</b> for a link to <b>set up your parent portal</b> and create your password. After that, you can log in anytime here:</p>
+        <a href="${escapeHtml(portalUrl)}" target="_blank" rel="noopener" style="display:inline-block;background:#001117;color:#fff;font-weight:700;padding:11px 18px;border-radius:10px;text-decoration:none">Go to the parent portal →</a>
+      </div>`;
+  }
+
   document.getElementById("formCard").innerHTML = `
     <div class="form-success">
       <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -227,6 +236,7 @@ function renderSuccess({ first, email, zip, kids, anyUnder13, myCode, creditedRe
       <div class="ss-detail">Registered · ${kids.length} child${many ? "ren" : ""} · ZIP ${escapeHtml(zip)}</div>
       ${credited}
       ${inviteBlock}
+      ${portalBlock}
     </div>`;
 
   const copyBtn = document.getElementById("copyInvite");
@@ -427,6 +437,20 @@ regForm.addEventListener("submit", async function (e) {
     return;
   }
 
+  // Auto-create the parent's portal account + email a one-time login link.
+  // Non-fatal: registration already succeeded above, so never block on this.
+  const portalUrl = window.ASR_SUPABASE?.portalUrl || "";
+  if (portalUrl) {
+    try {
+      await client.auth.signInWithOtp({
+        email,
+        options: { shouldCreateUser: true, emailRedirectTo: portalUrl },
+      });
+    } catch (err) {
+      console.warn("Portal account link could not be sent:", err);
+    }
+  }
+
   renderSuccess({
     first: pname.split(" ")[0] || pname,
     email,
@@ -435,5 +459,6 @@ regForm.addEventListener("submit", async function (e) {
     anyUnder13: !!result.coppa_required || anyUnder13,
     myCode: normalizeReferralCode(result.referral_code),
     creditedRef: referral_code,
+    portalUrl,
   });
 });

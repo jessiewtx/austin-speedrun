@@ -183,7 +183,12 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(37px,6vw,60px);line-
 .tl-date{font-family:var(--mono);font-size:13px;color:var(--blue-ink);font-weight:600;letter-spacing:.01em}
 .tl-body b{font-family:var(--serif);font-weight:600;font-size:16px}
 .tl-body p{color:var(--sub);font-size:14.5px}
-@media(max-width:600px){.tl-row{grid-template-columns:1fr;gap:4px}}
+.tl-row.finale{grid-template-columns:190px 1fr}
+.tl-date-big{display:flex;flex-direction:column;line-height:1}
+.tl-save{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.tl-day{font-family:var(--serif);font-weight:700;font-size:42px;line-height:.95;color:var(--blue-ink)}
+.tl-year{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1;color:var(--orange);margin-top:3px}
+@media(max-width:600px){.tl-row,.tl-row.finale{grid-template-columns:1fr;gap:4px}}
 
 /* FAQ */
 .faq{margin-top:34px}
