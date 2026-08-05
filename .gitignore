@@ -23,7 +23,6 @@ assets/supabase-config.js
 
 # Presentation-only pages (kept local; never committed or deployed to the public site)
 plan.html
-plan-slides.html
-model-mock.html
-landing-mock.html
+plan-slide*.html
+*-mock.html
 plan-slides-png/
