@@ -223,9 +223,9 @@ function renderSuccess({ first, email, zip, kids, anyUnder13, myCode, creditedRe
   let portalBlock = "";
   if (portalUrl) {
     portalBlock = `
-      <div class="ss-portal" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,.08)">
-        <p style="font-size:14px;color:#4b5560;margin:0 0 12px">Next: make a <b>parent portal</b> account with <b>${escapeHtml(email)}</b> and choose <b>Create password</b>. No email link needed.</p>
-        <a href="${escapeHtml(portalUrl)}" target="_blank" rel="noopener" style="display:inline-block;background:#001117;color:#fff;font-weight:700;padding:11px 18px;border-radius:10px;text-decoration:none">Make an account →</a>
+      <div class="ss-portal">
+        <p class="ss-portal-copy">Next: Make a <b>parent portal</b> account with <b>${escapeHtml(email)}</b> by choosing <b>Create password</b>.</p>
+        <a class="ss-portal-btn" href="${escapeHtml(portalUrl)}" target="_blank" rel="noopener">Make an account →</a>
       </div>`;
   }
 
