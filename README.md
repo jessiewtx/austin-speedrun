@@ -35,10 +35,10 @@ The parent registration form on `parents.html#join` writes to the **Austin Speed
 | --- | --- |
 | `parents.html?ref=CODE#join` | Yes — invite link shown after signup |
 
-1. Create a Supabase project (GT org) and run the SQL under `../austin-speedrun-tracker/supabase/` (see that repo’s README)
-2. Copy `assets/supabase-config.example.js` → `assets/supabase-config.js` and paste Project URL + anon key (**do not commit** `supabase-config.js`)
-3. Use the same keys in the tracker `.env` (**do not commit** `.env`)
-4. Submit registration → row appears in the Tracker
+1. Create a Supabase project (GT org) and run the SQL under `../austin-speedrun-tracker/supabase/` (see that repo’s README), including `patch-portal-auth.sql` for the parent portal
+2. Copy `assets/supabase-config.example.js` → `assets/supabase-config.js` and paste Project URL + anon key + optional `portalUrl` (**do not commit** `supabase-config.js`)
+3. Use the same keys in the tracker `.env` and `../austin-speedrun-portal/.env` (**do not commit** `.env`)
+4. Submit registration → row appears in the Tracker; with `portalUrl` set, success links to the [parent portal](../austin-speedrun-portal) where parents **Create password** (no auth email). Resend set-password emails are parked until a domain is ready.
 
 ### Secrets
 

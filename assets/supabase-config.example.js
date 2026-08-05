@@ -4,4 +4,7 @@
 window.ASR_SUPABASE = {
   url: "https://YOUR_PROJECT_REF.supabase.co",
   anonKey: "YOUR_ANON_KEY",
+  // Parent portal origin (shown after signup → Create password there).
+  // Local portal: http://localhost:5180  |  Deployed S3 portal in prod.
+  portalUrl: "http://localhost:5180",
 };
