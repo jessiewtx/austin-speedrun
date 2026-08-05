@@ -4,7 +4,7 @@
 window.ASR_SUPABASE = {
   url: "https://YOUR_PROJECT_REF.supabase.co",
   anonKey: "YOUR_ANON_KEY",
-  // Parent portal origin. On signup we auto-create the parent's account and
-  // email a login link that opens this URL. Use the deployed portal in prod.
-  portalUrl: "http://localhost:5173",
+  // Parent portal origin (shown after signup → Make an account / Create password).
+  // Local portal: http://localhost:5180  |  Deployed portal URL in prod.
+  portalUrl: "http://localhost:5180",
 };

@@ -301,3 +301,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(37px,6vw,60px);line-
 .ck.invalid{color:#c0392b}
 .consents .field{margin-top:6px}
 .form-success .ss-note{margin-top:10px;font-size:13.5px;color:var(--sub2);line-height:1.5}
+.form-success .ss-portal{margin-top:22px;padding-top:20px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
+.form-success .ss-portal-copy{max-width:560px!important;width:100%;margin:0 auto 14px!important;font-size:15px!important;line-height:1.5!important;color:var(--sub)!important;text-align:center!important}
+.form-success .ss-portal-btn{display:inline-block;background:var(--ink);color:#fff;font-weight:700;padding:11px 18px;border-radius:10px;text-decoration:none}
+.form-success .ss-portal-btn:hover{opacity:.9}
