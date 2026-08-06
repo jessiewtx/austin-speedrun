@@ -160,7 +160,7 @@ function lookupZip(zip){
   const shareBtn=document.getElementById('shareBtn'); if(!shareBtn)return;
   shareBtn.addEventListener('click',()=>{
     // Personal ?ref= codes are shown on the signup success screen after register.
-    const link = new URL('parents.html', window.location.href);
+    const link = new URL('signup.html', window.location.href);
     link.search = '';
     link.hash = 'join';
     const msg = document.getElementById('shareMsg');

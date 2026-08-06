@@ -1,6 +1,6 @@
 /* ============================================================
    Austin Speedrun registration → Supabase register_participant
-   Referrals: parents.html?ref=CODE#join (+ optional code field)
+   Referrals: signup.html?ref=CODE#join (+ optional code field)
    Success shows invite link; COPPA next-step copy by child age.
    ============================================================ */
 const REF_STORAGE_KEY = "asrReferralCode";
@@ -52,7 +52,7 @@ function storeReferralCode(code) {
 }
 
 function inviteUrlForCode(code) {
-  const url = new URL("parents.html", window.location.href);
+  const url = new URL("signup.html", window.location.href);
   url.search = "";
   url.searchParams.set("ref", code);
   url.hash = "join";

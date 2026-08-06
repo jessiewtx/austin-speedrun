@@ -29,11 +29,11 @@ Fonts (Clash Display, General Sans, Source Serif 4, JetBrains Mono) load from Go
 
 ## Registration (Supabase)
 
-The parent registration form on `parents.html#join` writes to the **Austin Speedrun Tracker** database.
+The parent registration form on `signup.html#join` writes to the **Austin Speedrun Tracker** database.
 
 | Page | Referrals |
 | --- | --- |
-| `parents.html?ref=CODE#join` | Yes — invite link shown after signup |
+| `signup.html?ref=CODE#join` | Yes — invite link shown after signup |
 
 1. Create a Supabase project (GT org) and run the SQL under `../austin-speedrun-tracker/supabase/` (see that repo’s README)
 2. Copy `assets/supabase-config.example.js` → `assets/supabase-config.js` and paste Project URL + anon key (**do not commit** `supabase-config.js`)
