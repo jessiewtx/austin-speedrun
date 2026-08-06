@@ -1,181 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Austin Speedrun: Resources</title>
-<meta name="description" content="The research behind the Austin Speedrun: the studies, test documentation, and notes behind what this site claims, each one named so you can check it yourself.">
+<title>FAQ — Austin Speedrun</title>
+<meta name="description" content="Answers to the questions families ask most about the Austin Speedrun: cost, eligibility, prizes, referrals, safety, taxes, and how winners are decided.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=Inter+Tight:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/parents.css">
-<link rel="stylesheet" href="../assets/resources.css">
-<link rel="icon" type="image/png" sizes="512x512" href="../social/gt-tile.png">
-<link rel="apple-touch-icon" href="../social/gt-tile.png">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/kids-light-cream-2.css">
+<link rel="stylesheet" href="../assets/kids-v2.css?v=fonts2">
+<link rel="icon" type="image/png" sizes="512x512" href="../social/speedrun-tile.png">
+<script>document.documentElement.className+=' js';if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
+<style>
+.mpnav{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:14px;padding:15px 46px;background:rgba(253,246,236,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.mp-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.mp-logo img{height:32px;width:auto;display:block}
+.mp-logo .wm{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink)}
+.mp-logo .wm b{color:var(--turq)}
+.mp-logo .by{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);margin-top:1px}
+.mp-links{display:flex;gap:4px;margin-left:34px}
+.mp-links a{font-family:var(--sans);font-weight:600;font-size:16px;color:var(--dim);text-decoration:none;padding:9px 14px;border-radius:9px}
+.mp-links a:hover{color:var(--ink);background:var(--bg2)}
+.mp-links a.active{color:var(--turq)}
+.mp-cta{margin-left:auto;background:var(--turq);color:#fff;font-family:var(--display);font-weight:700;font-size:15px;padding:12px 22px;border-radius:11px;text-decoration:none;white-space:nowrap;box-shadow:0 10px 30px -8px rgba(217,116,28,.55)}
+.foot .foot-brand{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink)}
+/* page hero */
+.phero{position:relative;overflow:hidden;padding:70px 0 26px}
+.phero>.wrap{position:relative;z-index:2}
+.phero .hero-wm{position:absolute;top:-6px;right:-10px;font-family:var(--display);font-weight:700;font-size:clamp(96px,17vw,230px);line-height:.8;color:rgba(217,116,28,.06);z-index:0;pointer-events:none;letter-spacing:-.03em}
+.phero .eyebrow2{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--turq)}
+.phero .eyebrow2 .live-dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 22%,transparent)}
+.phero h1{font-family:var(--display);font-weight:700;font-size:clamp(46px,7vw,88px);line-height:.9;letter-spacing:-.02em;color:var(--ink);margin:16px 0 0}
+.phero h1 .hl{color:var(--turq)}
+.phero .psub{max-width:640px;font-size:20px;line-height:1.55;color:var(--dim);margin-top:20px;font-weight:500}
+/* faq accordion */
+.faqlist{max-width:940px;margin:0;display:grid;gap:12px}
+.faqlist details{background:var(--card);border:2px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 14px 40px -34px rgba(217,116,28,.35)}
+.faqlist summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;align-items:center;gap:16px;font-family:var(--display);font-weight:600;font-size:19px;color:var(--ink)}
+.faqlist summary::-webkit-details-marker{display:none}
+.faqlist summary::after{content:"+";margin-left:auto;font-family:var(--display);font-weight:700;font-size:28px;color:var(--turq);line-height:1;flex:none}
+.faqlist details[open] summary::after{content:"\2013"}
+.faqlist details[open] summary{color:var(--turq)}
+.faqlist .fa{padding:0 24px 22px;font-size:16.5px;line-height:1.6;color:var(--dim);font-weight:500}
+.faqlist .fa b{color:var(--ink);font-weight:600}
+.faqlist .fa a{color:var(--turq);font-weight:600}
+/* evidence note */
+.tbx{max-width:940px;margin:34px 0 0;background:var(--card);border:2px solid var(--line);border-radius:22px;padding:30px 32px;box-shadow:0 22px 60px -38px rgba(21,159,190,.4)}
+.tbx .tbx-k{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+.tbx h3{font-family:var(--display);font-weight:700;font-size:23px;color:var(--ink);margin:8px 0 10px}
+.tbx p{font-size:16px;color:var(--dim);line-height:1.6;font-weight:500}
+.tbx p b{color:var(--ink);font-weight:600}
+/* closing CTA */
+.finalcta{padding:80px 0 104px;background:radial-gradient(58% 66% at 50% 44%,rgba(230,161,0,.10),transparent 68%)}
+.finalcta::before{display:none}
+.ctacard{max-width:720px;margin:0 auto;text-align:center}
+.cta-bar{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
+.cta-bar i{width:36px;height:8px;border-radius:99px}
+.cta-bar i:nth-child(1){background:var(--turq)}.cta-bar i:nth-child(2){background:var(--pink)}.cta-bar i:nth-child(3){background:var(--green)}.cta-bar i:nth-child(4){background:var(--yellow)}
+.finalcta .cta-kicker{margin-bottom:14px}
+.finalcta h2{font-size:clamp(38px,6vw,68px);line-height:.98}
+.finalcta p{max-width:540px;margin:14px auto 0}
+.finalcta .cta-actions{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:28px}
+.finalcta .cta-actions .btn{margin:0}
+.finalcta .btn.ghost.big{font-size:19px;padding:20px 34px}
+</style>
 </head>
-<body>
-<header class="nav">
-  <a class="nav-logo" href="../index.html" aria-label="GT School — Austin Speedrun"><img src="../assets/brand/gt-school-logo.svg" alt="GT School"></a>
-  <nav class="navlinks">
-    <a href="../parents.html#what">What it is</a>
-    <a href="../parents.html#trust">Why it's credible</a>
-    <a href="../parents.html#why">Why we run this</a>
-    <a href="../parents.html#prizes">Prizes</a>
-    <a href="../parents.html#safety">Safety</a>
-    <a href="#faq">FAQ</a>
-    <a href="./">Resources</a>
+<body class="v2">
+<div class="scroll-prog" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<!-- CHAPTER RAIL -->
+<nav class="leveltrack" aria-label="Chapters">
+  <a class="lvl" href="../prizes.html"><span class="lvl-n">1</span><span class="lvl-t">Prizes</span></a>
+  <a class="lvl" href="../how.html"><span class="lvl-n">2</span><span class="lvl-t">How it works</span></a>
+  <a class="lvl" href="../parents.html"><span class="lvl-n">3</span><span class="lvl-t">For parents</span></a>
+  <a class="lvl active" href="./"><span class="lvl-n">4</span><span class="lvl-t">FAQ</span></a>
+  <a class="lvl" href="../signup.html"><span class="lvl-n">★</span><span class="lvl-t">Sign up</span></a>
+</nav>
+
+<header class="mpnav">
+  <a class="mp-logo" href="../index.html"><img src="../assets/brand/speedrun-mark-gt.svg" alt=""><span><span class="wm">AUSTIN <b>SPEEDRUN</b></span><span class="by">by GT School</span></span></a>
+  <nav class="mp-links">
+    <a href="../index.html">Home</a>
+    <a href="../prizes.html">Prizes</a>
+    <a href="../how.html">How it works</a>
+    <a href="../parents.html">For parents</a>
+    <a class="active" href="./">FAQ</a>
   </nav>
-  <a href="../parents.html#join" class="nav-cta">Sign up</a>
+  <a class="mp-cta" href="../signup.html">Sign up →</a>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-deco"></div>
-  <div class="hero-art" aria-hidden="true">
-    <div class="ha-card a">
-      <span class="ha-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6Zm7 1.5L18.5 9H14a1 1 0 0 1-1-1V3.5ZM8 12h8v1.7H8V12Zm0 3.5h8v1.7H8v-1.7Z"/></svg></span>
-      <span class="ha-tag">Every claim</span>
-      <span class="ha-amt">Sourced</span>
-    </div>
-    <div class="ha-card b">
-      <span class="ha-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Zm-1.3 13.4L7 11.7l1.4-1.4 2.3 2.3 4.9-4.9L17 9.1l-6.3 6.3Z"/></svg></span>
-      <span class="ha-tag">Every entry</span>
-      <span class="ha-amt">Audited</span>
-    </div>
-  </div>
+<!-- PAGE HERO -->
+<section class="phero">
+  <div class="hero-wm" aria-hidden="true">FAQ</div>
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span>Resources</span>
-    <h1>The research behind <span class="hl">the Speedrun</span>.</h1>
-    <p class="lede">The questions parents ask most are <a href="#faq">answered first</a>. Underneath them sits gt.school's evidence library: the studies, the test documentation, and our own notes on them, each entry <b>named so you can check it yourself</b>, appearing here as it's published.</p>
+    <span class="eyebrow2"><span class="live-dot"></span>FAQ · GT School</span>
+    <h1>Questions?<br><span class="hl">Answered.</span></h1>
+    <p class="psub">The things families ask most about the Speedrun, in plain English. Still stuck? The parent page has a chatbot that can help.</p>
   </div>
 </section>
 
-<!-- FAQ
-     Directly under the hero, because it is what a parent arrives for. The
-     library below it is the credibility layer: worth reading after an answer
-     has raised the question of whether to believe it, not before. -->
-<!-- Their component, structure and classes unchanged, so the two sources of
-     entry are indistinguishable.
-
-     `data-faq-slug` is the only addition, and it does two jobs with one value:
-
-       1. It is the permalink. The id is always "faq-" + the slug, so
-          /resources/#faq-prize-taxes addresses one question forever.
-       2. It is the supersede hook. Publish a library record with a matching
-          slug and that answer starts coming from the database instead, at the
-          same URL people have been sharing.
-
-     Which is the point: an entry gets its identifier today and its migration
-     path for free. Both jobs match on the slug and never on the question text,
-     so rewording the copy below breaks neither the links nor the matching. The
-     slugs were derived from the questions once and are now fixed values — do
-     not regenerate them from edited copy. -->
-<section class="sec clip" id="faq">
-  <span class="pdeco" style="top:64px;right:1.5%;width:210px;color:var(--orange);opacity:.07"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4V6a2 2 0 0 1 2-2Zm3.2 5.6a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Zm4.8 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Zm4.8 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Z"/></svg></span>
-  <div class="narrow">
-    <span class="kicker">Questions</span>
-    <h2>Frequently asked</h2>
-    <div class="faq" id="faq-list">
-      <details data-faq-slug="speedrun-cost" id="faq-speedrun-cost" open><summary>How much does it cost?</summary><div class="fa">Nothing. Entry is <b>100% free</b>, and every registered child gets full, unlimited Timeback access for the entire season at no charge. Free entry is also what keeps this a lawful skill contest rather than a sweepstakes.</div></details>
-      <details data-faq-slug="eligibility" id="faq-eligibility"><summary>Who is eligible?</summary><div class="fa">Every student in <b>grades 6–8 during the 2026–27 school year</b> who <b>legally resides</b> in the five-county Austin metro (Travis, Williamson, Hays, Bastrop, and Caldwell), regardless of school type: <b>public, private, charter, microschool, or homeschool</b>. Eligibility is based on <b>where the student lives, not where they go to school</b>.</div></details>
-      <details data-faq-slug="homeschoolers" id="faq-homeschoolers"><summary>My child is homeschooled. Can they compete?</summary><div class="fa">Absolutely. Homeschoolers compete in their <b>zip-code pool</b> right alongside every other kid in the neighborhood, on the same footing as public, private, charter, and microschool students. Your zip team is your home turf.</div></details>
-      <details data-faq-slug="time-commitment" id="faq-time-commitment"><summary>How much time does it take?</summary><div class="fa">About <b>30 minutes a day</b> is enough to compete casually; kids chasing the biggest prizes do more, especially on weekends. For scale, mastering a full subject at grade level is roughly <b>30 hours of focused work</b>, so the standings move most for kids who put in consistent time.</div></details>
-      <details data-faq-slug="cheating-prevention" id="faq-cheating-prevention"><summary>How do you prevent cheating?</summary><div class="fa">Every prize-bearing score comes from a <b>proctored</b> sitting only: AI proctoring on remote tests and in-person proctored finals for the largest prizes. And no prize is tied to a pre/post delta, so <b>there's no baseline to tank</b>: the Effort Grand counts only Timeback XP earned on mastered work, telemetry-audited before payout. We publish a methodology memo and invite audits.</div></details>
-      <details data-faq-slug="prize-taxes" id="faq-prize-taxes"><summary>Are the prizes taxable?</summary><div class="fa">Yes. Contest winnings are the child's income; prizes of $600+ trigger a 1099 and a W-9 at claim, and the <b>winner is responsible for taxes</b>. Families choose how a prize is paid (cash, Trump account, 529, or tuition scholarship), and we'll publish a plain-English parent tax FAQ before the season starts.</div></details>
-      <details data-faq-slug="timeback-and-gt-school" id="faq-timeback-and-gt-school"><summary>What are Timeback and GT School?</summary><div class="fa"><b>Timeback</b> is GT School's AI learning platform. It builds personalized lessons so kids can master academics in about <b>2 hours a day</b>, and they advance only after true mastery. Every registered child gets full Timeback access free for the Speedrun season. <b>GT School</b> (<a href="https://gt.school" target="_blank" rel="noopener">gt.school</a>) is the school running the contest.</div></details>
-      <details data-faq-slug="top-prizes" id="faq-top-prizes"><summary>What are the top prizes?</summary><div class="fa">Two <b>$100,000 subject crowns</b> sit at the top: the <b>Math/Science Crown</b> (best young mathematician) and the <b>Reading/Language Crown</b> (best young reader), each for the highest proctored score in the metro. There's no overall composite prize, but the crowns <b>stack</b>: one child topping both boards wins the <b>$200,000 Double Crown</b>. The <b>$50,000 Effort Grand</b> (most Timeback XP, which counts only for mastered work at each kid's own level, so any kid can win it) is the third pillar, plus $10k grade champions, a $5,000 monthly effort prize, and three $1,000 winners in every zip.</div></details>
-      <details data-faq-slug="late-registration" id="faq-late-registration"><summary>Can we still join if we hear about it late?</summary><div class="fa">Yes, registration stays open all season, with <b>no growth-window cutoff</b> because no prize depends on a baseline. A kid who joins in November loses nothing on the two subject-crown score boards, and the <b>monthly effort prizes</b> give late joiners a fresh shot to out-grind everyone, every single month.</div></details>
-      <details data-faq-slug="program-language" id="faq-program-language"><summary>What language is the program in?</summary><div class="fa">All program content, registration, and communications are in <b>English</b>, consistent with the tools involved (Timeback and the proctored assessment).</div></details>
+<!-- FAQ -->
+<section class="v2sec" id="faq">
+  <div class="wrap">
+    <div class="faqlist" id="faq-list">
+      <details name="faq" open>
+        <summary>How much does it cost?</summary>
+        <div class="fa">Nothing. Entry is <b>100% free</b>, and every registered kid gets full TimeBack access all season at no charge. Free entry is also what keeps this a lawful skill contest, not a sweepstakes.</div>
+      </details>
+      <details name="faq">
+        <summary>Who can enter?</summary>
+        <div class="fa">Any student in <b>grades 6–8 during the 2026–27 school year</b> who <b>legally lives</b> in the five-county Austin metro (Travis, Williamson, Hays, Bastrop, Caldwell), in any school type: public, private, charter, or homeschool. Eligibility is based on <b>where you live, not where you go to school</b>.</div>
+      </details>
+      <details name="faq">
+        <summary>What can my kid win?</summary>
+        <div class="fa">Over <b>$340,000</b> in real cash: two <b>$100,000 crowns</b> (top math, top reader, which stack into a <b>$200,000 Double Crown</b>), a <b>$50,000</b> effort grand plus a <b>$5,000</b> prize each month, <b>$10,000</b> to the best math and reader in every grade, and <b>referral prizes</b>. See the <a href="../prizes.html">full breakdown</a>.</div>
+      </details>
+      <details name="faq">
+        <summary>How do the referral prizes work?</summary>
+        <div class="fa">Refer friends and you're <b>both</b> rewarded. The top three referrers all season win <b>$5,000 / $3,000 / $2,000</b>, and there's a <b>$1,000 raffle every month</b> (each friend you refer is one entry, and you're both in the draw). Referrals only count once <b>both</b> of you finish the baseline test and <b>5 hours</b> on TimeBack.</div>
+      </details>
+      <details name="faq">
+        <summary>What are TimeBack and GT School?</summary>
+        <div class="fa"><b>TimeBack</b> is GT School's mastery-based learning app: personalized lessons let kids learn core academics in about <b>two hours a day</b>, advancing only after they truly master each level. Every registered kid gets it free for the season. <b>GT School</b> (<a href="https://gt.school" target="_blank" rel="noopener">gt.school</a>) is the school running the contest.</div>
+      </details>
+      <details name="faq">
+        <summary>How much time does it take?</summary>
+        <div class="fa">About <b>two hours a day</b> is a typical pace, but you set your own. A little every day keeps you climbing; kids chasing the biggest prizes put in more, especially on weekends.</div>
+      </details>
+      <details name="faq">
+        <summary>How are winners decided, and how do you stop cheating?</summary>
+        <div class="fa">Every big prize is decided by <b>proctored scores</b>. Kids take a proctored baseline and a proctored end-of-season test; anyone scoring above the <b>95th percentile</b> for their age is invited to an in-person, proctored final in Austin that decides the $100K and $10K winners. Effort prizes count only TimeBack XP on mastered work, telemetry-audited before payout. Every cash winner verifies <b>ID and residency</b> (and completes a W-9) before a dollar is paid.</div>
+      </details>
+      <details name="faq">
+        <summary>Can we still join if we hear about it late?</summary>
+        <div class="fa">Yes, registration stays open all season and no prize depends on a baseline, so a late start loses nothing on the score boards. The <b>monthly</b> effort prizes and referral raffle give late joiners a fresh shot every month.</div>
+      </details>
+      <details name="faq">
+        <summary>Are the prizes taxable?</summary>
+        <div class="fa">Yes. Contest winnings are the child's income; prizes of <b>$600 or more</b> trigger a 1099 and a W-9 at claim, and the winner is responsible for any taxes owed. Families choose how a prize is paid: cash to a custodial account, a 529, a gt.school tuition credit, or a Trump Account. More on the <a href="../parents.html">parent page</a>.</div>
+      </details>
+      <details name="faq">
+        <summary>Is it safe for my child?</summary>
+        <div class="fa">Yes, it's built parent-first. A <b>parent registers first</b> and gives verifiable consent (COPPA) before any info is collected from a child. Parents sign entry, releases, and prize acceptance. We collect only what's needed and <b>never sell your data</b>, and existing IEP/504 accommodations are honored on every test.</div>
+      </details>
+      <details name="faq">
+        <summary>What language is the program in?</summary>
+        <div class="fa">All content, registration, and communication is in <b>English</b>, consistent with TimeBack and the proctored assessment.</div>
+      </details>
     </div>
-    <p class="faq-note" id="faq-note" hidden></p>
+
+    <div class="tbx">
+      <span class="tbx-k">// The evidence library</span>
+      <h3>Everything we claim, sourced.</h3>
+      <p>Every number on this site is meant to be checkable. As the season nears, we'll publish the studies, test documentation, and our notes behind each claim here, each one <b>named so you can verify it yourself</b>. Where we can't source something, it stays off the page.</p>
+    </div>
   </div>
 </section>
 
-<!-- THE LIBRARY -->
-<section class="sec clip" id="library">
-  <span class="pdeco" style="top:80px;left:-30px;width:250px;color:var(--navy);opacity:.06"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></svg></span>
+<!-- FINAL CTA -->
+<section class="finalcta" id="run">
   <div class="wrap">
-
-    <!-- Shown until the renderer has something better to put here. If the data
-         file is missing, empty, or fails to parse, this is what stands. -->
-    <div class="ev-status" id="ev-status">
-      <span class="kicker">The library</span>
-      <h2>The research is still being written.</h2>
-      <p class="intro">It's being written now, and entries land on this page as they go live: there's no separate announcement to wait for. <b>The questions above are answered already</b> — what's still coming is the published research sitting behind them.</p>
-      <p class="intro">One thing worth knowing before it fills up. An entry appears here only once <b>every source underneath it is published</b>. Where we can't source something, it stays off this page rather than turning up with a citation that doesn't hold. So a short page means a short list of things we're ready to stand behind, not a short list of things we believe.</p>
-      <p class="ev-stamp" id="ev-stamp" hidden></p>
-    </div>
-
-    <p class="ev-summary" id="ev-summary" hidden></p>
-
-    <section class="ev-group" id="ev-claims" hidden>
-      <span class="kicker">Claims and their sources</span>
-      <h2>What we're prepared to stand behind.</h2>
-      <ul class="ev-list" data-ev-list></ul>
-    </section>
-
-    <section class="ev-group" id="ev-references" hidden>
-      <span class="kicker">Sources</span>
-      <h2>The published research.</h2>
-      <ul class="ev-list" data-ev-list></ul>
-    </section>
-
-    <!-- "Our reading of it" pointed at the Sources section above, which renders
-         nothing while no reference is published — so the heading referred to
-         something that was not on the page. These notes have to stand on their
-         own, and the intro says what each card is so nobody waits for a link
-         that has nowhere to go yet. -->
-    <section class="ev-group" id="ev-articles" hidden>
-      <span class="kicker">Notes</span>
-      <h2>What we went and checked.</h2>
-      <p class="ev-intro">Each note below is the whole of what we found, including the parts we couldn't confirm.</p>
-      <ul class="ev-list" data-ev-list></ul>
-    </section>
-
-  </div>
-</section>
-
-<!-- HOW TO READ IT -->
-<section class="sec paper" id="standard">
-  <div class="wrap">
-    <div class="trust-box">
-      <span class="kicker">The standard</span>
-      <h2>How to read this page.</h2>
-      <p class="intro">A citation is only worth having if it supports the exact sentence next to it. Three rules follow from that, and they hold whether this page is long or short.</p>
-      <div class="trust-cols">
-        <div>
-          <h4>Named sources, not summaries</h4>
-          <p>Every entry names its authors, where it was published, and when, and points at the original wherever one is publicly reachable. You should never have to take our word for what a source says.</p>
-        </div>
-        <div>
-          <h4>Omission is the default</h4>
-          <p>A claim shows up here only when every source beneath it is published. We would rather say nothing than attach a source that doesn't survive being read. Some sentences on this site will never appear here, and that's deliberate.</p>
-        </div>
-        <div>
-          <h4>It changes, and it's dated</h4>
-          <p>Entries carry the date they were last materially updated. If a source is superseded or withdrawn, the entries resting on it come down with it rather than being quietly left standing.</p>
-        </div>
+    <div class="ctacard">
+      <div class="cta-bar"><i></i><i></i><i></i><i></i></div>
+      <span class="cta-kicker">// still have a question?</span>
+      <h2>Ready when you are.</h2>
+      <p>If your answer isn't here, the parent guide covers the details, or just get signed up, it takes about two minutes.</p>
+      <div class="cta-actions">
+        <a class="btn primary big" href="../signup.html">Get signed up →</a>
+        <a class="btn ghost big" href="../parents.html">Read the parent guide →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="mission">
-  <div class="wrap">
-    <img class="mission-mark" src="../assets/brand/speedrun-mark-gt.svg" alt="Austin Speedrun" width="70" height="62">
-    <span class="kicker">The bigger mission</span>
-    <h2>Ordinary kids, measured honestly.</h2>
-    <p>The contest is only worth running if the results hold up afterwards. That's what this page is for: everything the campaign claims should be checkable by the people it's aimed at.</p>
-    <div class="mission-foot">
-      <span class="gt-foot"><img src="../assets/brand/gt-school-logo.svg" alt="GT School"></span>
-      <p>Austin Speedrun by gt.school · A free academic skill contest · Every middle schooler in the 5-county Austin metro is eligible · Registration at austin.gt.school</p>
-      <a href="../parents.html">For parents →</a>
-    </div>
+<footer class="foot">
+  <div class="wrap footrow">
+    <span class="foot-brand">Austin Speedrun · by gt.school</span>
+    <p>A free contest to find the smartest kids in America, starting right here in Austin.</p>
+    <a href="../signup.html" class="foot-link">Sign up →</a>
   </div>
 </footer>
 
-<script src="../assets/evidence.js"></script>
-<script src="../assets/resources.js"></script>
+<script src="../assets/fx.js?v=noconfetti"></script>
 </body>
 </html>
