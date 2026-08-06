@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up — Austin Speedrun</title>
+<meta name="description" content="A free, proctored academic contest for every middle schooler in the Austin metro. Real learning on Timeback, measured on a proctored, growth-measuring assessment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=Inter+Tight:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/parents.css?v=invite11">
+<link rel="icon" type="image/png" sizes="512x512" href="social/gt-tile.png">
+<link rel="apple-touch-icon" href="social/gt-tile.png">
+</head>
+<body>
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="GT School — Austin Speedrun"><img src="assets/brand/gt-school-logo.svg" alt="GT School"></a>
+  <nav class="navlinks">
+    <a href="prizes.html">Prizes</a>
+    <a href="how.html">How it works</a>
+    <a href="parents.html">For parents</a>
+    <a href="resources/">FAQ</a>
+  </nav>
+  <a href="#join" class="nav-cta">Sign up</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco"></div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="ha-card a">
+      <span class="ha-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg></span>
+      <span class="ha-tag">Math &amp; Science Crown</span>
+      <span class="ha-amt">$100,000</span>
+    </div>
+    <div class="ha-card b">
+      <span class="ha-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg></span>
+      <span class="ha-tag">Reading &amp; Language Crown</span>
+      <span class="ha-amt">$100,000</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Sign-up · Austin Metro · Grades 6–8</span>
+    <h1>Sign up. <span class="hl">It's free.</span></h1>
+    <p class="lede">A parent registers each child, it takes about <b>two minutes</b>, and every prize is decided by a <b>proctored assessment</b> — no drawings, no catch.</p>
+    <div class="trust-row">
+      <div><b>Free</b><span>to enter, all season</span></div>
+      <div><b>$1,000</b><span>prizes in every zip</span></div>
+      <div><b>Two $100K</b><span>crowns: math &amp; reading</span></div>
+      <div><b>COPPA</b><span>parent-first &amp; consent-based</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WE RUN THIS -->
+<section class="formsec" id="join">
+  <div class="narrow">
+    <span class="kicker">Register</span>
+    <h2>Sign up for the Speedrun.</h2>
+    <p class="intro">A parent or guardian signs up each child, it's free. Based on your child's age, we'll email you the next step: either the consent forms to sign, or a link to set up TimeBack.</p>
+    <div class="form-card" id="formCard">
+      <form id="regForm" novalidate>
+        <input type="text" id="in-company" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden">
+        <p class="referred-by" id="referredBy" hidden></p>
+
+        <h3 class="fs-h">Parent / guardian</h3>
+        <div class="field" id="f-pname">
+          <label for="in-pname">Full legal name</label>
+          <input id="in-pname" type="text" autocomplete="name">
+          <span class="err">Please enter your legal name.</span>
+        </div>
+        <div class="form-row">
+          <div class="field" id="f-email">
+            <label for="in-email">Email address</label>
+            <input id="in-email" type="email" autocomplete="email">
+            <span class="err">Enter a valid email.</span>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="in-phone">Mobile phone</label>
+            <input id="in-phone" type="tel" autocomplete="tel">
+            <span class="err">Enter a phone number.</span>
+          </div>
+        </div>
+        <div class="field" id="f-street">
+          <label for="in-street">Home street address</label>
+          <input id="in-street" type="text" autocomplete="address-line1">
+          <span class="err">Enter your street address.</span>
+        </div>
+        <div class="form-row">
+          <div class="field" id="f-unit">
+            <label for="in-unit">Unit / Apt <span class="opt">(optional)</span></label>
+            <input id="in-unit" type="text" autocomplete="address-line2">
+          </div>
+          <div class="field" id="f-city">
+            <label for="in-city">City</label>
+            <input id="in-city" type="text" autocomplete="address-level2">
+            <span class="err">Enter your city.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" id="f-state">
+            <label for="in-state">State</label>
+            <input id="in-state" type="text" autocomplete="address-level1" value="TX" maxlength="2">
+            <span class="err">Enter your state.</span>
+          </div>
+          <div class="field" id="f-zip">
+            <label for="in-zip">ZIP code</label>
+            <input id="in-zip" type="text" inputmode="numeric" maxlength="5">
+            <span class="err">Enter a 5-digit ZIP.</span>
+          </div>
+        </div>
+
+        <h3 class="fs-h">Your children <span class="fs-hint">Enrolling siblings? Add a block for each child.</span></h3>
+        <div id="students"></div>
+        <button type="button" id="addKid" class="add-kid"><span class="ak-plus" aria-hidden="true">+</span> Add another child</button>
+
+        <h3 class="fs-h">A few more things</h3>
+        <div class="field" id="f-heard">
+          <label for="in-heard">How did you hear about the Speedrun? <span class="opt">(optional)</span></label>
+          <select id="in-heard">
+            <option value="">Select&#8230;</option>
+            <option value="Friend or family">Friend or family</option>
+            <option value="My child's school">My child's school</option>
+            <option value="Social media">Social media</option>
+            <option value="Live event or flyer">Live event or flyer</option>
+            <option value="Search engine">Search engine</option>
+            <option value="News or article">News or article</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field is-collapsed" id="f-referral" hidden>
+          <label for="in-referral">Referral code <span class="opt">(optional)</span></label>
+          <input id="in-referral" type="text" autocomplete="off" placeholder="Enter their code" spellcheck="false">
+        </div>
+
+        <div class="consents">
+          <label class="ck"><input type="checkbox" id="ck-rules"><span>I agree to the <a href="#" rel="noopener">Official Rules</a></span></label>
+          <label class="ck"><input type="checkbox" id="ck-res"><span>I certify my family legally resides at the address above</span></label>
+          <label class="ck"><input type="checkbox" id="ck-priv"><span>I acknowledge the <a href="#" rel="noopener">privacy policy</a></span></label>
+          <div class="field" id="f-sign">
+            <label for="in-sign">Parent / guardian, type your full legal name to sign</label>
+            <input id="in-sign" type="text">
+            <span class="err">Type your name to sign.</span>
+          </div>
+        </div>
+
+        <p class="form-error" id="form-error">Hmm, that didn't send. Please check your connection and try again.</p>
+        <button type="submit" class="form-submit">Register my family</button>
+        <p class="form-fine">Free to enter. Parent-first &amp; COPPA-compliant: children under 13 need a signed consent form before they can start. We'll only email you about the Austin Speedrun.</p>
+      </form>
+    </div>
+  </div>
+</section>
+<footer class="mission">
+  <span class="pdeco" style="top:50%;right:-170px;transform:translateY(-50%);width:470px;opacity:.11"><img src="assets/brand/speedrun-mark-gt.svg" alt=""></span>
+  <div class="wrap">
+    <img class="mission-mark" src="assets/brand/speedrun-mark-gt.svg" alt="Austin Speedrun" width="70" height="62">
+    <span class="kicker">The bigger mission</span>
+    <h2>Finding the 100,000 smartest kids in America, and training them like elite athletes.</h2>
+    <p>Austin is city one. The Speedrun is the first instrument in a national search for academically gifted kids: identify them where they live, prove that ordinary kids on Timeback can post extraordinary results, and give every one of them a path. Being a GT winner should feel like being QB1.</p>
+    <div class="mission-foot">
+      <span class="gt-foot"><img src="assets/brand/gt-school-logo.svg" alt="GT School"></span>
+      <p>Austin Speedrun by gt.school · A free academic skill contest · Every middle schooler in the 5-county Austin metro is eligible · Registration at austin.gt.school</p>
+      <a href="students.html">Student experience →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script src="assets/zipdata.js"></script>
+<script src="assets/parents.js?v=invite13"></script>
+<script src="assets/gtbot.js" data-bot-url="https://tuxwtz8rqi.us-east-1.awsapprunner.com"
+        data-audience="parent"></script>
+</body>
+</html>

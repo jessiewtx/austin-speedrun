@@ -95,62 +95,9 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 
-  /* ---------- confetti ---------- */
-  var confetti = (function () {
-    var colors = ['#567CDF', '#FF74BA', '#FFD21E', '#5CD452', '#ffffff'];
-    return function (x, y) {
-      if (reduce) return;
-      var n = 96;
-      for (var i = 0; i < n; i++) {
-        var el = document.createElement('span');
-        el.className = 'confetti-bit';
-        var sz = 6 + Math.random() * 8;
-        el.style.left = x + 'px';
-        el.style.top = y + 'px';
-        el.style.width = sz + 'px';
-        el.style.height = (sz * 0.42 + 3) + 'px';
-        el.style.background = colors[i % colors.length];
-        document.body.appendChild(el);
-        (function (node) {
-          var ang = Math.random() * Math.PI * 2, sp = 5 + Math.random() * 10;
-          var vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp - (7 + Math.random() * 5);
-          var px = 0, py = 0, rot = Math.random() * 360, rs = (Math.random() - 0.5) * 34, life = 0, max = 78 + Math.random() * 24;
-          function step() {
-            life++; vy += 0.45; vx *= 0.99; px += vx; py += vy; rot += rs;
-            node.style.transform = 'translate(' + px + 'px,' + py + 'px) rotate(' + rot + 'deg)';
-            node.style.opacity = String(Math.max(0, 1 - life / max));
-            if (life < max) requestAnimationFrame(step); else node.remove();
-          }
-          requestAnimationFrame(step);
-        })(el);
-      }
-    };
-  })();
-
-  // confetti finale when the CTA scrolls in + on share copy
-  (function () {
-    var cta = document.querySelector('.finalcta');
-    if (cta && 'IntersectionObserver' in window && !reduce) {
-      var fired = false, armed = false;
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) { armed = true; return; }
-          if (armed && !fired) {
-            fired = true;
-            var r = e.target.getBoundingClientRect();
-            confetti(r.left + r.width / 2, r.top + Math.min(r.height * 0.42, window.innerHeight * 0.42));
-            io.disconnect();
-          }
-        });
-      }, { threshold: 0.45 });
-      io.observe(cta);
-    }
-    var share = document.getElementById('shareBtn');
-    if (share) share.addEventListener('click', function () {
-      var r = share.getBoundingClientRect();
-      confetti(r.left + r.width / 2, r.top + r.height / 2);
-    });
-  })();
+  /* ---------- confetti: fully disabled by request (no-op) ---------- */
+  var confetti = function () {};
+  void confetti;
 
   if (reduce || noHover) return; // pointer-driven effects below
 

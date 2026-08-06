@@ -10,9 +10,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script>(function(){var t="light";try{t=localStorage.getItem("asr-theme")||"light"}catch(e){}document.documentElement.setAttribute("data-theme",t);document.write('<link id="themecss" rel="stylesheet" href="assets/kids-light-cream-2'+(t==="dark"?"-dark":"")+'.css">');document.write('<link rel="stylesheet" href="assets/kids-v2.css">')})();</script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"><script>(function(){var t="light";try{t=localStorage.getItem("asr-theme")||"light"}catch(e){}document.documentElement.setAttribute("data-theme",t);document.write('<link id="themecss" rel="stylesheet" href="assets/kids-light-cream-2'+(t==="dark"?"-dark":"")+'.css">');document.write('<link rel="stylesheet" href="assets/kids-v2.css">')})();</script>
 <noscript><link rel="stylesheet" href="assets/kids-light-cream-2.css"><link rel="stylesheet" href="assets/kids-v2.css"></noscript>
 <link rel="icon" type="image/png" sizes="512x512" href="social/speedrun-tile.png">
 <script>document.documentElement.className+=' js';if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
@@ -26,7 +24,6 @@
 .what-lede b{font-weight:600}
 /* concept: polished, contained "For parents" panel (was a flat text wall on cream) */
 #parents{padding:16px 0 56px}
-#zip{padding-bottom:30px}
 #parents .wrap{background:#F5E4CD;border:2px solid #E8D1B0;border-radius:22px;padding:46px clamp(24px,4vw,56px) 42px;position:relative;overflow:hidden}
 #parents .parents-wm{position:absolute;top:-34px;right:-24px;width:230px;height:230px;color:var(--turq,#d9741c);opacity:.06;pointer-events:none}
 #parents .sec-head{margin-bottom:14px;position:relative;z-index:1}
@@ -49,23 +46,69 @@
 
 <!-- LEVEL TRACKER -->
 <nav class="leveltrack" aria-label="Progress">
-  <a class="lvl" href="#prizes" data-j="prizes"><span class="lvl-n">1</span><span class="lvl-t">The prizes</span></a>
-  <a class="lvl" href="#how" data-j="how"><span class="lvl-n">2</span><span class="lvl-t">How to play</span></a>
-  <a class="lvl" href="#win" data-j="win"><span class="lvl-n">3</span><span class="lvl-t">Ways to win</span></a>
-  <a class="lvl" href="#zip" data-j="zip"><span class="lvl-n">4</span><span class="lvl-t">Your zip</span></a>
-  <a class="lvl" href="#run" data-j="run"><span class="lvl-n">★</span><span class="lvl-t">Sign up</span></a>
+  <a class="lvl" href="prizes.html"><span class="lvl-n">1</span><span class="lvl-t">Prizes</span></a>
+  <a class="lvl" href="how.html"><span class="lvl-n">2</span><span class="lvl-t">How it works</span></a>
+  <a class="lvl" href="parents.html"><span class="lvl-n">3</span><span class="lvl-t">For parents</span></a>
+  <a class="lvl" href="resources/"><span class="lvl-n">4</span><span class="lvl-t">FAQ</span></a>
+  <a class="lvl" href="signup.html"><span class="lvl-n">★</span><span class="lvl-t">Sign up</span></a>
 </nav>
 
-<header class="nav">
-  <span id="logo"></span>
-  <a href="#parents" class="nav-parents">For parents →</a>
-  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch color theme"><span class="tt-ico" aria-hidden="true"></span><span class="tt-label">Dark</span></button><a href="parents.html" class="nav-cta">Get signed up →</a>
+<style>
+.mpnav{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:14px;padding:15px 46px;background:rgba(253,246,236,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.mp-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.mp-logo img{height:32px;width:auto;display:block}
+.mp-logo .wm{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink)}
+.mp-logo .wm b{color:var(--turq)}
+.mp-logo .by{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);margin-top:1px}
+.mp-links{display:flex;gap:4px;margin-left:34px}
+.mp-links a{font-family:var(--sans);font-weight:600;font-size:16px;color:var(--dim);text-decoration:none;padding:9px 14px;border-radius:9px}
+.mp-links a:hover{color:var(--ink);background:var(--bg2)}
+.mp-links a.active{color:var(--turq)}
+.mp-cta{margin-left:auto;background:var(--turq);color:#fff;font-family:var(--display);font-weight:700;font-size:15px;padding:12px 22px;border-radius:11px;text-decoration:none;white-space:nowrap;box-shadow:0 10px 30px -8px rgba(217,116,28,.55)}
+.mp-explore{padding:40px 0 52px}
+.mp-explore .wrap>.head{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim2);margin-bottom:22px}
+.mp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tcard{display:flex;flex-direction:column;gap:12px;background:var(--card);border:2px solid var(--line);border-radius:20px;padding:32px 28px;text-decoration:none;transition:border-color .16s,transform .16s,box-shadow .16s;box-shadow:0 18px 50px -34px rgba(217,116,28,.32)}
+.tcard:hover{border-color:var(--turq);transform:translateY(-3px);box-shadow:0 26px 64px -26px rgba(217,116,28,.55)}
+.tcard .tnum{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--turq)}
+.tcard h3{font-family:var(--display);font-weight:700;font-size:27px;line-height:1.05;color:var(--ink)}
+.tcard p{font-size:16.5px;line-height:1.5;color:var(--dim);flex:1}
+.tcard .go{font-family:var(--display);font-weight:600;font-size:16px;color:var(--turq)}
+.tcard:nth-child(2){box-shadow:0 18px 50px -34px rgba(198,92,138,.34)}.tcard:nth-child(2):hover{border-color:var(--pink);box-shadow:0 26px 64px -26px rgba(198,92,138,.55)}.tcard:nth-child(2) .tnum,.tcard:nth-child(2) .go{color:var(--pink)}
+.tcard:nth-child(3){box-shadow:0 18px 50px -34px rgba(21,159,190,.34)}.tcard:nth-child(3):hover{border-color:var(--green);box-shadow:0 26px 64px -26px rgba(21,159,190,.55)}.tcard:nth-child(3) .tnum,.tcard:nth-child(3) .go{color:var(--green)}
+@media(max-width:900px){.mp-grid{grid-template-columns:1fr}}
+/* closing CTA — flat & grounded (no box) */
+.finalcta{padding:80px 0 104px;background:radial-gradient(58% 66% at 50% 44%,rgba(230,161,0,.10),transparent 68%)}
+.finalcta::before{display:none}
+.ctacard{max-width:720px;margin:0 auto;text-align:center;padding:0;background:none;border:0;box-shadow:none;border-radius:0}
+.ctacard::after{display:none}
+.cta-bar{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
+.cta-bar i{width:36px;height:8px;border-radius:99px}
+.cta-bar i:nth-child(1){background:var(--turq)}
+.cta-bar i:nth-child(2){background:var(--pink)}
+.cta-bar i:nth-child(3){background:var(--green)}
+.cta-bar i:nth-child(4){background:var(--yellow)}
+.finalcta .cta-kicker{margin-bottom:14px}
+.finalcta h2{font-size:clamp(40px,6.2vw,72px);line-height:.96}
+.finalcta p{max-width:560px;margin:14px auto 0}
+.finalcta .cta-actions{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:28px}
+.finalcta .cta-actions .btn{margin:0}
+.finalcta .btn.ghost.big{font-size:19px;padding:20px 34px}
+.finalcta .cta-fine{margin-top:26px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim2)}
+.finalcta .cta-fine b{color:var(--turq)}
+@media(max-width:620px){.ctacard{padding:40px 24px 38px}}
+</style>
+<header class="mpnav">
+  <a class="mp-logo" href="index.html"><img src="assets/brand/speedrun-mark-gt.svg" alt=""><span><span class="wm">AUSTIN <b>SPEEDRUN</b></span><span class="by">by GT School</span></span></a>
+  <nav class="mp-links">
+    <a class="active" href="index.html">Home</a>
+    <a href="prizes.html">Prizes</a>
+    <a href="how.html">How it works</a>
+    <a href="parents.html">For parents</a>
+    <a href="resources/">FAQ</a>
+  </nav>
+  <a class="mp-cta" href="signup.html">Sign up →</a>
 </header>
-
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
-
-<!-- HERO -->
 <section class="hero">
   <div class="hero-wm" aria-hidden="true">$100K</div>
   <div class="ribbon">SEASON 01</div>
@@ -75,14 +118,14 @@
       <h1>GET SMARTER.<br><span class="hl">WIN REAL MONEY.</span></h1>
       <p class="lede">The <b>Austin Speedrun</b> is a free academic contest for every middle schooler in Austin. Learn on the TimeBack app, climb your city's leaderboard, and the top scorers win real cash, including two <b>$100,000</b> grand prizes.</p>
       <div class="hero-cta">
-        <a class="btn primary" href="parents.html">Get your parent to sign you up</a>
-        <a class="btn ghost" href="#zip">Find your team →</a>
+        <a class="btn primary" href="signup.html">Get your parent to sign you up</a>
+        <a class="btn ghost" href="how.html">See how it works →</a>
       </div>
       <div class="badges">
         <span class="badge">$100K MATH</span>
         <span class="badge">$100K READING</span>
         <span class="badge">$50K EFFORT</span>
-        <span class="badge">$1K ZIP</span>
+        <span class="badge">$10K GRADE</span>
       </div>
       <div class="v2clock">
         <div class="v2clock-lbl">Season starts in</div>
@@ -111,204 +154,28 @@
 </section>
 
 <!-- WHAT IS THIS -->
-<section class="v2sec" id="what">
+<section class="mp-explore">
   <div class="wrap">
-    <div class="level-head">
-      <span class="level-tag">New here?</span>
-      <h2 class="v2h2">So what is the Austin Speedrun?</h2>
-      <p class="v2sub">The plain-English version, no hype.</p>
-    </div>
-    <p class="what-lede">It's a <b>free academic competition</b> for every middle schooler in grades 6-8 across the Austin metro. <b>GT School</b> runs it to find, and pay, the city's most talented young students. You sign up free, spend the season learning on an app called <b>TimeBack</b>, and the highest scorers on Austin's leaderboard win <b>real cash</b>, including two $100,000 grand prizes.</p>
-    <div class="cards4 facts4">
-      <div class="gcard"><div class="gnum">6-8</div><h3>Who can play</h3><p>Any middle schooler living in the Austin metro. All 92 zip codes count.</p></div>
-      <div class="gcard"><div class="gnum">$0</div><h3>What it costs</h3><p>Free to enter and free to play all season. No catch, no fees.</p></div>
-      <div class="gcard"><div class="gnum">Oct 5</div><h3>When it runs</h3><p>One season, October to February. Registration is open right now.</p></div>
-      <div class="gcard"><div class="gnum">$100K</div><h3>The prizes</h3><p>Two $100,000 grand prizes, plus dozens more from $1,000 up.</p></div>
+    <div class="head">// Explore</div>
+    <div class="mp-grid">
+      <a class="tcard" href="prizes.html"><span class="tnum">01</span><h3>The prizes</h3><p>Two $100,000 crowns, $10K in every grade, a $50K effort grand plus monthly prizes, and cash for referring friends. See exactly who wins what.</p><span class="go">See all prizes →</span></a>
+      <a class="tcard" href="how.html"><span class="tnum">02</span><h3>How it works</h3><p>Learn on TimeBack all season, take proctored assessments, and the top scorers earn an invite to the in-person final. The full format + timeline.</p><span class="go">See how it works →</span></a>
+      <a class="tcard" href="parents.html"><span class="tnum">03</span><h3>For parents</h3><p>It's free, proctored, and parent-first. What GT School gets out of it, how prizes are decided, and how we keep kids safe (COPPA).</p><span class="go">Read the parent guide →</span></a>
     </div>
   </div>
 </section>
-
-<!-- LEVEL 1: THE PRIZES -->
-<section class="v2sec" id="prizes">
-  <div class="wrap">
-    <div class="level-head">
-      <span class="level-tag">Level 1</span>
-      <h2 class="v2h2">What can you win?</h2>
-      <p class="v2sub">Real cash prizes, in every one of Austin's 92 zip codes.</p>
-    </div>
-
-    <div class="crown-duo">
-      <div class="cd-card math ch-col">
-        <span class="cd-badge">Crown #1</span>
-        <svg class="cd-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg>
-        <span class="ch-amt cd-big">$100,000</span>
-        <span class="cd-for">Best young <b>mathematician</b></span>
-        <span class="cd-sub">Top Math + Science score in Austin</span>
-      </div>
-      <div class="crown-vs">+</div>
-      <div class="cd-card read ch-col">
-        <span class="cd-badge">Crown #2</span>
-        <svg class="cd-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg>
-        <span class="ch-amt cd-big">$100,000</span>
-        <span class="cd-for">Best young <b>reader</b></span>
-        <span class="cd-sub">Top Reading + Language score in Austin</span>
-      </div>
-    </div>
-    <p class="crown-stack">Win <b>both</b>? They stack into the <b class="hl">$200,000 Double Crown.</b></p>
-
-    <div class="prize-more four">
-      <div class="pm-tile orange">
-        <span class="ch-amt pm-amt">$50,000</span>
-        <h3>Work-hardest prize</h3>
-        <p>Not the smartest, the <b>hardest working</b>. Most XP all season. Any kid can win.</p>
-      </div>
-      <div class="pm-tile pinkt">
-        <span class="pm-amt">$10,000<span class="pm-x">×6</span></span>
-        <h3>Grade champions</h3>
-        <p>Three grades (6th, 7th, 8th) × two subjects (<b>math</b> and <b>reading</b>) = 6 winners.</p>
-      </div>
-      <div class="pm-tile gold">
-        <span class="pm-amt">$5,000<span class="pm-x">/mo</span></span>
-        <h3>Monthly effort prize</h3>
-        <p>Top XP <b>each month</b>. Join late? Fresh shot every single month.</p>
-      </div>
-      <div class="pm-tile teal">
-        <span class="pm-amt">$1,000<span class="pm-x">×3</span></span>
-        <h3>Winners in every zip</h3>
-        <p>Top math, top reader, and hardest worker in <b>each of the 92 zips</b>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LEVEL 2: HOW TO PLAY -->
-<section class="v2sec alt" id="how">
-  <div class="wrap">
-    <div class="level-head">
-      <span class="level-tag">Level 2</span>
-      <h2 class="v2h2">How to play. 3 steps.</h2>
-      <p class="v2sub">That's the whole game. Seriously.</p>
-    </div>
-    <div class="steps play3">
-      <div class="step"><span class="step-n">1</span><h3>Sign up free</h3><p>A parent signs you up (you're under 18). Costs nothing, ever.</p></div>
-      <div class="step"><span class="step-n">2</span><h3>Learn &amp; level up</h3><p>You learn on an app called <b>Timeback</b>. Finish topics, level up, race past your grade.</p></div>
-      <div class="step"><span class="step-n">3</span><h3>Test &amp; win cash</h3><p>Take a <b>proctored test</b> at the start and end of the season. Top scores win real money.</p></div>
-    </div>
-    <div class="cards4 facts4">
-      <div class="gcard"><div class="gnum">$0</div><h3>Totally free</h3><p>Every kid, every school in Austin.</p></div>
-      <div class="gcard"><div class="gnum">∞</div><h3>No level cap</h3><p>A fast 6th grader can crush 9th-grade math.</p></div>
-      <div class="gcard"><div class="gnum">30<span>min</span></div><h3>A day to play</h3><p>Want big prizes? Grind more on weekends.</p></div>
-      <div class="gcard"><div class="gnum">5<span>mo</span></div><h3>One season</h3><p>October to February. Jump in any time.</p></div>
-    </div>
-    <div class="how-cta">
-      <a class="btn primary big" href="#run">I'm in, take me to sign-up ↓</a>
-      <span class="how-cta-note">Free · takes 2 minutes · a parent does it</span>
-    </div>
-  </div>
-</section>
-
-<!-- LEVEL 3: WAYS TO WIN + LEADERBOARD -->
-<section class="v2sec" id="win">
-  <div class="wrap">
-    <div class="level-head">
-      <span class="level-tag">Level 3</span>
-      <h2 class="v2h2">Lots of ways to win.</h2>
-      <p class="v2sub">You don't have to be #1 in Austin. Pick your lane and climb.</p>
-    </div>
-    <div class="modes">
-      <div class="mode m1"><span class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/></svg></span><h3>Be the best</h3><p>Top score wins a <b>$100,000</b> crown. Two crowns: math and reading.</p></div>
-      <div class="mode m2"><span class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 13.5h5.5L8 22l9-11.5h-5.5L13 2Z"/></svg></span><h3>Work the hardest</h3><p>Most XP wins <b>$50,000</b>. Rewards hours, not talent. Anyone can win.</p></div>
-      <div class="mode m3"><span class="mode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8z"/></svg></span><h3>Rep your zip</h3><p>Beat your neighborhood, not all of Austin. <b>$1,000</b> winners in every zip.</p></div>
-    </div>
-
-    <div class="board-wrap">
-      <div class="board-title"><span class="kicker">// live standings (sample)</span><h3>See where you'd stand.</h3></div>
-      <div class="board-tabs" id="boardTabs">
-        <button class="btab active" data-b="math">Math/Science</button>
-        <button class="btab" data-b="read">Reading/Language</button>
-        <button class="btab" data-b="speed">Effort (XP)</button>
-      </div>
-      <div class="lb" id="lb"></div>
-      <p class="lb-note">Names and scores are just examples. Every board has its own prizes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- LEVEL 4: YOUR ZIP -->
-<section class="v2sec alt" id="zip">
-  <div class="wrap">
-    <div class="level-head">
-      <span class="level-tag">Level 4</span>
-      <h2 class="v2h2">Your zip code is your team.</h2>
-      <p class="v2sub">You only race the kids in <b>your own zip</b>, not all of Austin. So every zip hands out its own <b>$1,000</b> prizes:</p>
-    </div>
-    <div class="zip3">
-      <div class="z3 a"><span class="z3-amt">$1,000</span><h4>Best mathematician</h4><p>Highest Math + Science score in your zip.</p></div>
-      <div class="z3 b"><span class="z3-amt">$1,000</span><h4>Best reader</h4><p>Highest Reading + Language score in your zip.</p></div>
-      <div class="z3 c"><span class="z3-amt">$1,000</span><h4>Hardest worker</h4><p>Most XP in your zip. Any kid can win this one.</p></div>
-    </div>
-    <p class="zip3-note">Look up your zip below to find your team, then get your friends to sign up so your zip fills out.</p>
-
-    <div class="austin-map" id="austinMap">
-      <div id="amMap" class="am-leaflet"></div>
-      <div class="am-legend">
-        <span class="al t"><i></i>Travis</span>
-        <span class="al w"><i></i>Williamson</span>
-        <span class="al h"><i></i>Hays</span>
-        <span class="al b"><i></i>Bastrop</span>
-        <span class="al c"><i></i>Caldwell</span>
-      </div>
-      <div class="am-cap"><b>Tap any dot</b> to see that zip's prizes · scroll or use + / &minus; to zoom · drag to pan<br><b>92 zip teams</b></div>
-    </div>
-
-    <div class="zip-tool">
-      <div class="zip-input">
-        <input id="zipIn" type="text" inputmode="numeric" maxlength="5" placeholder="Enter your ZIP (e.g. 78660)" aria-label="Enter your zip code">
-        <button id="zipGo">Look up my team</button>
-      </div>
-      <div class="zip-hints">Try: <button class="zh" data-z="78660">78660</button><button class="zh" data-z="78704">78704</button><button class="zh" data-z="78641">78641</button><button class="zh" data-z="78644">78644</button></div>
-      <div id="zipResult" class="zip-result" hidden></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOR PARENTS LANE -->
-<section class="sec dark" id="parents">
-  <div class="wrap">
-    <svg class="parents-wm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3Z"/></svg>
-    <div class="sec-head"><span class="kicker">// PARENTS, START HERE</span><h2>Wait, is this actually real?</h2></div>
-    <p class="sec-lede">Short answer: yes. A parent or guardian signs each child up, it's completely free, and every prize is decided by a proctored assessment, no random drawings, no catch. GT School (<a href="https://gt.school" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">gt.school</a>) runs it as a real search for gifted kids across the Austin metro.</p>
-    <div class="who-grid">
-      <div class="who-card"><span class="who-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.2c-.4-1-1.4-1.6-2.6-1.6-1.6 0-2.7.9-2.7 2.1 0 2.9 5.5 1.3 5.5 4.3 0 1.3-1.1 2.2-2.8 2.2-1.3 0-2.4-.6-2.8-1.7M12 6.1v1.5M12 16.4v1.5"/></svg></span><h3>100% free, no obligation</h3><p>Free to enter and free TimeBack access all season. Win the money, keep the season, walk away, there's no pressure to enroll.</p></div>
-      <div class="who-card"><span class="who-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Real, proctored results</h3><p>Every dollar pays on a proctored assessment, so the numbers can't be gamed. Winners are decided on skill, never a drawing.</p></div>
-      <div class="who-card"><span class="who-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.4" r="1.3"/></svg></span><h3>Parent-first &amp; safe</h3><p>COPPA-compliant: a parent enrolls each child and signs everything. Kids under 13 need a signed consent form before they start.</p></div>
-    </div>
-    <div class="how-cta">
-      <a class="btn primary big" href="parents.html">See the full parent guide →</a>
-      <span class="how-cta-note">Prizes, timeline, safety, FAQ, and sign-up, all in one place</span>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
 <section class="finalcta" id="run">
-  <svg class="cta-fx crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10H4.6L3 8z"/><rect x="4.4" y="19.2" width="15.2" height="2.4" rx="1"/></svg>
-  <svg class="cta-fx star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 16.9 6.2 20.4l1.6-6.6L2.6 9.3l6.8-.5L12 2Z"/></svg>
-  <svg class="cta-fx bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 13.5h5.5L8 22l9-11.5h-5.5L13 2Z"/></svg>
   <div class="wrap">
-    <span class="cta-kicker">// press start · season 01</span>
-    <h2>Ready to <span class="hl">run it?</span></h2>
-    <p>Two <b>$100K</b> crowns, a <b>$50K</b> effort grand, <b>$5K</b> every month, and <b>$1K</b> in every zip. Your parent signs you up, so send them the link and you're in the arena.</p>
-    <div class="cta-stakes">
-      <span class="badge">$100K MATH</span>
-      <span class="badge">$100K READING</span>
-      <span class="badge">$50K EFFORT</span>
-      <span class="badge">$1K ZIP</span>
-    </div>
-    <a class="btn primary big" href="parents.html">Get your parent to sign you up →</a>
-    <div class="share">
-      <button id="shareBtn" class="btn ghost">Copy your share link</button>
-      <span id="shareMsg" class="share-msg"></span>
+    <div class="ctacard">
+      <div class="cta-bar"><i></i><i></i><i></i><i></i></div>
+      <span class="cta-kicker">// press start · season 01</span>
+      <h2>Ready to <span class="hl">run it?</span></h2>
+      <p>Every middle schooler in Austin can play, and it's <b>completely free</b>. Your parent signs you up in about two minutes, then you're in the arena.</p>
+      <div class="cta-actions">
+        <a class="btn primary big" href="signup.html">Get your parent to sign you up →</a>
+        <a class="btn ghost big" href="prizes.html">See the prizes →</a>
+      </div>
+      <p class="cta-fine"><b>$340,000+</b> in real prizes &nbsp;·&nbsp; Grades 6–8 &nbsp;·&nbsp; 5-county Austin metro</p>
     </div>
   </div>
 </section>
@@ -321,43 +188,12 @@
   </div>
 </footer>
 
-<script src="assets/zipdata.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/ziplatlng.js"></script>
 <script src="assets/logo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/supabase-config.js"></script>
-<script src="assets/kids.js"></script>
-<script src="assets/fx.js"></script>
-<script>document.getElementById("logo").innerHTML='<a class="asr-logo" href="index.html" aria-label="Austin Speedrun by GT School"><img src="assets/brand/speedrun-mark-gt.svg" alt="" style="height:34px;width:auto;display:block"><span class="asr-lockup"><span class="asr-word">AUSTIN<span class="asr-word-accent">SPEEDRUN</span></span><span class="asr-by">by GT School</span></span></a>';</script>
+<script src="assets/kids.js?v=nozip"></script>
+<script src="assets/fx.js?v=noconfetti"></script>
 <script>(function(){var b=document.getElementById("themeToggle");if(!b)return;var L=document.getElementById("themecss");var I=b.querySelector(".tt-ico");var T=b.querySelector(".tt-label");var MOON='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.8A8 8 0 1 1 9.2 3.5a6.3 6.3 0 0 0 11.3 11.3Z"/></svg>';var SUN='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4L19 19M19 5l-1.6 1.6M6.6 17.4L5 19"/></svg>';function render(t){if(t==="dark"){if(I)I.innerHTML=SUN;if(T)T.textContent="Light";}else{if(I)I.innerHTML=MOON;if(T)T.textContent="Dark";}}function ap(t){document.documentElement.setAttribute("data-theme",t);if(L)L.href="assets/kids-light-cream-2"+(t==="dark"?"-dark":"")+".css";render(t);try{localStorage.setItem("asr-theme",t)}catch(e){}}var c=document.documentElement.getAttribute("data-theme")||"light";render(c);b.addEventListener("click",function(){ap(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark")})})();</script>
 <script>(function(){var dots=[].slice.call(document.querySelectorAll(".leveltrack .lvl"));if(!dots.length||!("IntersectionObserver" in window))return;function setActive(id){dots.forEach(function(d){d.classList.toggle("active",d.getAttribute("href")==="#"+id);});}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});},{rootMargin:"-45% 0px -50% 0px",threshold:0});dots.forEach(function(d){var el=document.getElementById(d.getAttribute("href").slice(1));if(el)io.observe(el);});})();</script>
-<script>(function(){
-  if(typeof L==="undefined")return;
-  var el=document.getElementById('amMap'); if(!el)return;
-  var ZD=window.ZIP_DATA||{}, LL=window.ZIP_LATLNG||{};
-  var map=L.map('amMap',{scrollWheelZoom:true,zoomControl:true,attributionControl:true,preferCanvas:true,renderer:L.canvas({tolerance:12})});
-  map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-  var colors={Travis:'#159FBE',Williamson:'#d9741c',Hays:'#C65C8A',Bastrop:'#E6A100',Caldwell:'#7C6BEA'};
-  var zin=document.getElementById('zipIn'),zgo=document.getElementById('zipGo');
-  var pts=[],markers={},fromMarker=false;
-  Object.keys(ZD).forEach(function(z){
-    var c=LL[z]; if(!c)return;
-    var cty=ZD[z].county;
-    var mk=L.circleMarker([c[0],c[1]],{radius:7,weight:2,color:'#ffffff',fillColor:colors[cty]||'#888888',fillOpacity:.95});
-    // click a dot -> fill the lookup + show the full card below (no mini popup)
-    mk.on('click',function(){ if(zin&&zgo){ zin.value=z; fromMarker=true; zgo.click(); fromMarker=false; } });
-    mk.addTo(map); pts.push([c[0],c[1]]); markers[z]=mk;
-  });
-  if(pts.length){ map.fitBounds(pts,{padding:[26,26]}); } else { map.setView([30.35,-97.75],9); }
-  setTimeout(function(){ map.invalidateSize(); },200);
-  // typing / looking up a zip flies the map there (a direct dot click just shows the card, no jump)
-  function goToZip(z){ z=(z||'').trim(); var mk=markers[z]; if(mk){ map.flyTo(mk.getLatLng(),12,{duration:.8}); } }
-  if(zgo) zgo.addEventListener('click',function(){ if(!fromMarker) goToZip(zin&&zin.value); });
-  if(zin) zin.addEventListener('keydown',function(e){ if(e.key==='Enter') goToZip(zin.value); });
-  Array.prototype.forEach.call(document.querySelectorAll('.zh'),function(b){ b.addEventListener('click',function(){ goToZip(b.getAttribute('data-z')); }); });
-})();</script>
+
 <script src="assets/gtbot.js" data-bot-url="https://tuxwtz8rqi.us-east-1.awsapprunner.com"></script>
 </body>
 </html>
