@@ -69,7 +69,7 @@ echo "==> Uploading HTML"
 # social/, so any further subdirectory page needs its own --include here.
 aws s3 sync "$SRC_DIR" "s3://$BUCKET" \
   --exclude "*" --include "*.html" --exclude "*/*" --include "resources/*.html" \
-  --exclude "plan.html" --exclude "plan-slide*.html" --exclude "*-mock.html" \
+  --exclude "plan.html" --exclude "plan-slide*.html" --exclude "pitch.html" --exclude "*-mock.html" \
   --cache-control "no-cache" --content-type "text/html; charset=utf-8"
 
 # 5. Done.
